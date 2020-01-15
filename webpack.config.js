@@ -7,9 +7,9 @@ module.exports = {
   context: path.resolve(__dirname),
   devtool: 'source-map',
   output: {
-    filename: 'easy-modal.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, './dist'),
-    library: 'easyModal',
+    library: 'MyDesign',
     libraryExport: 'umd',
     umdNamedDefine: true,
   },

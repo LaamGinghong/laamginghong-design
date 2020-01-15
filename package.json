@@ -1,8 +1,8 @@
 {
-  "name": "easy-modal",
-  "version": "1.0.0",
-  "description": "An easy React modal.",
-  "main": "dist/easy-modal.js",
+  "name": "my-design",
+  "version": "0.0.1",
+  "description": "My easy React App design",
+  "main": "dist/index.js",
   "module": "src/index.ts",
   "author": "https://github.com/LaamGinghong",
   "license": "MIT",
