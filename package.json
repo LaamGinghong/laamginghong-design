@@ -1,6 +1,6 @@
 {
   "name": "my-design",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "My easy React App design",
   "main": "dist/index.js",
   "module": "src/index.ts",
