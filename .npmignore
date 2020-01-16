@@ -1,9 +1,0 @@
-/node_modules/
-/src/
-.eslintrc
-.gitignore
-.prettierrc
-tsconfig.json
-webpack.config.js
-yarn.lock
-yarn-error.log

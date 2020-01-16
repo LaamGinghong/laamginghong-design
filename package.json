@@ -2,8 +2,18 @@
   "name": "laamginghong-design",
   "version": "1.1.1",
   "description": "My easy React App design",
-  "author": "https://github.com/LaamGinghong",
-  "main": "dist/index.js",
+  "author": "LaamGinghong",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "homepage": "https://github.com/LaamGinghong/laamginghong-design",
+  "bugs": {
+    "email": "laamginghong1996@gmail.com",
+    "url": "https://github.com/LaamGinghong/laamginghong-design/issues"
+  },
+  "keywords": ["react","components"],
+  "files": [
+    "lib/**/*"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "webpack"
@@ -35,5 +45,9 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
