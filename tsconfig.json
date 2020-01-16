@@ -4,7 +4,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "declaration": true,
-    "declarationDir": "./dist/lib",
+    "declarationDir": "./lib",
     "module": "esnext",
     "target": "esnext",
     "jsx": "react",
