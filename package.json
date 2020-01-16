@@ -2,9 +2,8 @@
   "name": "laamginghong-design",
   "version": "1.0.1",
   "description": "My easy React App design",
-  "main": "dist/index.js",
-  "module": "src/index.ts",
   "author": "https://github.com/LaamGinghong",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack"
