@@ -1,8 +1,6 @@
 {
-  "parser": "@tyepscript-eslint/parser",
-  "plugins": [
-    "prettier"
-  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier"],
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -17,11 +15,20 @@
     "ecmaVersion": 2020
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/ban-ts-ignore": "off"
   },
   "settings": {
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
 }
