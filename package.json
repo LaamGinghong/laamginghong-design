@@ -1,6 +1,6 @@
 {
   "name": "laamginghong-design",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "My easy React App design",
   "author": "LaamGinghong",
   "main": "lib/index.js",
@@ -10,7 +10,10 @@
     "email": "laamginghong1996@gmail.com",
     "url": "https://github.com/LaamGinghong/laamginghong-design/issues"
   },
-  "keywords": ["react","components"],
+  "keywords": [
+    "react",
+    "components"
+  ],
   "files": [
     "lib/**/*"
   ],
