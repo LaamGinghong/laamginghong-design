@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - '13'
+install:
+  - yarn
+script:
+  - yarn build
+after_script:
+  - yarn publish --new-version
