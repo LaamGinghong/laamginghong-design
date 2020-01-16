@@ -5,5 +5,4 @@ install:
   - yarn
 script:
   - yarn build
-after_script:
   - yarn publish --new-version

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import ModalFooter from './modal-footer'
 import ModalClose from './modal-close'
 import ModalPortal from './modal-portal'
-import './style.scss'
+import './style.less'
 
 interface ModalProps {
   /* 显示 */
