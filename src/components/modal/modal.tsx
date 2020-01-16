@@ -55,7 +55,6 @@ export default class Modal extends Component<ModalProps> {
       document.body.removeChild(node)
       onCancel && onCancel(e)
     }
-
     ReactDOM.render(<Modal {...config} onCancel={handleClose} />, node)
   }
 

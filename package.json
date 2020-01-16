@@ -4,6 +4,7 @@
   "description": "My easy React App design",
   "author": "LaamGinghong",
   "main": "lib/index.js",
+  "module": "src/index.ts",
   "types": "lib/index.d.ts",
   "homepage": "https://github.com/LaamGinghong/laamginghong-design",
   "bugs": {
@@ -19,7 +20,19 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "yarn lint; webpack",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "pages/**/*.{tsx,ts,json,md,less}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "react": "^16.12.0",
@@ -38,6 +51,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "husky": "^4.0.10",
+    "lint-staged": "^9.5.0",
     "node-sass": "^4.13.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
