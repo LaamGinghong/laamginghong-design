@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useMemo } from 'react'
+import { Button } from '../button'
 
 export interface ModalFooterProps {
   okButton: string | ReactNode | null
@@ -19,9 +20,9 @@ const ModalFooter: FC<ModalFooterProps> = ({
     }
     if (typeof okButton === 'string') {
       return (
-        <button className='button button-primary' onClick={onOk}>
+        <Button type='primary' onClick={onOk}>
           {okButton}
-        </button>
+        </Button>
       )
     }
 
@@ -33,11 +34,7 @@ const ModalFooter: FC<ModalFooterProps> = ({
       return
     }
     if (typeof cancelButton === 'string') {
-      return (
-        <button className='button' onClick={onCancel}>
-          {cancelButton}
-        </button>
-      )
+      return <Button onClick={onCancel}>{cancelButton}</Button>
     }
 
     return cancelButton
