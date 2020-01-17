@@ -1,0 +1,115 @@
+@import '../../index.less';
+
+.button {
+  outline: 0;
+  font-weight: @normal-font-weight;
+  border: @border;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  .cursor-pointer;
+  height: 32px;
+  font-size: @normal-font-size;
+  color: @normal-font-color;
+  padding: 0 15px;
+  border-radius: @normal-border-radius;
+  background-color: #fff;
+  transition: all 0.4s;
+  &:hover,
+  &:focus {
+    .button-mixins(@primary-color, #fff, @primary-color);
+  }
+
+  &:active {
+    .button-mixins(
+      darken(@primary-color, 10%),
+      #fff,
+      darken(@primary-color, 10%)
+    );
+  }
+
+  &.disabled {
+    color: @disabled-color;
+    background: #f5f5f5;
+    border-color: @disabled-border;
+    text-shadow: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  &[disabled] {
+    .disabled;
+  }
+}
+
+.button-mixins(@color,@background,@border) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+}
+
+.button-primary {
+  .button-mixins(#fff, @primary-color, @primary-color);
+  &:hover,
+  &:focus {
+    .button-mixins(
+      #fff,
+      lighten(@primary-color, 10%),
+      lighten(@primary-color, 10%)
+    );
+  }
+
+  &:active {
+    .button-mixins(
+      #fff,
+      darken(@primary-color, 10%),
+      darken(@primary-color, 10%)
+    );
+  }
+}
+
+.button-danger {
+  .button-mixins(#fff, @danger-color, @danger-color);
+  &:hover,
+  &:focus {
+    .button-mixins(
+      #fff,
+      lighten(@danger-color, 10%),
+      lighten(@danger-color, 10%)
+    );
+  }
+
+  &:active {
+    .button-mixins(
+      #fff,
+      darken(@danger-color, 10%),
+      darken(@danger-color, 10%)
+    );
+  }
+}
+
+.button-link {
+  .button-mixins(@primary-color, #fff, transparent);
+
+  &:hover,
+  &:focus {
+    .button-mixins(lighten(@primary-color, 10%), #fff, transparent);
+  }
+
+  &:active {
+    .button-mixins(darken(@primary-color, 10%), #fff, transparent);
+  }
+}
+
+.button-block {
+  width: 100%;
+}
+
+.button-large {
+  font-size: @large-font-size;
+  height: 40px;
+}
+
+.button-small {
+  font-size: @small-font-size;
+  height: 24px;
+  padding: 0 7px;
+}
