@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "yarn lint; webpack",
+    "build": "webpack",
     "lint": "eslint src --ext .ts,.tsx"
   },
   "engines": {
@@ -32,7 +32,7 @@
     }
   },
   "lint-staged": {
-    "pages/**/*.{tsx,ts,json,md,less}": [
+    "src/**/*.{tsx,ts,json,md,less}": [
       "eslint --fix",
       "git add"
     ]

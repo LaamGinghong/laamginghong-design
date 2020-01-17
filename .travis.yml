@@ -3,6 +3,21 @@ node_js:
   - '12'
 install:
   - yarn
-script:
-  - yarn build
-  - yarn publish
+stages:
+  - name: deploy
+jobs:
+  include:
+    - stage: deploy
+      script:
+        - echo "YARN start building ..."
+        - yarn build
+        - echo "YARN build finish ..."
+      deploy:
+        provider: npm
+        email: 351390560@qq.com
+        api_key: c5363e11b-5cbb-41dc-ac6f-e429d8a42843
+        skip_cleanup: true
+        on:
+          tags: true
+          branch: master
+
