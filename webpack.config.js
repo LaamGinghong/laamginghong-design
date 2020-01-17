@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, './lib'),
-    library: 'MyDesign',
+    library: 'LaamGinghongDesign',
     libraryExport: 'umd',
     umdNamedDefine: true,
   },
@@ -35,7 +35,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.less$/,
         use: [
           {
             loader,
@@ -44,7 +44,7 @@ module.exports = {
             },
           },
           'css-loader',
-          'sass-loader',
+          'less-loader',
         ],
       },
     ],

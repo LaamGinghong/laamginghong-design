@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import ModalFooter from './modal-footer'
 import ModalClose from './modal-close'
 import ModalPortal from './modal-portal'
-import './style.scss'
+import './style.less'
 
 interface ModalProps {
   /* 显示 */
@@ -55,15 +55,16 @@ export default class Modal extends Component<ModalProps> {
       document.body.removeChild(node)
       onCancel && onCancel(e)
     }
+
     ReactDOM.render(<Modal {...config} onCancel={handleClose} />, node)
   }
 
-  handleOk = () => {
+  handleOk = (): void => {
     const { onOk } = this.props
     onOk && onOk()
   }
 
-  handleCancel = () => {
+  handleCancel = (): void => {
     const { onCancel, visible } = this.props
     onCancel && onCancel(!visible)
   }
