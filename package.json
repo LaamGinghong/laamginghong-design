@@ -3,7 +3,7 @@
   "version": "2.1.0-beta.0",
   "description": "My easy React App design",
   "author": "LaamGinghong",
-  "main": "lib/index.js",
+  "browser": "lib/index.js",
   "module": "src/index.ts",
   "types": "lib/index.d.ts",
   "homepage": "https://github.com/LaamGinghong/laamginghong-design",
