@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack;tsc",
     "lint": "eslint src --ext .ts,.tsx"
   },
   "engines": {
