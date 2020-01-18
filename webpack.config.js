@@ -10,52 +10,39 @@ module.exports = {
   devtool: 'source-map',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, './lib'),
-    library: 'LaamGinghongDesign',
-    libraryExport: 'umd',
-    umdNamedDefine: true,
+    path: path.resolve(__dirname, 'lib'),
+    library: '',
+    libraryTarget: 'umd',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.json'],
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
       { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
       {
         test: /\.css/,
-        use: [
-          {
-            loader,
-            options: {
-              esModule: true,
-            },
-          },
-          'css-loader',
-        ],
+        use: [loader, 'css-loader'],
       },
       {
         test: /\.less$/,
-        use: [
-          {
-            loader,
-            options: {
-              esModule: true,
-            },
-          },
-          'css-loader',
-          'less-loader',
-        ],
+        use: [loader, 'css-loader', 'less-loader'],
       },
     ],
   },
   externals: {
-    react: 'React',
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+      root: 'React',
+    },
     'react-dom': {
       commonjs: 'react-dom',
       commonjs2: 'react-dom',
       amd: 'react-dom',
-      root: 'ReactDom',
+      root: 'ReactDOM',
     },
   },
   plugins: [
