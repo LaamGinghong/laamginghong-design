@@ -51,7 +51,12 @@ module.exports = {
   },
   externals: {
     react: 'React',
-    'react-dom': 'ReactDOM',
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom',
+      root: 'ReactDom',
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
