@@ -1,0 +1,35 @@
+@primary-color: #1899ff;
+@danger-color: #ff4d4f;
+@normal-border-color: #d9d9d9;
+@border-radius: 4px;
+@normal-font-size: 14px;
+@normal-font-weight: 400;
+@normal-font-color: rgba(0, 0, 0, 0.65);
+@disabled-font-color: rgba(0, 0, 0, 0.25);
+@disabled-background-color: #f5f5f5;
+@large-font-size: 16px;
+@small-font-size: 12px;
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.disabled {
+  color: @disabled-font-color;
+  background-color: @disabled-background-color;
+  border-color: @normal-border-color;
+  text-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+  touch-action: none;
+}
+
+.disabled-button {
+  .disabled;
+
+  &:focus,
+  &:hover,
+  &:active {
+    .disabled;
+  }
+}
