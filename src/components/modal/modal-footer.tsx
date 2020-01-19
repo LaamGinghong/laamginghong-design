@@ -1,9 +1,11 @@
-import React, { FC, ReactNode, useMemo } from 'react'
+import React, { FC, ReactNode, useCallback, useMemo, useState } from 'react'
+import { Button } from '../button'
+import Modal from './modal'
 
 export interface ModalFooterProps {
   okButton: string | ReactNode | null
   cancelButton: string | ReactNode | null
-  onOk: () => void
+  onOk: () => void | Promise<void>
   onCancel: () => void
 }
 
@@ -13,31 +15,43 @@ const ModalFooter: FC<ModalFooterProps> = ({
   onOk,
   onCancel,
 }) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleClick = useCallback(() => {
+    const result = onOk()
+    if (onOk && typeof (result as Promise<void>)?.then === 'function') {
+      setLoading(true)
+      Promise.resolve(result)
+        .then(() => {
+          Modal.destroy()
+        })
+        .catch(() => {
+          setLoading(false)
+        })
+    }
+  }, [onOk])
+
   const renderOkBtn = useMemo((): ReactNode => {
     if (okButton === null) {
       return
     }
     if (typeof okButton === 'string') {
       return (
-        <button className='button button-primary' onClick={onOk}>
+        <Button loading={loading} type='primary' onClick={handleClick}>
           {okButton}
-        </button>
+        </Button>
       )
     }
 
     return okButton
-  }, [okButton])
+  }, [okButton, loading])
 
   const renderCancelBtn = useMemo((): ReactNode => {
     if (cancelButton === null) {
       return
     }
     if (typeof cancelButton === 'string') {
-      return (
-        <button className='button' onClick={onCancel}>
-          {cancelButton}
-        </button>
-      )
+      return <Button onClick={onCancel}>{cancelButton}</Button>
     }
 
     return cancelButton

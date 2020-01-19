@@ -45,23 +45,32 @@ export default class Modal extends Component<ModalProps> {
     maskClosable: true,
   }
 
-  static show = (config: ModalProps): void => {
+  static create = (config: ModalProps & { content: ReactNode }): void => {
     node = document.createElement('div')
     document.body.appendChild(node)
-    const { onCancel } = config
+    const { onCancel, content, ...rest } = config
 
     function handleClose(e: boolean): void {
-      ReactDOM.unmountComponentAtNode(node)
-      document.body.removeChild(node)
+      Modal.destroy()
       onCancel && onCancel(e)
     }
 
-    ReactDOM.render(<Modal {...config} onCancel={handleClose} />, node)
+    ReactDOM.render(
+      <Modal {...rest} onCancel={handleClose}>
+        {content}
+      </Modal>,
+      node,
+    )
   }
 
-  handleOk = (): void => {
+  static destroy = (): void => {
+    ReactDOM.unmountComponentAtNode(node)
+    document.body.removeChild(node)
+  }
+
+  handleOk = (): void | Promise<void> => {
     const { onOk } = this.props
-    onOk && onOk()
+    return onOk && onOk()
   }
 
   handleCancel = (): void => {
