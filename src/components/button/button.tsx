@@ -23,14 +23,14 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={classNames('btn', {
-        'btn-primary': type === 'primary',
-        'btn-danger': type === 'danger',
-        'btn-link': type === 'link',
-        'btn-small': size === 'small',
-        'btn-large': size === 'large',
-        'btn-block': block,
-        'btn-loading': loading,
+      className={classNames('button', {
+        'button-primary': type === 'primary',
+        'button-danger': type === 'danger',
+        'button-link': type === 'link',
+        'button-small': size === 'small',
+        'button-large': size === 'large',
+        'button-block': block,
+        'button-loading': loading,
       })}
       onClick={onClick}
       disabled={disabled}>

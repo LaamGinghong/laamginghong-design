@@ -1,6 +1,6 @@
 @import '../../index';
 
-.btn {
+.button {
   outline: 0;
   border: 1px solid @normal-border-color;
   font-weight: @normal-font-weight;
@@ -31,7 +31,7 @@
   }
 }
 
-.btn-mixin(@color) {
+.button-mixin(@color) {
   color: #fff;
   background-color: @color;
   border-color: @color;
@@ -61,15 +61,15 @@
   }
 }
 
-.btn-primary {
-  .btn-mixin(@primary-color);
+.button-primary {
+  .button-mixin(@primary-color);
 }
 
-.btn-danger {
-  .btn-mixin(@danger-color);
+.button-danger {
+  .button-mixin(@danger-color);
 }
 
-.btn-link {
+.button-link {
   border-color: transparent;
   color: @primary-color;
   box-shadow: none;
@@ -104,25 +104,25 @@
   }
 }
 
-.btn-small {
+.button-small {
   height: 24px;
   padding: 0 7px;
   font-size: @small-font-size;
   border-radius: @border-radius;
 }
 
-.btn-large {
+.button-large {
   height: 40px;
   padding: 0 15px;
   font-size: @large-font-size;
   border-radius: @border-radius;
 }
 
-.btn-block {
+.button-block {
   width: 100%;
 }
 
-.btn-loading {
+.button-loading {
   position: relative;
   pointer-events: none;
 
