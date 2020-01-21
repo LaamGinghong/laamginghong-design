@@ -21,12 +21,13 @@ const Flex: FC<FlexProps & HTMLAttributes<HTMLDivElement>> = ({
   alignContent,
   alignItems,
   children,
+  className,
   ...rest
 }) => {
   return (
     <div
       {...rest}
-      className={classNames('flex', {
+      className={classNames('flex', className, {
         'inline-flex': inline,
         'flex-direction-row-reverse': direction === 'rowReverse',
         'flex-direction-column': direction === 'column',
