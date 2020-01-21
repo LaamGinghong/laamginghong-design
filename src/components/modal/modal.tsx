@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 import ModalFooter from './modal-footer'
 import ModalClose from './modal-close'
-import ModalPortal from './modal-portal'
+import { Portal } from '../portal'
 import './style.less'
 
 interface ModalProps {
@@ -105,31 +105,33 @@ export default class Modal extends Component<ModalProps> {
         : this.props.width
 
     return (
-      <ModalPortal visible={visible}>
-        <div className='modal-wrap'>
-          {mask && (
-            <div
-              className='modal-mask'
-              onClick={maskClosable ? this.handleCancel : undefined}
-            />
-          )}
-          <div className='modal' style={{ width }}>
-            <div className='modal-content'>
-              {closable && <ModalClose onClick={this.handleCancel} />}
-              {title !== null && <div className='modal-header'>{title}</div>}
-              <div className='modal-body'>{children}</div>
-              {footer && (
-                <ModalFooter
-                  okButton={okButton}
-                  cancelButton={cancelButton}
-                  onCancel={this.handleCancel}
-                  onOk={this.handleOk}
-                />
-              )}
+      visible && (
+        <Portal node={node}>
+          <div className='modal-wrap'>
+            {mask && (
+              <div
+                className='modal-mask'
+                onClick={maskClosable ? this.handleCancel : undefined}
+              />
+            )}
+            <div className='modal' style={{ width }}>
+              <div className='modal-content'>
+                {closable && <ModalClose onClick={this.handleCancel} />}
+                {title !== null && <div className='modal-header'>{title}</div>}
+                <div className='modal-body'>{children}</div>
+                {footer && (
+                  <ModalFooter
+                    okButton={okButton}
+                    cancelButton={cancelButton}
+                    onCancel={this.handleCancel}
+                    onOk={this.handleOk}
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </ModalPortal>
+        </Portal>
+      )
     )
   }
 }
