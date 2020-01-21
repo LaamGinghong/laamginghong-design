@@ -1,6 +1,6 @@
 {
   "name": "laamginghong-design",
-  "version": "3.1.0",
+  "version": "3.2.0-beta.6",
   "description": "My easy React App design",
   "author": "LaamGinghong",
   "main": "lib/index.js",
@@ -51,6 +51,7 @@
     "eslint-loader": "^3.0.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "7.18.0",
+    "file-loader": "^5.0.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "husky": "^4.0.10",
     "less": "^3.10.3",
@@ -62,6 +63,7 @@
     "style-loader": "^1.1.2",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",
+    "url-loader": "^3.0.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"

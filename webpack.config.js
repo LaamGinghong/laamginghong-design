@@ -11,6 +11,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'lib'),
+    publicPath: path.resolve(__dirname, 'lib'),
     library: '',
     libraryTarget: 'umd',
   },
@@ -23,11 +24,23 @@ module.exports = {
       { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
       {
         test: /\.css/,
-        use: [loader, 'css-loader'],
+        use: [{ loader, options: { publicPath: '../' } }, 'css-loader'],
       },
       {
         test: /\.less$/,
-        use: [loader, 'css-loader', 'less-loader'],
+        use: [
+          { loader, options: { publicPath: '../' } },
+          'css-loader',
+          'less-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 500,
+          name: 'images/[name].[hash:6].[ext]',
+        },
       },
     ],
   },
