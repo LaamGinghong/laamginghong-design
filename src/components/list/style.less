@@ -1,0 +1,52 @@
+@import '../../index';
+
+.list {
+  border: 1px solid @normal-border-color;
+  border-radius: @border-radius;
+  color: @normal-font-color;
+  font-size: @normal-font-size;
+
+  .list-no-data {
+    padding: 12px;
+
+    .list-no-data-text {
+      color: @disabled-font-color;
+      .text-align-center;
+    }
+  }
+
+  .list-menu {
+    outline: 0;
+
+    .list-menu-items {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      .list-menu-item {
+        .list-padding;
+        border-bottom: 1px solid @normal-border-color;
+
+        &:last-child {
+          border-bottom-color: transparent;
+        }
+      }
+    }
+  }
+
+  .list-header {
+    .list-padding;
+    border-bottom: 1px solid @normal-border-color;
+    font-size: @large-font-size;
+    font-weight: @bold-font-weight;
+  }
+
+  .list-footer {
+    .list-padding;
+    border-top: 1px solid @normal-border-color;
+  }
+}
+
+.list-padding {
+  padding: 12px 24px;
+}
