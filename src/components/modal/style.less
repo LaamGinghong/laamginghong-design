@@ -1,14 +1,21 @@
+@import "../../index";
+
+.modal-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: @z-index-modal;
+}
+
 .modal {
-  &-mask {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+  .modal-mask {
+    .modal-wrap;
     background-color: rgba(0, 0, 0, 0.45);
   }
 
-  margin: 100px auto 0;
+  margin: 200px auto 0;
 
   &-content {
     background-color: #fff;
