@@ -3,6 +3,8 @@ import { Button } from '../button'
 import Modal from './modal'
 
 export interface ModalFooterProps {
+  loading: boolean
+  onChange: (loading: boolean) => void
   okButton: string | ReactNode | null
   cancelButton: string | ReactNode | null
   onOk: () => void | Promise<void>
@@ -10,23 +12,23 @@ export interface ModalFooterProps {
 }
 
 const ModalFooter: FC<ModalFooterProps> = ({
+  loading,
+  onChange,
   okButton,
   cancelButton,
   onOk,
   onCancel,
 }) => {
-  const [loading, setLoading] = useState(false)
-
   const handleClick = useCallback(() => {
     const result = onOk()
     if (onOk && typeof (result as Promise<void>)?.then === 'function') {
-      setLoading(true)
+      onChange(true)
       Promise.resolve(result)
         .then(() => {
           Modal.destroy()
         })
         .catch(() => {
-          setLoading(false)
+          onChange(false)
         })
     }
   }, [onOk])
