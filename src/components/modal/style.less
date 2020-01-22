@@ -1,4 +1,4 @@
-@import "../../index";
+@import '../../index';
 
 .modal-wrap {
   position: fixed;
@@ -6,7 +6,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: @z-index-modal;
+  z-index: @z-index-modal-mask;
 }
 
 .modal {
@@ -22,6 +22,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     position: relative;
+    z-index: @z-index-modal-content;
   }
 
   &-close {
