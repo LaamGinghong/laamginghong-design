@@ -1,0 +1,26 @@
+@import '../../index';
+
+.message {
+  margin-top: 8px;
+  text-align: center;
+  padding: 8px 0;
+
+  .message-item {
+    padding: 10px 16px;
+    background-color: #fff;
+    border-radius: @border-radius;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: @normal-font-size;
+    color: @normal-font-color;
+
+    .message-content{
+      margin-left: 10px;
+    }
+  }
+}
+
+#message-container{
+  position: fixed;
+  width: 100%;
+  pointer-events: none;
+}
