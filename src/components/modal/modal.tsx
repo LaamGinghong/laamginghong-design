@@ -5,7 +5,7 @@ import ModalClose from './modal-close'
 import { Portal } from '../portal'
 import './style.less'
 
-interface ModalProps {
+export interface ModalProps {
   /* 显示 */
   visible?: boolean
   /* 标题，传入null表示不显示标题 */
@@ -31,9 +31,13 @@ interface ModalProps {
   onOk?: () => void
 }
 
+export interface ModalState {
+  loading: boolean
+}
+
 export let node: HTMLDivElement
 
-export default class Modal extends Component<ModalProps> {
+class Modal extends Component<ModalProps, ModalState> {
   static defaultProps = {
     visible: true,
     closable: true,
@@ -68,14 +72,26 @@ export default class Modal extends Component<ModalProps> {
     document.body.removeChild(node)
   }
 
-  handleOk = (): void | Promise<void> => {
+  state = {
+    loading: false,
+  }
+
+  private _handleOk = (): void | Promise<void> => {
     const { onOk } = this.props
     return onOk && onOk()
   }
 
-  handleCancel = (): void => {
+  private _handleCancel = (): void => {
+    const { loading } = this.state
+    if (loading) {
+      return
+    }
     const { onCancel, visible } = this.props
     onCancel && onCancel(!visible)
+  }
+
+  private _handleSetLoading = (loading: boolean): void => {
+    this.setState({ loading })
   }
 
   render():
@@ -99,6 +115,7 @@ export default class Modal extends Component<ModalProps> {
       maskClosable,
       children,
     } = this.props
+    const { loading } = this.state
     const width =
       typeof this.props.width === 'number'
         ? `${this.props.width}px`
@@ -111,20 +128,22 @@ export default class Modal extends Component<ModalProps> {
             {mask && (
               <div
                 className='modal-mask'
-                onClick={maskClosable ? this.handleCancel : undefined}
+                onClick={maskClosable ? this._handleCancel : undefined}
               />
             )}
             <div className='modal' style={{ width }}>
               <div className='modal-content'>
-                {closable && <ModalClose onClick={this.handleCancel} />}
+                {closable && <ModalClose onClick={this._handleCancel} />}
                 {title !== null && <div className='modal-header'>{title}</div>}
                 <div className='modal-body'>{children}</div>
                 {footer && (
                   <ModalFooter
+                    loading={loading}
+                    onChange={this._handleSetLoading}
                     okButton={okButton}
                     cancelButton={cancelButton}
-                    onCancel={this.handleCancel}
-                    onOk={this.handleOk}
+                    onCancel={this._handleCancel}
+                    onOk={this._handleOk}
                   />
                 )}
               </div>
@@ -136,4 +155,4 @@ export default class Modal extends Component<ModalProps> {
   }
 }
 
-export { ModalProps }
+export default Modal
