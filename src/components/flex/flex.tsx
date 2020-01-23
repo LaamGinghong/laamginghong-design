@@ -9,7 +9,7 @@ export interface FlexProps {
   /* flex-wrap: wrap | wrap-reverse */
   wrap?: true | 'reverse'
   justifyContent?: 'end' | 'center' | 'spaceBetween' | 'spaceAround'
-  alignItems?: 'end' | 'center' | 'stretch' | 'baseline'
+  alignItems?: 'start' | 'end' | 'center' | 'baseline'
   alignContent?: 'start' | 'end' | 'center' | 'spaceBetween' | 'spaceAround'
 }
 
@@ -38,10 +38,10 @@ const Flex: FC<FlexProps & HTMLAttributes<HTMLDivElement>> = ({
         'justify-content-center': justifyContent === 'center',
         'justify-content-space-between': justifyContent === 'spaceBetween',
         'justify-content-space-around': justifyContent === 'spaceAround',
+        'align-items-start': alignItems === 'start',
         'align-items-end': alignItems === 'end',
         'align-items-center': alignItems === 'center',
         'align-items-baseline': alignItems === 'baseline',
-        'align-items-stretch': alignItems === 'stretch',
         'align-content-start': alignContent === 'start',
         'align-content-end': alignContent === 'end',
         'align-content-center': alignContent === 'center',
