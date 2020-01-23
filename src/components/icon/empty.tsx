@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { SvgProps } from './index'
+import { IconProps } from './index'
 
-const Empty: FC<SvgProps> = ({ width = 60 }) => {
+const Empty: FC<IconProps> = ({ width = 60 }) => {
   return (
     <svg width={width} viewBox='0 0 70 70'>
       <g opacity='0.25'>

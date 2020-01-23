@@ -1,0 +1,58 @@
+@import '../../index';
+
+#notification-container {
+  position: fixed;
+}
+
+.notification {
+  margin-bottom: 8px;
+  padding: 8px 0;
+
+  .notification-item {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: @border-radius;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: @normal-font-size;
+    color: @normal-font-color;
+    position: relative;
+
+    .notification-content {
+      margin-left: 15px;
+      width: 300px;
+      padding-right: 20px;
+
+      & > * {
+        margin-bottom: 10px;
+      }
+
+      .notification-title {
+        font-weight: @bold-font-weight;
+        font-size: @large-font-size;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .notification-description {
+        color: @normal-font-color;
+        font-size: @normal-font-size;
+        overflow-wrap: break-word;
+      }
+    }
+
+    .notification-close {
+      position: absolute;
+      cursor: pointer;
+      right: 12px;
+    }
+  }
+}
+
+.notification-right {
+  right: 20px;
+}
+
+.notification-left {
+  left: 20px;
+}

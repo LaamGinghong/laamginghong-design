@@ -1,9 +1,11 @@
 import { ModalProps, Modal } from './components/modal'
 import { ButtonProps, Button } from './components/button'
 import { LoadingProps, Loading } from './components/loading'
-import { Empty, Close } from './components/icon'
+import { Empty, Close, Success, Info, Warning, Error } from './components/icon'
 import { FlexItemProps, FlexProps, FlexItem, Flex } from './components/flex'
 import { List, ListItem, ListItemProps, ListProps } from './components/list'
+import { message, MessageProps } from './components/message'
+import { notification, NotificationBasicProps } from './components/notification'
 
 export {
   Modal,
@@ -14,6 +16,10 @@ export {
   Loading,
   Empty,
   Close,
+  Success,
+  Info,
+  Warning,
+  Error,
   FlexItem,
   FlexProps,
   FlexItemProps,
@@ -22,4 +28,8 @@ export {
   ListProps,
   ListItem,
   List,
+  message,
+  MessageProps,
+  notification,
+  NotificationBasicProps,
 }
