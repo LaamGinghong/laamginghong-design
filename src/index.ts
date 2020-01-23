@@ -5,6 +5,7 @@ import { Empty, Close, Success, Info, Warning, Error } from './components/icon'
 import { FlexItemProps, FlexProps, FlexItem, Flex } from './components/flex'
 import { List, ListItem, ListItemProps, ListProps } from './components/list'
 import { message, MessageProps } from './components/message'
+import { notification, NotificationBasicProps } from './components/notification'
 
 export {
   Modal,
@@ -29,4 +30,6 @@ export {
   List,
   message,
   MessageProps,
+  notification,
+  NotificationBasicProps,
 }

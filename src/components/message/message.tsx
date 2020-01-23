@@ -1,20 +1,17 @@
 import React, { FC, MouseEvent, ReactNode } from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { messageConfig, MessageConfigProps, MessageType } from '../config'
-import { Error, Info, Success, Warning } from '../icon'
+import {
+  messageConfig,
+  MessageConfigProps,
+  MessageType,
+  iconMap,
+} from '../config'
 import { Flex } from '../flex'
 import './style.less'
 
 export interface MessageProps {
   type: MessageType
   content: ReactNode
-}
-
-const iconMap = {
-  success: <Success />,
-  info: <Info />,
-  warning: <Warning />,
-  error: <Error />,
 }
 
 const Message: FC<MessageProps> = ({ type, content }) => {
