@@ -118,6 +118,22 @@ const api = {
       node,
     )
   },
+  info(config: NotificationConfigProps & NotificationBasicProps): void {
+    const type = config.type ?? 'info'
+    this.create({ ...config, type })
+  },
+  success(config: NotificationConfigProps & NotificationBasicProps): void {
+    const type = config.type ?? 'success'
+    this.create({ ...config, type })
+  },
+  warning(config: NotificationConfigProps & NotificationBasicProps): void {
+    const type = config.type ?? 'warning'
+    this.create({ ...config, type })
+  },
+  error(config: NotificationConfigProps & NotificationBasicProps): void {
+    const type = config.type ?? 'error'
+    this.create({ ...config, type })
+  },
 }
 
 export default api
