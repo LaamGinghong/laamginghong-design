@@ -2,11 +2,18 @@
 
 #notification-container {
   position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
 }
 
 .notification {
   margin-bottom: 8px;
   padding: 8px 0;
+  width: 384px;
+  position: absolute;
 
   .notification-item {
     padding: 16px;
@@ -16,6 +23,7 @@
     font-size: @normal-font-size;
     color: @normal-font-color;
     position: relative;
+    pointer-events: all;
 
     .notification-content {
       margin-left: 15px;

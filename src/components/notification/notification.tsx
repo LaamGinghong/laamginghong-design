@@ -11,7 +11,7 @@ import './style.less'
 import { Close } from '../icon'
 
 export interface NotificationBasicProps {
-  title: ReactNode
+  title?: ReactNode
   type: NotificationType
   description?: ReactNode
 }
@@ -83,7 +83,6 @@ const api = {
       document.body.appendChild(container)
     }
     const node = document.createElement('div')
-    node.setAttribute('class', 'notification')
     container.appendChild(node)
     const { type, title, description } = config
     const duration = config.duration ?? notificationConfig.config.duration
@@ -91,12 +90,12 @@ const api = {
     const top = config.top ?? notificationConfig.config.maxCount
     const bottom = config.bottom ?? notificationConfig.config.bottom
     const placement = config.placement ?? notificationConfig.config.placement
-    container.setAttribute('class', `notification ${placementMap[placement]}`)
+    node.setAttribute('class', `notification ${placementMap[placement]}`)
     if (/top/.test(placement)) {
-      container.setAttribute('style', `top: ${top}px`)
+      node.setAttribute('style', `top: ${top}px`)
     }
     if (/bottom/.test(placement)) {
-      container.setAttribute('style', `bottom: ${bottom}px`)
+      node.setAttribute('style', `bottom: ${bottom}px`)
     }
     if (container.childElementCount > maxCount) {
       const [first] = Array.from(container.childNodes)
