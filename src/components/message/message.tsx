@@ -10,7 +10,7 @@ import { Flex } from '../flex'
 import './style.less'
 
 export interface MessageProps {
-  type: MessageType
+  type?: MessageType
   content: ReactNode
 }
 
