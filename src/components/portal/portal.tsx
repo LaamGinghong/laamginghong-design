@@ -2,19 +2,10 @@ import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
 
 interface PortalProps {
-  node: HTMLDivElement
+  container: HTMLElement
 }
 
 class Portal extends Component<PortalProps> {
-  node: HTMLDivElement
-
-  constructor(props) {
-    super(props)
-    const { node } = props
-    this.node = node ? node : document.createElement('div')
-    document.body.appendChild(this.node)
-  }
-
   render():
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
     | string
@@ -25,8 +16,8 @@ class Portal extends Component<PortalProps> {
     | boolean
     | null
     | undefined {
-    const { children } = this.props
-    return createPortal(children, this.node)
+    const { children, container } = this.props
+    return createPortal(children, container)
   }
 }
 

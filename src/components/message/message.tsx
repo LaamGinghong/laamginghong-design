@@ -7,6 +7,7 @@ import {
   iconMap,
 } from '../config'
 import { Flex } from '../flex'
+import { MessageContainer } from '../container'
 import './style.less'
 
 export interface MessageProps {
@@ -33,14 +34,7 @@ const Message: FC<MessageProps> = ({ type, content }) => {
 
 const api = {
   create(config: MessageConfigProps & MessageProps): void {
-    let container: HTMLElement
-    if (document.getElementById('message-container')) {
-      container = document.getElementById('message-container')
-    } else {
-      container = document.createElement('div')
-      container.setAttribute('id', 'message-container')
-      document.body.appendChild(container)
-    }
+    const container = MessageContainer.create('message-container')
     const node = document.createElement('div')
     node.setAttribute('class', 'message')
     container.appendChild(node)
@@ -74,6 +68,9 @@ const api = {
   error(config: MessageConfigProps & MessageProps): void {
     const type = config.type ?? 'error'
     this.create({ ...config, type })
+  },
+  destroy(): void {
+    MessageContainer.destroy()
   },
 }
 

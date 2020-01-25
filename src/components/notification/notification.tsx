@@ -9,6 +9,7 @@ import {
 import { Flex } from '../flex'
 import './style.less'
 import { Close } from '../icon'
+import { NotificationContainer } from '../container'
 
 export interface NotificationBasicProps {
   title?: ReactNode
@@ -74,14 +75,7 @@ const placementMap = {
 
 const api = {
   create(config: NotificationConfigProps & NotificationBasicProps): void {
-    let container: HTMLElement
-    if (document.getElementById('notification-container')) {
-      container = document.getElementById('notification-container')
-    } else {
-      container = document.createElement('div')
-      container.setAttribute('id', 'notification-container')
-      document.body.appendChild(container)
-    }
+    const container = NotificationContainer.create('notification-container')
     const node = document.createElement('div')
     container.appendChild(node)
     const { type, title, description } = config
@@ -132,6 +126,9 @@ const api = {
   error(config: NotificationConfigProps & NotificationBasicProps): void {
     const type = config.type ?? 'error'
     this.create({ ...config, type })
+  },
+  destroy(): void {
+    NotificationContainer.destroy()
   },
 }
 

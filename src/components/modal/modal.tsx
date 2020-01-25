@@ -4,6 +4,7 @@ import ModalFooter from './modal-footer'
 import ModalClose from './modal-close'
 import { Portal } from '../portal'
 import './style.less'
+import { ModalContainer } from '../container'
 
 export interface ModalProps {
   /* 显示 */
@@ -35,8 +36,6 @@ export interface ModalState {
   loading: boolean
 }
 
-export let node: HTMLDivElement
-
 class Modal extends Component<ModalProps, ModalState> {
   static defaultProps = {
     visible: true,
@@ -50,9 +49,8 @@ class Modal extends Component<ModalProps, ModalState> {
   }
 
   static create = (config: ModalProps & { content: ReactNode }): void => {
-    node = document.createElement('div')
-    document.body.appendChild(node)
     const { onCancel, content, ...rest } = config
+    const node = ModalContainer.create('modal-container')
 
     function handleClose(e: boolean): void {
       Modal.destroy()
@@ -68,13 +66,14 @@ class Modal extends Component<ModalProps, ModalState> {
   }
 
   static destroy = (): void => {
-    ReactDOM.unmountComponentAtNode(node)
-    document.body.removeChild(node)
+    ModalContainer.destroy()
   }
 
   state = {
     loading: false,
   }
+
+  container = ModalContainer.create('modal-container')
 
   private _handleOk = (): void | Promise<void> => {
     const { onOk } = this.props
@@ -123,7 +122,7 @@ class Modal extends Component<ModalProps, ModalState> {
 
     return (
       visible && (
-        <Portal node={node}>
+        <Portal container={this.container}>
           <div className='modal-wrap'>
             {mask && (
               <div
