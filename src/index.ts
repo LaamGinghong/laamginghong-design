@@ -7,6 +7,7 @@ import { List, ListItem, ListItemProps, ListProps } from './components/list'
 import { message, MessageProps } from './components/message'
 import { notification, NotificationBasicProps } from './components/notification'
 import { Input } from './components/input'
+import { SwitchProps, Switch } from './components/switch'
 
 export {
   Modal,
@@ -34,4 +35,6 @@ export {
   notification,
   NotificationBasicProps,
   Input,
+  SwitchProps,
+  Switch,
 }
