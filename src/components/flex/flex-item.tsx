@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import './style.less'
 
 export interface FlexItemProps {
@@ -7,13 +7,10 @@ export interface FlexItemProps {
   alignSelf?: 'start' | 'end' | 'center' | 'baseline' | 'stretch'
 }
 
-const FlexItem: FC<FlexItemProps & HTMLAttributes<HTMLDivElement>> = ({
-  order = 1,
-  flex = 'auto',
-  alignSelf,
-  children,
-  ...rest
-}) => {
+const FlexItem = forwardRef<
+  HTMLDivElement,
+  FlexItemProps & HTMLAttributes<HTMLDivElement>
+>(({ order = 1, flex = 'auto', alignSelf, children, ...rest }) => {
   const style: FlexItemProps = { order, flex }
   if (alignSelf) {
     style.alignSelf = alignSelf
@@ -24,6 +21,6 @@ const FlexItem: FC<FlexItemProps & HTMLAttributes<HTMLDivElement>> = ({
       {children}
     </div>
   )
-}
+})
 
 export default FlexItem
