@@ -2,7 +2,7 @@ import React, { Component, MouseEvent, ReactNode } from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import {
   notificationConfig,
-  NotificationConfigProps,
+  NotificationConfigOptions,
   NotificationType,
   iconMap,
 } from '../config'
@@ -74,7 +74,7 @@ const placementMap = {
 }
 
 const api = {
-  create(config: NotificationConfigProps & NotificationBasicProps): void {
+  create(config: NotificationConfigOptions & NotificationBasicProps): void {
     const container = NotificationContainer.create('notification-container')
     const node = document.createElement('div')
     container.appendChild(node)
@@ -111,19 +111,19 @@ const api = {
       node,
     )
   },
-  info(config: NotificationConfigProps & NotificationBasicProps): void {
+  info(config: NotificationConfigOptions & NotificationBasicProps): void {
     const type = config.type ?? 'info'
     this.create({ ...config, type })
   },
-  success(config: NotificationConfigProps & NotificationBasicProps): void {
+  success(config: NotificationConfigOptions & NotificationBasicProps): void {
     const type = config.type ?? 'success'
     this.create({ ...config, type })
   },
-  warning(config: NotificationConfigProps & NotificationBasicProps): void {
+  warning(config: NotificationConfigOptions & NotificationBasicProps): void {
     const type = config.type ?? 'warning'
     this.create({ ...config, type })
   },
-  error(config: NotificationConfigProps & NotificationBasicProps): void {
+  error(config: NotificationConfigOptions & NotificationBasicProps): void {
     const type = config.type ?? 'error'
     this.create({ ...config, type })
   },

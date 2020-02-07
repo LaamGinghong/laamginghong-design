@@ -1,6 +1,6 @@
 {
   "name": "laamginghong-design",
-  "version": "3.9.4",
+  "version": "3.10.0-beta.6",
   "description": "My easy React App design",
   "author": "LaamGinghong",
   "main": "lib/index.js",
@@ -71,5 +71,8 @@
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "dependencies": {
+    "dom-align": "^1.10.4"
   }
 }

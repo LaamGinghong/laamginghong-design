@@ -8,7 +8,7 @@ export type NotificationPlacement =
   | 'bottomLeft'
   | 'bottomRight'
 
-export interface NotificationConfigProps {
+export interface NotificationConfigOptions {
   duration?: number
   maxCount?: number
   top?: number
@@ -17,7 +17,7 @@ export interface NotificationConfigProps {
 }
 
 class NotificationConfig {
-  private _config: NotificationConfigProps = {
+  private _config: NotificationConfigOptions = {
     duration: 3000,
     maxCount: 3,
     top: 20,
@@ -25,11 +25,11 @@ class NotificationConfig {
     placement: 'topRight',
   }
 
-  set config(value: NotificationConfigProps) {
+  set config(value: NotificationConfigOptions) {
     Object.assign(this._config, value)
   }
 
-  get config(): NotificationConfigProps {
+  get config(): NotificationConfigOptions {
     return this._config
   }
 }
