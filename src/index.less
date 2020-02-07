@@ -13,8 +13,27 @@
 @small-font-size: 12px;
 @bold-font-weight: 600;
 
+@en-font-variant: tabular-nums;
+@font-feature-settings: 'tnum';
+@en-font-color: rgba(0, 0, 0, 0.45);
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.link {
+  color: @normal-font-color;
+  transition: color 0.4s;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: @primary-color;
+  }
+
+  &:active {
+    color: darken(@primary-color, 10%);
+  }
 }
 
 .disabled {
