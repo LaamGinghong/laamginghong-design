@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { FC, forwardRef } from 'react'
 import classNames from 'classnames'
 import './style.less'
 import { LoadingForButton } from '../loading'
@@ -12,7 +12,7 @@ export interface ButtonProps {
   onClick?: () => void
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ type, disabled, loading, size, block, onClick, children }, ref) => {
     return (
       <button

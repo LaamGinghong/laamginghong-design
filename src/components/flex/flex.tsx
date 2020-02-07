@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes } from 'react'
+import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 import './style.less'
 
@@ -13,23 +13,27 @@ export interface FlexProps {
   alignContent?: 'start' | 'end' | 'center' | 'spaceBetween' | 'spaceAround'
 }
 
-const Flex = forwardRef<
+const Flex: FC<FlexProps & HTMLAttributes<HTMLDivElement>> = forwardRef<
   HTMLDivElement,
   FlexProps & HTMLAttributes<HTMLDivElement>
 >(
-  ({
-    inline,
-    direction,
-    wrap,
-    justifyContent,
-    alignContent,
-    alignItems,
-    children,
-    className,
-    ...rest
-  }) => {
+  (
+    {
+      inline,
+      direction,
+      wrap,
+      justifyContent,
+      alignContent,
+      alignItems,
+      children,
+      className,
+      ...rest
+    },
+    ref,
+  ) => {
     return (
       <div
+        ref={ref}
         {...rest}
         className={classNames('flex', className, {
           'inline-flex': inline,
