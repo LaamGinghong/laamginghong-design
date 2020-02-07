@@ -9,6 +9,7 @@ import { notification, NotificationBasicProps } from './components/notification'
 import { Input } from './components/input'
 import { SwitchProps, Switch } from './components/switch'
 import { TabsProps, Tabs } from './components/tabs'
+import { BreadcrumbsProps, Breadcrumbs } from './components/breadcrumbs'
 
 export {
   Modal,
@@ -40,4 +41,6 @@ export {
   Switch,
   TabsProps,
   Tabs,
+  BreadcrumbsProps,
+  Breadcrumbs,
 }
