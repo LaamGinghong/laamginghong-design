@@ -1,9 +1,9 @@
-import React, { FC, forwardRef } from 'react'
+import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 import './style.less'
 import { LoadingForButton } from '../loading'
 
-export interface ButtonProps {
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: 'primary' | 'danger' | 'link'
   disabled?: boolean
   loading?: boolean
@@ -13,7 +13,10 @@ export interface ButtonProps {
 }
 
 const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, disabled, loading, size, block, onClick, children }, ref) => {
+  (
+    { type, disabled, loading, size, block, onClick, children, ...rest },
+    ref,
+  ) => {
     return (
       <button
         ref={ref}
@@ -26,6 +29,7 @@ const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>(
           'button-block': block,
           'button-loading': loading,
         })}
+        {...rest}
         onClick={onClick}
         disabled={disabled}>
         {loading && <LoadingForButton loading={loading} />}
