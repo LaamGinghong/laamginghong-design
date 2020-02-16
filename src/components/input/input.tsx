@@ -1,6 +1,5 @@
 import React, {
   ChangeEvent,
-  FC,
   forwardRef,
   InputHTMLAttributes,
   useCallback,
@@ -8,7 +7,7 @@ import React, {
 import classNames from 'classnames'
 import './style.less'
 
-const Input: FC<InputHTMLAttributes<HTMLInputElement>> = forwardRef<
+const Input = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
 >(({ value, defaultValue, onChange, disabled, className, ...rest }, ref) => {

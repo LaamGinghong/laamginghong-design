@@ -1,4 +1,9 @@
-import React, { FC, forwardRef, HTMLAttributes } from 'react'
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+  ReactNodeArray,
+} from 'react'
 import classNames from 'classnames'
 import './style.less'
 
@@ -11,9 +16,10 @@ export interface FlexProps {
   justifyContent?: 'end' | 'center' | 'spaceBetween' | 'spaceAround'
   alignItems?: 'start' | 'end' | 'center' | 'baseline'
   alignContent?: 'start' | 'end' | 'center' | 'spaceBetween' | 'spaceAround'
+  children?: ReactNodeArray | ReactNode
 }
 
-const Flex: FC<FlexProps & HTMLAttributes<HTMLDivElement>> = forwardRef<
+const Flex = forwardRef<
   HTMLDivElement,
   FlexProps & HTMLAttributes<HTMLDivElement>
 >(
