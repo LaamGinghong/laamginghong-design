@@ -1,9 +1,9 @@
 import { unmountComponentAtNode } from 'react-dom'
 
 export class BasicContainer {
-  private static _container: HTMLElement
+  private static _container: HTMLDivElement
 
-  protected static _create(id: string): HTMLElement {
+  protected static __create(id: string): HTMLDivElement {
     if (!this._container) {
       this._container = document.createElement('div')
       this._container.setAttribute('id', id)
@@ -12,7 +12,10 @@ export class BasicContainer {
     return this._container
   }
 
-  protected static _destroy(): void {
+  protected static __destroy(): void {
+    if (!this._container) {
+      return
+    }
     unmountComponentAtNode(this._container)
     document.body.removeChild(this._container)
     this._container = null

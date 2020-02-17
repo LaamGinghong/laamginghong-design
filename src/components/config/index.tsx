@@ -1,25 +1,35 @@
 import {
   messageConfig,
   MessageType,
-  MessageConfigProps,
+  MessageConfigOptions,
 } from './message.config'
 import {
   notificationConfig,
-  NotificationConfigProps,
+  NotificationConfigOptions,
   NotificationPlacement,
   NotificationType,
 } from './notification.config'
 import { Error, Info, Success, Warning } from '../icon'
 import React from 'react'
+import {
+  popoverConfig,
+  PopoverConfigOptions,
+  PopoverTrigger,
+  PopoverPlacement,
+} from './popover.config'
 
 export {
   messageConfig,
-  MessageConfigProps,
+  MessageConfigOptions,
   MessageType,
   NotificationPlacement,
-  NotificationConfigProps,
+  NotificationConfigOptions,
   NotificationType,
   notificationConfig,
+  popoverConfig,
+  PopoverTrigger,
+  PopoverConfigOptions,
+  PopoverPlacement,
 }
 
 export const iconMap = {

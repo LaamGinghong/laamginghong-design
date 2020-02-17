@@ -5,7 +5,7 @@ const { loader } = MiniCssExtractPlugin
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.ts',
+  entry: path.resolve(__dirname, 'src', 'index.ts'),
   context: path.resolve(__dirname),
   devtool: 'source-map',
   output: {

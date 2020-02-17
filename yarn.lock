@@ -1575,6 +1575,11 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+dom-align@^1.10.4:
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/dom-align/-/dom-align-1.10.4.tgz#862ae4de0d11d6495c1c8ee1b195427e7caa727d"
+  integrity sha512-wytDzaru67AmqFOY4B9GUb/hrwWagezoYYK97D/vpK+ezg+cnuZO0Q2gltUPa7KfNmIqfRIYVCF8UhRDEHAmgQ==
+
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
