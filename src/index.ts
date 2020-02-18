@@ -11,6 +11,7 @@ import { SwitchProps, Switch } from './components/switch'
 import { TabsProps, Tabs } from './components/tabs'
 import { BreadcrumbsProps, Breadcrumbs } from './components/breadcrumbs'
 import { Popover, PopoverProps, PopoverClose } from './components/popover'
+import { Select, SelectProps } from './components/select'
 
 export {
   Modal,
@@ -47,4 +48,6 @@ export {
   Popover,
   PopoverProps,
   PopoverClose,
+  SelectProps,
+  Select,
 }

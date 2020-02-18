@@ -3,8 +3,8 @@ import { popoverConfig } from '../config'
 const { config } = popoverConfig
 
 const overflow = {
-  adjustX: 0,
-  adjustY: 0,
+  adjustX: 1,
+  adjustY: 1,
 }
 
 const targetOffset = [0, 0]

@@ -18,9 +18,7 @@
   }
 
   &:focus {
-    outline: 0;
-    border-color: lighten(@primary-color, 10%);
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    .input-focus;
   }
 
   &:hover {
@@ -31,8 +29,14 @@
     background-color: @disabled-background-color;
     color: @disabled-font-color;
     cursor: not-allowed;
-    &:hover{
+    &:hover {
       border-color: @normal-border-color;
     }
   }
+}
+
+.input-focus {
+  outline: 0;
+  border-color: lighten(@primary-color, 10%);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
