@@ -1,7 +1,11 @@
 import React, { Component, CSSProperties, MouseEvent, Ref } from 'react'
 import { OptionProps } from './option'
 import classNames from 'classnames'
-import { Close, CloseCircle, Down } from '../icon'
+import {
+  CloseOutlined,
+  CloseCircleFilled,
+  DownOutlined,
+} from '@ant-design/icons/lib'
 import { Flex } from '../flex'
 
 export interface SelectionProps<T> {
@@ -28,14 +32,14 @@ class Selection<T> extends Component<SelectionProps<T>> {
     onOpen(!open)
   }
 
-  private _handleClear = (e: MouseEvent<SVGElement>): void => {
+  private _handleClear = (e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation()
     const { onClear } = this.props
     onClear()
   }
 
   private _handleClose = (
-    e: MouseEvent<HTMLDivElement>,
+    e: MouseEvent<HTMLElement>,
     value: OptionProps<T>,
   ): void => {
     e.stopPropagation()
@@ -92,11 +96,10 @@ class Selection<T> extends Component<SelectionProps<T>> {
                 className='select-selection-content-multiple-item'
                 key={index}>
                 {item.name}
-                <div
+                <CloseOutlined
                   className='select-selection-content-multiple-item-icon'
-                  onClick={(event): void => this._handleClose(event, item)}>
-                  <Close width={12} />
-                </div>
+                  onClick={(event): void => this._handleClose(event, item)}
+                />
               </Flex>
             ))}
           </Flex>
@@ -108,7 +111,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
             {(selected as OptionProps<T>)?.name ?? placeholder}
           </div>
         )}
-        <Down
+        <DownOutlined
           className={classNames('select-selection-icon', { reverse: open })}
         />
         {allowClear &&
@@ -116,8 +119,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
           selected !== null &&
           !disabled &&
           !multiple && (
-            <CloseCircle
-              width={14}
+            <CloseCircleFilled
               onClick={this._handleClear}
               className='select-selection-icon clear'
             />

@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import './style.less'
-import { LoadingForButton } from '../loading'
+import { LoadingOutlined } from '@ant-design/icons/lib'
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: 'primary' | 'danger' | 'link'
@@ -38,7 +38,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         onClick={onClick}
         disabled={disabled}>
-        {loading && <LoadingForButton loading={loading} />}
+        {loading && <LoadingOutlined style={{ marginRight: '10px' }} />}
         {children}
       </button>
     )

@@ -1,5 +1,6 @@
 import React, { Component, MouseEvent, ReactNode } from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
+import { CloseOutlined } from '@ant-design/icons/lib'
 import {
   notificationConfig,
   NotificationConfigOptions,
@@ -8,7 +9,6 @@ import {
 } from '../config'
 import { Flex } from '../flex'
 import './style.less'
-import { Close } from '../icon'
 import { NotificationContainer } from '../container'
 
 export interface NotificationBasicProps {
@@ -58,9 +58,10 @@ class Notification extends Component<NotificationProps> {
             <div className='notification-description'>{description}</div>
           )}
         </div>
-        <div className='notification-close' onClick={this._handleClose}>
-          <Close width={16} />
-        </div>
+        <CloseOutlined
+          className='notification-close'
+          onClick={this._handleClose}
+        />
       </Flex>
     )
   }
