@@ -5,7 +5,7 @@ import {
   CloseOutlined,
   CloseCircleFilled,
   DownOutlined,
-} from '@ant-design/icons/lib'
+} from '@ant-design/icons'
 import { Flex } from '../flex'
 
 export interface SelectionProps<T> {

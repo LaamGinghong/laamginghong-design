@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react'
 import ReactDOM from 'react-dom'
-import { CloseOutlined } from '@ant-design/icons/lib'
+import { CloseOutlined } from '@ant-design/icons'
 import ModalFooter from './modal-footer'
 import { Portal } from '../portal'
 import './style.less'

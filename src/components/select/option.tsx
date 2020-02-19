@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react'
 import classNames from 'classnames'
-import { CheckOutlined } from '@ant-design/icons/lib'
+import { CheckOutlined } from '@ant-design/icons'
 
 export interface OptionProps<T> {
   disabled?: boolean

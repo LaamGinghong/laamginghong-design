@@ -1,4 +1,4 @@
-import { createFromIconfontCN } from '@ant-design/icons/lib'
+import { createFromIconfontCN } from '@ant-design/icons'
 import { IconBaseProps } from '@ant-design/icons/lib/components/Icon'
 import { CSSProperties, FC } from 'react'
 

@@ -21,7 +21,7 @@ import {
   InfoCircleFilled,
   CloseCircleFilled,
   WarningFilled,
-} from '@ant-design/icons/lib'
+} from '@ant-design/icons'
 import './style.less'
 
 export {

@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import './style.less'
-import { LoadingOutlined } from '@ant-design/icons/lib'
+import { LoadingOutlined } from '@ant-design/icons'
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: 'primary' | 'danger' | 'link'

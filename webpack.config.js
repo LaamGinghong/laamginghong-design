@@ -16,7 +16,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.json'],
+    extensions: ['.ts', '.tsx', '.json', '.js'],
   },
   module: {
     rules: [
@@ -31,7 +31,7 @@ module.exports = {
         use: [
           { loader, options: { publicPath: '../' } },
           'css-loader',
-          'less-loader',
+          'less-loader'
         ],
       },
       {

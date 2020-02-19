@@ -1,6 +1,6 @@
 import React, { Component, MouseEvent, ReactNode } from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { CloseOutlined } from '@ant-design/icons/lib'
+import { CloseOutlined } from '@ant-design/icons'
 import {
   notificationConfig,
   NotificationConfigOptions,
