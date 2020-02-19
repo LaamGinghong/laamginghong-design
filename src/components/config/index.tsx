@@ -9,7 +9,6 @@ import {
   NotificationPlacement,
   NotificationType,
 } from './notification.config'
-import { Error, Info, Success, Warning } from '../icon'
 import React from 'react'
 import {
   popoverConfig,
@@ -17,6 +16,13 @@ import {
   PopoverTrigger,
   PopoverPlacement,
 } from './popover.config'
+import {
+  CheckCircleFilled,
+  InfoCircleFilled,
+  CloseCircleFilled,
+  WarningFilled,
+} from '@ant-design/icons/lib'
+import './style.less'
 
 export {
   messageConfig,
@@ -33,8 +39,8 @@ export {
 }
 
 export const iconMap = {
-  success: <Success />,
-  info: <Info />,
-  warning: <Warning />,
-  error: <Error />,
+  success: <CheckCircleFilled className='icon success' />,
+  info: <InfoCircleFilled className='icon info' />,
+  warning: <WarningFilled className='icon warning' />,
+  error: <CloseCircleFilled className='icon error' />,
 }

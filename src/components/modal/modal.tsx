@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 import ReactDOM from 'react-dom'
+import { CloseOutlined } from '@ant-design/icons/lib'
 import ModalFooter from './modal-footer'
-import ModalClose from './modal-close'
 import { Portal } from '../portal'
 import './style.less'
 import { ModalContainer } from '../container'
@@ -9,8 +9,8 @@ import { ModalContainer } from '../container'
 export interface ModalProps {
   /* 显示 */
   visible?: boolean
-  /* 标题，传入null表示不显示标题 */
-  title?: string | ReactNode | null
+  /* 标题，不传表示不显示标题 */
+  title?: string | ReactNode
   /* 宽度 */
   width?: string | number
   /* 右上角关闭按钮 */
@@ -132,8 +132,13 @@ class Modal extends Component<ModalProps, ModalState> {
             )}
             <div className='modal' style={{ width }}>
               <div className='modal-content'>
-                {closable && <ModalClose onClick={this._handleCancel} />}
-                {title !== null && <div className='modal-header'>{title}</div>}
+                {closable && (
+                  <CloseOutlined
+                    className='modal-close'
+                    onClick={this._handleCancel}
+                  />
+                )}
+                {title && <div className='modal-header'>{title}</div>}
                 <div className='modal-body'>{children}</div>
                 {footer && (
                   <ModalFooter

@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react'
 import classNames from 'classnames'
-import { Check } from '../icon'
+import { CheckOutlined } from '@ant-design/icons/lib'
 
 export interface OptionProps<T> {
   disabled?: boolean
@@ -56,9 +56,7 @@ class Option<T> extends Component<
         onClick={this._handleSelect}>
         {renderItem ? renderItem({ name, value, disabled }) : name}
         {multiple && (selected as T[]).includes(value) && (
-          <div className='option-multiple-icon'>
-            <Check width={14} color='#1899ff' />
-          </div>
+          <CheckOutlined className='option-multiple-icon' />
         )}
       </div>
     )

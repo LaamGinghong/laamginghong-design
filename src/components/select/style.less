@@ -37,6 +37,7 @@
 
       &.multiple {
         height: auto;
+        min-height: 30px;
         line-height: unset;
         overflow: unset;
         text-overflow: unset;
@@ -64,8 +65,9 @@
 
         .select-selection-content-multiple-item-icon {
           position: absolute;
-          right: 5px;
-          top: 3px;
+          right: 4px;
+          top: 7px;
+          font-size: @small-font-size;
           .cursor-pointer;
         }
       }
@@ -73,8 +75,8 @@
 
     .select-selection-icon {
       position: absolute;
-      right: 2px;
-      top: 4px;
+      right: 10px;
+      top: 8px;
       transition: all 0.5s;
 
       &.reverse {
@@ -84,7 +86,7 @@
       &.clear {
         display: none;
         background-color: #fff;
-        right: 7px;
+        right: 10px;
         top: 8px;
       }
     }
@@ -168,6 +170,7 @@
         position: absolute;
         top: 5px;
         right: 10px;
+        color: @primary-color;
       }
     }
   }
