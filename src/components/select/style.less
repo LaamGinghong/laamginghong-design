@@ -39,7 +39,7 @@
       &.multiple {
         height: auto;
         min-height: 35px;
-        line-height: unset;
+        line-height: 35px;
         overflow: unset;
         text-overflow: unset;
         white-space: normal;
@@ -119,6 +119,14 @@
     font-size: @normal-font-size;
     color: @normal-font-color;
     max-height: 250px;
+
+    .select-no-data {
+      padding: 12px;
+
+      .select-no-data-text {
+        color: @disabled-font-color;
+      }
+    }
 
     .select-search {
       padding: 5px 12px;

@@ -6,6 +6,7 @@ import { SelectContainer } from '../container'
 import { Portal } from '../portal'
 import Options from './options'
 import { Input } from '../input'
+import SelectNoData from './select-no-data'
 
 export interface SelectProps<T> {
   data: OptionProps<T>[]
@@ -19,6 +20,7 @@ export interface SelectProps<T> {
   onSelect(e: T | T[]): void
   onSearch?: (e: string) => void
   style?: CSSProperties
+  noDataText?: string
 }
 
 interface SelectState {
@@ -79,8 +81,10 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
       showSearch,
       searchInputPlaceholder,
       allowClear,
+      noDataText,
     } = this.props
     const { open, searchWord } = this.state
+
     return (
       <div className='select'>
         <Selection
@@ -102,28 +106,34 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
         <Portal container={this.selectContainer}>
           {open && (
             <Options style={style} target={this._selectionRef.current}>
-              {showSearch && (
-                <div className='select-search'>
-                  <Input
-                    value={searchWord}
-                    placeholder={searchInputPlaceholder}
-                    onChange={this._handleChangeInput}
-                  />
-                </div>
+              {data.length > 0 ? (
+                <>
+                  {showSearch && (
+                    <div className='select-search'>
+                      <Input
+                        value={searchWord}
+                        placeholder={searchInputPlaceholder}
+                        onChange={this._handleChangeInput}
+                      />
+                    </div>
+                  )}
+                  {data
+                    .filter(item =>
+                      searchWord ? item.name.indexOf(searchWord) > -1 : true,
+                    )
+                    .map((item, index) => (
+                      <Option
+                        key={index}
+                        {...item}
+                        selected={value}
+                        multiple={multiple}
+                        onSelect={this._handleSelect}
+                      />
+                    ))}
+                </>
+              ) : (
+                <SelectNoData noDataText={noDataText} />
               )}
-              {data
-                .filter(item =>
-                  searchWord ? item.name.indexOf(searchWord) > -1 : true,
-                )
-                .map((item, index) => (
-                  <Option
-                    key={index}
-                    {...item}
-                    selected={value}
-                    multiple={multiple}
-                    onSelect={this._handleSelect}
-                  />
-                ))}
             </Options>
           )}
         </Portal>
