@@ -90,18 +90,20 @@ class Selection<T> extends Component<SelectionProps<T>> {
               placeholder: !(selected as OptionProps<T>[]).length,
               multiple,
             })}>
-            {(selected as OptionProps<T>[]).map((item, index) => (
-              <Flex
-                alignItems='center'
-                className='select-selection-content-multiple-item'
-                key={index}>
-                {item.name}
-                <CloseOutlined
-                  className='select-selection-content-multiple-item-icon'
-                  onClick={(event): void => this._handleClose(event, item)}
-                />
-              </Flex>
-            ))}
+            {(selected as OptionProps<T>[]).length > 0
+              ? (selected as OptionProps<T>[]).map((item, index) => (
+                  <Flex
+                    alignItems='center'
+                    className='select-selection-content-multiple-item'
+                    key={index}>
+                    {item.name}
+                    <CloseOutlined
+                      className='select-selection-content-multiple-item-icon'
+                      onClick={(event): void => this._handleClose(event, item)}
+                    />
+                  </Flex>
+                ))
+              : placeholder}
           </Flex>
         ) : (
           <div
