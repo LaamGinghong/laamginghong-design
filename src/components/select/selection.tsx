@@ -1,4 +1,10 @@
-import React, { Component, CSSProperties, MouseEvent, Ref } from 'react'
+import React, {
+  Component,
+  CSSProperties,
+  MouseEvent,
+  ReactNodeArray,
+  Ref,
+} from 'react'
 import { OptionProps } from './option'
 import classNames from 'classnames'
 import {
@@ -20,6 +26,7 @@ export interface SelectionProps<T> {
   disabled: boolean
   selectionRef: Ref<HTMLDivElement>
   maxCount?: number
+  maxCountText?: string
 }
 
 class Selection<T> extends Component<SelectionProps<T>> {
@@ -49,6 +56,50 @@ class Selection<T> extends Component<SelectionProps<T>> {
         .filter(item => item.value !== value.value)
         .map(item => item.value),
     )
+  }
+
+  private _renderSelectionMultiple = (): ReactNodeArray => {
+    const { maxCount, selected, maxCountText } = this.props
+    if (maxCount) {
+      const result = (selected as OptionProps<T>[])
+        .slice(0, maxCount)
+        .map((item, index) => (
+          <Flex
+            alignItems='center'
+            className='select-selection-content-multiple-item'
+            key={index}>
+            {item.name}
+            <CloseOutlined
+              className='select-selection-content-multiple-item-icon'
+              onClick={(event): void => this._handleClose(event, item)}
+            />
+          </Flex>
+        ))
+      if ((selected as OptionProps<T>[]).length > maxCount) {
+        result.push(
+          <Flex
+            alignItems='center'
+            className='select-selection-content-multiple-item'
+            key='more'>
+            {maxCountText ??
+              `and ${(selected as OptionProps<T>[]).length - maxCount} more`}
+          </Flex>,
+        )
+      }
+      return result
+    }
+    return (selected as OptionProps<T>[]).map((item, index) => (
+      <Flex
+        alignItems='center'
+        className='select-selection-content-multiple-item'
+        key={index}>
+        {item.name}
+        <CloseOutlined
+          className='select-selection-content-multiple-item-icon'
+          onClick={(event): void => this._handleClose(event, item)}
+        />
+      </Flex>
+    ))
   }
 
   render():
@@ -91,18 +142,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
               multiple,
             })}>
             {(selected as OptionProps<T>[]).length > 0
-              ? (selected as OptionProps<T>[]).map((item, index) => (
-                  <Flex
-                    alignItems='center'
-                    className='select-selection-content-multiple-item'
-                    key={index}>
-                    {item.name}
-                    <CloseOutlined
-                      className='select-selection-content-multiple-item-icon'
-                      onClick={(event): void => this._handleClose(event, item)}
-                    />
-                  </Flex>
-                ))
+              ? this._renderSelectionMultiple()
               : placeholder}
           </Flex>
         ) : (

@@ -20,6 +20,8 @@ export interface SelectProps<T> {
   onSelect(e: T | T[]): void
   onSearch?: (e: string) => void
   style?: CSSProperties
+  maxCount?: number
+  maxCountText?: string
   noDataText?: string
 }
 
@@ -82,6 +84,8 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
       searchInputPlaceholder,
       allowClear,
       noDataText,
+      maxCount,
+      maxCountText,
     } = this.props
     const { open, searchWord } = this.state
 
@@ -95,6 +99,8 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
           onOpen={this._handleOpen}
           multiple={multiple}
           disabled={disabled}
+          maxCount={maxCount}
+          maxCountText={maxCountText}
           selected={
             multiple
               ? data.filter(item => (value as T[]).includes(item.value))
