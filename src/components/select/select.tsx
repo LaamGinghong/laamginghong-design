@@ -45,9 +45,9 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
   }
 
   private _handleSelect = (e: T | T[]): void => {
-    const { onSelect } = this.props
+    const { onSelect, multiple } = this.props
     onSelect(e)
-    this.setState({ open: false, searchWord: '' })
+    this.setState({ open: multiple, searchWord: '' })
   }
 
   private _handleClear = (e?: T | T[]): void => {
