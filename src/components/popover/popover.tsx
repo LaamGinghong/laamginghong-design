@@ -60,6 +60,7 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
     return (
       <>
         <Trigger
+          config={config}
           onClose={handleClose}
           trigger={trigger ?? config.trigger}
           onTrigger={handleTrigger}>

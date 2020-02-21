@@ -1,79 +1,92 @@
-import {
+import React, {
   cloneElement,
-  FC,
   ReactElement,
-  useCallback,
-  useRef,
   MutableRefObject,
-  useEffect,
   MouseEvent,
+  Component,
+  createRef,
 } from 'react'
-import { popoverConfig } from '../config'
-const { config } = popoverConfig
 
-export interface TriggerProps {
+export interface TriggerProps<T extends { duration?: number }> {
   trigger: TriggerType
   onTrigger(e: MutableRefObject<HTMLElement>): void
   onClose(duration: number): void
+  config: T
 }
 
 export type TriggerType = 'hover' | 'focus' | 'click' | null
 
-const Trigger: FC<TriggerProps> = ({
-  trigger = 'click',
-  onTrigger,
-  onClose,
-  children,
-}) => {
-  useEffect(() => {
+class Trigger<T extends { duration?: number }> extends Component<
+  TriggerProps<T>
+> {
+  childrenRef = createRef<HTMLElement>()
+
+  constructor(props) {
+    super(props)
     window.addEventListener('click', (): void => {
+      const { trigger, onClose } = this.props
       if (trigger === 'click') {
         onClose(0)
       }
     })
-  }, [])
+  }
 
-  const childrenRef = useRef()
-
-  const handleClick = useCallback((e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation()
+  private _handleClick = (event: MouseEvent<HTMLElement>): void => {
+    event.stopPropagation()
+    const { trigger, onTrigger } = this.props
     if (trigger === 'click') {
-      onTrigger(childrenRef)
+      onTrigger(this.childrenRef)
     }
-  }, [])
+  }
 
-  const handleHover = useCallback((): void => {
+  private _handleHover = (): void => {
+    const { trigger, onTrigger } = this.props
     if (trigger === 'hover') {
-      onTrigger(childrenRef)
+      onTrigger(this.childrenRef)
     }
-  }, [])
+  }
 
-  const handleFocus = useCallback((): void => {
+  private _handleFocus = (): void => {
+    const { trigger, onTrigger } = this.props
     if (trigger === 'focus') {
-      onTrigger(childrenRef)
+      onTrigger(this.childrenRef)
     }
-  }, [])
+  }
 
-  const handleLeave = useCallback((): void => {
+  private _handleLeave = (): void => {
+    const { trigger, onClose, config } = this.props
     if (trigger === 'hover') {
       onClose(config.duration)
     }
-  }, [])
+  }
 
-  const handleBlur = useCallback((): void => {
+  private _handleBlur = (): void => {
+    const { trigger, onClose } = this.props
     if (trigger === 'focus') {
       onClose(0)
     }
-  }, [])
+  }
 
-  return cloneElement(children as ReactElement, {
-    ref: childrenRef,
-    onClick: handleClick,
-    onMouseEnter: handleHover,
-    onFocus: handleFocus,
-    onMouseLeave: handleLeave,
-    onBlur: handleBlur,
-  })
+  render():
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | string
+    | number
+    | {}
+    | React.ReactNodeArray
+    | React.ReactPortal
+    | boolean
+    | null
+    | undefined {
+    const { children } = this.props
+    return cloneElement(children as ReactElement, {
+      ref: this.childrenRef,
+      onClick: this._handleClick,
+      onMouseEnter: this._handleHover,
+      onFocus: this._handleFocus,
+      onMouseLeave: this._handleLeave,
+      onBlur: this._handleBlur,
+    })
+  }
 }
 
 export default Trigger
