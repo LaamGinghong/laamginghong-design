@@ -19,7 +19,7 @@ export type TriggerType = 'hover' | 'focus' | 'click' | null
 class Trigger<T extends { duration?: number }> extends Component<
   TriggerProps<T>
 > {
-  childrenRef = createRef<HTMLElement>()
+  _childrenRef = createRef<HTMLElement>()
 
   constructor(props) {
     super(props)
@@ -35,21 +35,21 @@ class Trigger<T extends { duration?: number }> extends Component<
     event.stopPropagation()
     const { trigger, onTrigger } = this.props
     if (trigger === 'click') {
-      onTrigger(this.childrenRef)
+      onTrigger(this._childrenRef)
     }
   }
 
   private _handleHover = (): void => {
     const { trigger, onTrigger } = this.props
     if (trigger === 'hover') {
-      onTrigger(this.childrenRef)
+      onTrigger(this._childrenRef)
     }
   }
 
   private _handleFocus = (): void => {
     const { trigger, onTrigger } = this.props
     if (trigger === 'focus') {
-      onTrigger(this.childrenRef)
+      onTrigger(this._childrenRef)
     }
   }
 
@@ -79,7 +79,7 @@ class Trigger<T extends { duration?: number }> extends Component<
     | undefined {
     const { children } = this.props
     return cloneElement(children as ReactElement, {
-      ref: this.childrenRef,
+      ref: this._childrenRef,
       onClick: this._handleClick,
       onMouseEnter: this._handleHover,
       onFocus: this._handleFocus,
