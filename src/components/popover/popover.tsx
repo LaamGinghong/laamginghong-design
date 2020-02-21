@@ -34,6 +34,8 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
     const [containerRef, setContainerRef] = useState<
       MutableRefObject<HTMLElement>
     >()
+    let timer: NodeJS.Timeout
+    let globalDuration: number
 
     const handleTrigger = useCallback((e: MutableRefObject<HTMLElement>) => {
       setVisible(true)
@@ -52,9 +54,20 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
     )
 
     const handleClose = useCallback((duration: number): void => {
-      setTimeout(() => {
+      globalDuration = duration
+      timer = setTimeout(() => {
         setVisible(false)
       }, duration)
+    }, [])
+
+    const handleToggle = useCallback((e: boolean): void => {
+      if (e) {
+        setTimeout(() => {
+          setVisible(false)
+        }, globalDuration)
+      } else {
+        clearTimeout(timer)
+      }
     }, [])
 
     return (
@@ -69,6 +82,7 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
         {visible && (
           <Portal container={container}>
             <Popup
+              onToggle={handleToggle}
               placement={placement ?? config.placement}
               container={containerRef}>
               {title}
