@@ -1,4 +1,11 @@
-import React, { ChangeEvent, Component, createRef, CSSProperties } from 'react'
+import React, {
+  ChangeEvent,
+  Component,
+  createRef,
+  CSSProperties,
+  ReactNode,
+} from 'react'
+import classNames from 'classnames'
 import Option, { OptionProps } from './option'
 import Selection from './selection'
 import './style.less'
@@ -23,6 +30,7 @@ export interface SelectProps<T> {
   maxCount?: number
   maxCountText?: string
   noDataText?: string
+  renderSelection?: (e: OptionProps<T>) => ReactNode
 }
 
 interface SelectState {
@@ -86,13 +94,15 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
       noDataText,
       maxCount,
       maxCountText,
+      renderSelection,
     } = this.props
     const { open, searchWord } = this.state
 
     return (
-      <div className='select'>
+      <div className={classNames('select', { multiple })}>
         <Selection
           selectionRef={this._selectionRef}
+          renderSelection={renderSelection}
           placeholder={placeholder}
           allowClear={allowClear}
           open={open}

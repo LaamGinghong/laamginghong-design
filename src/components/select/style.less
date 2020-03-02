@@ -2,6 +2,10 @@
 @import '../input/style';
 
 .select {
+  height: 32px;
+  &.multiple {
+    height: auto;
+  }
   .select-selection {
     .input;
     position: relative;
@@ -39,7 +43,7 @@
       &.multiple {
         height: auto;
         min-height: 35px;
-        line-height: 35px;
+        line-height: unset;
         overflow: unset;
         text-overflow: unset;
         white-space: normal;
@@ -53,7 +57,6 @@
         background-color: @disabled-background-color;
         color: @normal-font-color;
         font-size: @normal-font-size;
-        height: 24px;
         margin-right: 4px;
         margin-top: 4px;
         margin-bottom: 5px;
@@ -67,7 +70,7 @@
         .select-selection-content-multiple-item-icon {
           position: absolute;
           right: 4px;
-          top: 7px;
+          top: 4px;
           font-size: @small-font-size;
           .cursor-pointer;
         }
@@ -77,7 +80,7 @@
     .select-selection-icon {
       position: absolute;
       right: 10px;
-      top: 10px;
+      top: 8px;
       transition: all 0.5s;
 
       &.reverse {
@@ -89,6 +92,10 @@
         background-color: #fff;
         right: 10px;
         top: 8px;
+      }
+
+      &.multiple {
+        top: 10px;
       }
     }
 

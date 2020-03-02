@@ -27,7 +27,7 @@ const Options: FC<OptionsProps> = ({ children, style, target }) => {
       targetOffset: [0, 0],
       offset: [0, 6],
     })
-  }, [])
+  })
 
   return (
     <div className='select-wrap'>
