@@ -2,6 +2,7 @@ import React, {
   Component,
   CSSProperties,
   MouseEvent,
+  ReactNode,
   ReactNodeArray,
   Ref,
 } from 'react'
@@ -27,6 +28,7 @@ export interface SelectionProps<T> {
   selectionRef: Ref<HTMLDivElement>
   maxCount?: number
   maxCountText?: string
+  renderSelection?: (e: OptionProps<T>) => ReactNode
 }
 
 class Selection<T> extends Component<SelectionProps<T>> {
@@ -59,7 +61,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
   }
 
   private _renderSelectionMultiple = (): ReactNodeArray => {
-    const { maxCount, selected, maxCountText } = this.props
+    const { maxCount, selected, maxCountText, renderSelection } = this.props
     if (maxCount) {
       const result = (selected as OptionProps<T>[])
         .slice(0, maxCount)
@@ -68,7 +70,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
             alignItems='center'
             className='select-selection-content-multiple-item'
             key={index}>
-            {item.name}
+            {renderSelection ? renderSelection(item) : item.name}
             <CloseOutlined
               className='select-selection-content-multiple-item-icon'
               onClick={(event): void => this._handleClose(event, item)}
@@ -93,7 +95,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
         alignItems='center'
         className='select-selection-content-multiple-item'
         key={index}>
-        {item.name}
+        {renderSelection ? renderSelection(item) : item.name}
         <CloseOutlined
           className='select-selection-content-multiple-item-icon'
           onClick={(event): void => this._handleClose(event, item)}
@@ -121,6 +123,7 @@ class Selection<T> extends Component<SelectionProps<T>> {
       placeholder,
       allowClear,
       multiple,
+      renderSelection,
     } = this.props
     return (
       <div
@@ -137,6 +140,11 @@ class Selection<T> extends Component<SelectionProps<T>> {
             wrap
             alignContent='start'
             alignItems='center'
+            style={{
+              lineHeight: (selected as OptionProps<T>[]).length
+                ? 'normal'
+                : '35px',
+            }}
             className={classNames('select-selection-content', {
               placeholder: !(selected as OptionProps<T>[]).length,
               multiple,
@@ -150,11 +158,18 @@ class Selection<T> extends Component<SelectionProps<T>> {
             className={classNames('select-selection-content', {
               placeholder: !selected,
             })}>
-            {(selected as OptionProps<T>)?.name ?? placeholder}
+            {selected
+              ? renderSelection
+                ? renderSelection(selected as OptionProps<T>)
+                : (selected as OptionProps<T>).name
+              : placeholder}
           </div>
         )}
         <DownOutlined
-          className={classNames('select-selection-icon', { reverse: open })}
+          className={classNames('select-selection-icon', {
+            reverse: open,
+            multiple,
+          })}
         />
         {allowClear &&
           selected !== undefined &&
@@ -163,7 +178,9 @@ class Selection<T> extends Component<SelectionProps<T>> {
           !multiple && (
             <CloseCircleFilled
               onClick={this._handleClear}
-              className='select-selection-icon clear'
+              className={classNames('select-selection-icon clear', {
+                multiple,
+              })}
             />
           )}
       </div>
