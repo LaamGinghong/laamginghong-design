@@ -11,6 +11,7 @@ import { TabsProps, Tabs } from './components/tabs'
 import { BreadcrumbsProps, Breadcrumbs } from './components/breadcrumbs'
 import { Popover, PopoverProps, PopoverClose } from './components/popover'
 import { Select, SelectProps } from './components/select'
+import { Pagination, PaginationProps } from './components/pagination'
 import { InputNumber, InputNumberProps } from './components/input-number'
 
 export {
@@ -46,4 +47,6 @@ export {
   Select,
   InputNumber,
   InputNumberProps,
+  PaginationProps,
+  Pagination,
 }

@@ -23,6 +23,12 @@ import {
   WarningFilled,
 } from '@ant-design/icons'
 import './style.less'
+import {
+  dropdownConfig,
+  DropdownConfigOptions,
+  DropdownPlacement,
+  DropdownTrigger,
+} from './dropdown.config'
 
 export {
   messageConfig,
@@ -36,6 +42,10 @@ export {
   PopoverTrigger,
   PopoverConfigOptions,
   PopoverPlacement,
+  dropdownConfig,
+  DropdownPlacement,
+  DropdownConfigOptions,
+  DropdownTrigger,
 }
 
 export const iconMap = {
