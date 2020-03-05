@@ -40,18 +40,16 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
 
   componentDidUpdate(prevProps: Readonly<InputNumberProps>): void {
     const { value, max, min } = this.props
-    if (prevProps) {
-      if (
-        !isEqual(prevProps.value, value) ||
-        !isEqual(prevProps.max, max) ||
-        !isEqual(prevProps.min, min)
-      ) {
-        const validValue = this._getValidValue(this._toNumberString(value))
-        this.setState({ value: validValue }, () => {
-          const { onChange } = this.props
-          onChange(+validValue)
-        })
-      }
+    if (
+      !isEqual(prevProps.value, value) ||
+      !isEqual(prevProps.max, max) ||
+      !isEqual(prevProps.min, min)
+    ) {
+      const validValue = this._getValidValue(this._toNumberString(value))
+      this.setState({ value: validValue }, () => {
+        const { onChange } = this.props
+        onChange(validValue === '' ? null : +validValue)
+      })
     }
   }
 
@@ -87,6 +85,9 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
   }
 
   private _toNumberString(value: number): string {
+    if (!isValidProps(value)) {
+      return ''
+    }
     const val = Big(value)
     if (isNotCompleteNumber(+val)) {
       return ''
