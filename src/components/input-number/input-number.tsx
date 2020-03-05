@@ -105,7 +105,8 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
       if (value === '-') {
         return
       }
-      onPressEnter(value ? +this._getCurrentValidValue(value) : null)
+      onPressEnter &&
+        onPressEnter(value ? +this._getCurrentValidValue(value) : null)
     }
   }
 
