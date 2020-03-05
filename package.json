@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@types/big.js": "^4.0.5",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
@@ -74,9 +75,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0-rc.0",
+    "big.js": "^5.2.2",
     "dom-align": "^1.10.4",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "sideEffects": false
 }

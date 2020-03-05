@@ -11,6 +11,7 @@ import { TabsProps, Tabs } from './components/tabs'
 import { BreadcrumbsProps, Breadcrumbs } from './components/breadcrumbs'
 import { Popover, PopoverProps, PopoverClose } from './components/popover'
 import { Select, SelectProps } from './components/select'
+import { InputNumber, InputNumberProps } from './components/input-number'
 
 export {
   Modal,
@@ -43,4 +44,6 @@ export {
   PopoverClose,
   SelectProps,
   Select,
+  InputNumber,
+  InputNumberProps,
 }
