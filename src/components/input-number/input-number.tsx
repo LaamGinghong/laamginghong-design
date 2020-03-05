@@ -26,9 +26,33 @@ const isNotCompleteNumber = (num: number): boolean => {
   return isNaN(Number(num)) || !isValidProps(num)
 }
 
+const isEqual = (oldValue: number, newValue: number): boolean =>
+  newValue === oldValue ||
+  (typeof newValue === 'number' &&
+    typeof oldValue === 'number' &&
+    isNaN(newValue) &&
+    isNaN(oldValue))
+
 class InputNumber extends Component<InputNumberProps, InputNumberState> {
   state: InputNumberState = {
     value: this._getValidValue(this._toNumberString(this.props.value)),
+  }
+
+  componentDidUpdate(prevProps: Readonly<InputNumberProps>): void {
+    const { value, max, min } = this.props
+    if (prevProps) {
+      if (
+        !isEqual(prevProps.value, value) ||
+        !isEqual(prevProps.max, max) ||
+        !isEqual(prevProps.min, min)
+      ) {
+        const validValue = this._getValidValue(this._toNumberString(value))
+        this.setState({ value: validValue }, () => {
+          const { onChange } = this.props
+          onChange(+validValue)
+        })
+      }
+    }
   }
 
   private _getValidValue(value: string): string {
