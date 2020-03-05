@@ -12,6 +12,7 @@ export interface InputNumberProps {
   placeholder?: string
   style?: CSSProperties
   className?: string
+  onPressEnter?: (value: number) => void
 }
 
 export interface InputNumberState {
@@ -84,11 +85,28 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
     })
   }
 
+  private _handleFocus = (): void => {
+    window.addEventListener('keydown', this._handlePressEnter)
+  }
+
   private _handleBlur = (): void => {
+    window.removeEventListener('keydown', this._handlePressEnter)
     const { value } = this.state
     this.setState({
       value: value === '-' ? '' : this._getCurrentValidValue(value),
     })
+  }
+
+  private _handlePressEnter = (event: KeyboardEvent): void => {
+    const { value } = this.state
+    const { code } = event
+    if (code === 'Enter') {
+      const { onPressEnter } = this.props
+      if (value === '-') {
+        return
+      }
+      onPressEnter(value ? +this._getCurrentValidValue(value) : null)
+    }
   }
 
   render():
@@ -110,6 +128,7 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
         value={value}
         placeholder={placeholder}
         onBlur={this._handleBlur}
+        onFocus={this._handleFocus}
         disabled={disabled}
         onChange={this._handleChange}
       />
