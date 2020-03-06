@@ -14,6 +14,7 @@ import { Select, SelectProps } from './components/select'
 import { Pagination, PaginationProps } from './components/pagination'
 import { InputNumber, InputNumberProps } from './components/input-number'
 import { DividerProps, Divider } from './components/divider'
+import { DrawerProps, Drawer } from './components/drawer'
 
 export {
   Modal,
@@ -52,4 +53,6 @@ export {
   Pagination,
   DividerProps,
   Divider,
+  DrawerProps,
+  Drawer,
 }

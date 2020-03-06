@@ -8,7 +8,7 @@ import {
   RightOutlined,
   VerticalLeftOutlined,
   VerticalRightOutlined,
-} from '@ant-design/icons/lib'
+} from '@ant-design/icons'
 import { Select } from '../select'
 import { InputNumber } from '../../index'
 import { isNil } from '../../utils'
