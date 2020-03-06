@@ -13,6 +13,7 @@ import { Popover, PopoverProps, PopoverClose } from './components/popover'
 import { Select, SelectProps } from './components/select'
 import { Pagination, PaginationProps } from './components/pagination'
 import { InputNumber, InputNumberProps } from './components/input-number'
+import { DividerProps, Divider } from './components/divider'
 
 export {
   Modal,
@@ -49,4 +50,6 @@ export {
   InputNumberProps,
   PaginationProps,
   Pagination,
+  DividerProps,
+  Divider,
 }
