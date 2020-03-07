@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
-    "@storybook/react": "^5.3.14",
+    "@storybook/react": "^5.3.17",
     "@types/big.js": "^4.0.5",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.17",
@@ -90,8 +90,9 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.2",
     "big.js": "^5.2.2",
+    "dayjs": "^1.8.21",
     "dom-align": "^1.10.4",
-    "laamginghong-utils": "^1.1.0",
+    "laamginghong-utils": "^1.1.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },

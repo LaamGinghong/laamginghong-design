@@ -1,7 +1,5 @@
 import React, { ReactNode, useCallback, useState } from 'react'
-import Checkbox from './checkbox'
-
-const { Group } = Checkbox
+import { Checkbox, CheckboxGroup } from './index'
 
 export default { title: 'Checkbox' }
 
@@ -26,7 +24,7 @@ export const group = (): ReactNode => {
   }, [])
 
   return (
-    <Group
+    <CheckboxGroup
       options={[
         { value: 1, label: '苹果' },
         { value: 2, label: '雪梨' },
@@ -45,7 +43,7 @@ export const disabled = (): ReactNode => {
   }, [])
 
   return (
-    <Group
+    <CheckboxGroup
       disabled
       options={[
         { value: 1, label: '苹果' },
@@ -65,7 +63,7 @@ export const block = (): ReactNode => {
   }, [])
 
   return (
-    <Group
+    <CheckboxGroup
       block
       options={[
         { value: 1, label: '苹果' },

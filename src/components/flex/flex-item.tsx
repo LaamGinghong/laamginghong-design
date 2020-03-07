@@ -16,7 +16,7 @@ export interface FlexItemProps {
 const FlexItem = forwardRef<
   HTMLDivElement,
   FlexItemProps & HTMLAttributes<HTMLDivElement>
->(({ order = 1, flex = 'auto', alignSelf, children, ...rest }, ref) => {
+>(({ order, flex = 'auto', alignSelf, children, ...rest }, ref) => {
   const style: FlexItemProps = { order, flex }
   if (alignSelf) {
     style.alignSelf = alignSelf

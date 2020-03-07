@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
 import { ModalProps, Modal } from './components/modal'
 import { ButtonProps, Button } from './components/button'
 import { FlexItemProps, FlexProps, FlexItem, Flex } from './components/flex'
@@ -29,6 +31,9 @@ import {
   CheckboxGroupProps,
   Checkbox,
 } from './components/checkbox'
+import { DatePickerProps, DatePicker } from './components/date-picker'
+
+dayjs.locale('zh-cn')
 
 export {
   Modal,
@@ -75,4 +80,6 @@ export {
   CheckboxGroup,
   CheckboxProps,
   Checkbox,
+  DatePicker,
+  DatePickerProps,
 }
