@@ -1,0 +1,76 @@
+@import '../../index';
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.drawer {
+  .mask;
+
+  .drawer-mask {
+    .mask;
+    background-color: rgba(0, 0, 0, 0.45);
+  }
+
+  .drawer-content {
+    background-color: #fff;
+    z-index: @z-index-drawer-content;
+    position: absolute;
+
+    .drawer-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid @normal-border-color;
+      font-size: @large-font-size;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: @title-font-color;
+      font-weight: @bold-font-weight;
+      .drawer-header-close {
+        .cursor-pointer;
+        font-size: 20px;
+      }
+    }
+
+    .drawer-body {
+      padding: 24px;
+      font-size: @normal-font-size;
+      color: @normal-font-color;
+      font-weight: @normal-font-weight;
+      overflow: auto;
+      word-wrap: break-word;
+    }
+
+    &.left,
+    &.right {
+      top: 0;
+      bottom: 0;
+    }
+
+    &.bottom,
+    &.top {
+      left: 0;
+      right: 0;
+    }
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
+    }
+
+    &.top {
+      top: 0;
+    }
+
+    &.bottom {
+      bottom: 0;
+    }
+  }
+}
