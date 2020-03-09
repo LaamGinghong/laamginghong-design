@@ -170,6 +170,8 @@ const Pagination: FC<PaginationProps> = ({
           跳至
           <InputNumber
             value={jumpIndex}
+            min={1}
+            max={count}
             onChange={handleChangeJumpIndex}
             onPressEnter={handleQuickJump}
           />
