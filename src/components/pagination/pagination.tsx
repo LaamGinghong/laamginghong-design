@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons'
 import { Select } from '../select'
 import { InputNumber } from '../../index'
-import { isNil } from '../../utils'
+import { isNil } from 'laamginghong-utils'
 
 export interface PaginationProps {
   pageIndex: number
