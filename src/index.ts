@@ -1,6 +1,5 @@
 import { ModalProps, Modal } from './components/modal'
 import { ButtonProps, Button } from './components/button'
-import { LoadingProps, Loading } from './components/loading'
 import { FlexItemProps, FlexProps, FlexItem, Flex } from './components/flex'
 import { List, ListItem, ListItemProps, ListProps } from './components/list'
 import { message, MessageProps } from './components/message'
@@ -25,8 +24,6 @@ export {
   ModalProps,
   Button,
   ButtonProps,
-  LoadingProps,
-  Loading,
   FlexItem,
   FlexProps,
   FlexItemProps,

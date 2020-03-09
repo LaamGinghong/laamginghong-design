@@ -1,7 +1,7 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
+import { LoadingOutlined } from '@ant-design/icons'
 import classNames from 'classnames'
 import './style.less'
-import { LoadingForSwitch } from '../loading'
 
 export interface SwitchProps {
   loading?: boolean
@@ -22,9 +22,16 @@ const Switch: FC<SwitchProps> = ({
   unCheckedText,
   onChange,
 }) => {
+  const [showLoading, setShowLoading] = useState(loading)
   const _handleClick = useCallback((): void => {
     onChange && onChange(!checked)
   }, [checked])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowLoading(loading)
+    }, 200)
+  }, [loading])
 
   return (
     <button
@@ -35,7 +42,11 @@ const Switch: FC<SwitchProps> = ({
         'switch-small': size === 'small',
       })}
       onClick={_handleClick}>
-      <LoadingForSwitch loading={loading} checked={checked} size={size} />
+      {showLoading && (
+        <LoadingOutlined
+          className={classNames('switch-loading', { small: size === 'small' })}
+        />
+      )}
       <span className='switch-inner'>
         {checked ? checkedText : unCheckedText}
       </span>

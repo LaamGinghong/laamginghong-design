@@ -82,8 +82,8 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
     | null
     | undefined {
     const {
-      value,
       multiple,
+      value = multiple ? [] : null,
       data,
       style,
       disabled,
