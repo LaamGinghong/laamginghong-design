@@ -6,6 +6,7 @@ import { CloseOutlined } from '@ant-design/icons'
 import { Flex } from '../flex'
 import './style.less'
 import { render } from 'react-dom'
+import { drawerConfig, DrawerPlacement } from '../config'
 
 export interface DrawerProps {
   title?: ReactNode
@@ -15,7 +16,7 @@ export interface DrawerProps {
   visible?: boolean
   width?: number
   height?: number
-  placement?: 'top' | 'right' | 'bottom' | 'left'
+  placement?: DrawerPlacement
   onClose?: () => void
 }
 
@@ -27,7 +28,7 @@ class Drawer extends Component<DrawerProps> {
     visible: true,
     width: 256,
     height: 256,
-    placement: 'right',
+    placement: drawerConfig.config.placement,
   }
 
   static create(config: DrawerProps & { content: ReactNode }): void {

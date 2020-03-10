@@ -29,6 +29,11 @@ import {
   DropdownPlacement,
   DropdownTrigger,
 } from './dropdown.config'
+import {
+  drawerConfig,
+  DrawerConfigOptions,
+  DrawerPlacement,
+} from './drawer.config'
 
 export {
   messageConfig,
@@ -46,6 +51,9 @@ export {
   DropdownPlacement,
   DropdownConfigOptions,
   DropdownTrigger,
+  drawerConfig,
+  DrawerConfigOptions,
+  DrawerPlacement,
 }
 
 export const iconMap = {
