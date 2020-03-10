@@ -13,8 +13,8 @@ import { NotificationContainer } from '../container'
 
 export interface NotificationBasicProps {
   title?: ReactNode
-  type: NotificationType
-  description?: ReactNode
+  type?: NotificationType
+  description: ReactNode
 }
 
 interface NotificationProps extends NotificationBasicProps {
@@ -75,7 +75,10 @@ const placementMap = {
 }
 
 const api = {
-  create(config: NotificationConfigOptions & NotificationBasicProps): void {
+  create(
+    config: NotificationConfigOptions &
+      NotificationBasicProps & { type: NotificationType },
+  ): void {
     const container = NotificationContainer.create('notification-container')
     const node = document.createElement('div')
     container.appendChild(node)
