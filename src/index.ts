@@ -15,6 +15,7 @@ import { Pagination, PaginationProps } from './components/pagination'
 import { InputNumber, InputNumberProps } from './components/input-number'
 import { DividerProps, Divider } from './components/divider'
 import { DrawerProps, Drawer } from './components/drawer'
+import { RadioProps, Radio } from './components/radio'
 
 export {
   Modal,
@@ -55,4 +56,6 @@ export {
   Divider,
   DrawerProps,
   Drawer,
+  RadioProps,
+  Radio,
 }
