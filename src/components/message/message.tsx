@@ -33,7 +33,9 @@ const Message: FC<MessageProps> = ({ type, content }) => {
 }
 
 const api = {
-  create(config: MessageConfigOptions & MessageProps): void {
+  create(
+    config: MessageConfigOptions & MessageProps & { type: MessageType },
+  ): void {
     const container = MessageContainer.create('message-container')
     const node = document.createElement('div')
     node.setAttribute('class', 'message')
