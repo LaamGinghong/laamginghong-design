@@ -3320,10 +3320,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-laamginghong-utils@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/laamginghong-utils/-/laamginghong-utils-1.0.1.tgz#55f5eb073f5ee6441554013fcaf142bbe10c3570"
-  integrity sha512-jz6/jefqew/9+DPRc+6K3VXzGRYbcA7uiijh33g7wdPKoIm77eYQWQ7KOAiM271Gi4lhj0AdQYo+k3EqbDzDFQ==
+laamginghong-utils@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/laamginghong-utils/-/laamginghong-utils-1.1.0.tgz#6bd574ffe60fdf9c0cd4aa4d03328face9ba0e1a"
+  integrity sha512-psFgLly8V8TAA0xATWNN7I5hW3N6AUFY/pEr81AXvcXvEWA9IJme8oj2BUpMAOlOYzR0RqZl4B7cdJ0vyuVgZg==
 
 lcid@^2.0.0:
   version "2.0.0"
