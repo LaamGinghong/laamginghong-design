@@ -34,7 +34,7 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
     const [containerRef, setContainerRef] = useState<
       MutableRefObject<HTMLElement>
     >()
-    let timer: NodeJS.Timeout
+    let timer: number
     let globalDuration: number
 
     const handleTrigger = useCallback((e: MutableRefObject<HTMLElement>) => {
@@ -55,7 +55,7 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
 
     const handleClose = useCallback((duration: number): void => {
       globalDuration = duration
-      timer = setTimeout(() => {
+      timer = window.setTimeout(() => {
         setVisible(false)
       }, duration)
     }, [])
