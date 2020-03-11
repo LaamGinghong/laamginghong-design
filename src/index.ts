@@ -4,7 +4,10 @@ import { LoadingProps, Loading } from './components/loading'
 import { FlexItemProps, FlexProps, FlexItem, Flex } from './components/flex'
 import { List, ListItem, ListItemProps, ListProps } from './components/list'
 import { message, MessageProps } from './components/message'
-import { notification, NotificationBasicProps } from './components/notification'
+import {
+  notification,
+  NotificationCreateConfig,
+} from './components/notification'
 import { Input } from './components/input'
 import { SwitchProps, Switch } from './components/switch'
 import { TabsProps, Tabs } from './components/tabs'
@@ -35,7 +38,7 @@ export {
   message,
   MessageProps,
   notification,
-  NotificationBasicProps,
+  NotificationCreateConfig,
   Input,
   SwitchProps,
   Switch,

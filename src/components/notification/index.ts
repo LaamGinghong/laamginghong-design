@@ -1,3 +1,3 @@
-import notification, { NotificationBasicProps } from './notification'
+import notification, { NotificationCreateConfig } from './notification'
 
-export { notification, NotificationBasicProps }
+export { notification, NotificationCreateConfig }

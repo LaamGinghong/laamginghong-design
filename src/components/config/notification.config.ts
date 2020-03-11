@@ -11,8 +11,6 @@ export type NotificationPlacement =
 export interface NotificationConfigOptions {
   duration?: number
   maxCount?: number
-  top?: number
-  bottom?: number
   placement?: NotificationPlacement
 }
 
@@ -20,8 +18,6 @@ class NotificationConfig {
   private _config: NotificationConfigOptions = {
     duration: 3000,
     maxCount: 3,
-    top: 20,
-    bottom: 20,
     placement: 'topRight',
   }
 
