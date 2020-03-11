@@ -61,6 +61,9 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
     }, [])
 
     const handleToggle = useCallback((e: boolean): void => {
+      if (trigger !== 'hover') {
+        return
+      }
       if (e) {
         setTimeout(() => {
           setVisible(false)

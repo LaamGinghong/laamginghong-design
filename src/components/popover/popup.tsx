@@ -4,7 +4,7 @@ import React, {
   MutableRefObject,
   ReactNodeArray,
   useCallback,
-  useEffect,
+  useLayoutEffect,
   useRef,
 } from 'react'
 import './style.less'
@@ -27,7 +27,7 @@ const Popup: FC<PopupProps> = ({
   const [title, content] = children as ReactNodeArray
   const popupRef = useRef<HTMLDivElement>()
 
-  useEffect(() => {
+  useLayoutEffect((): void => {
     domAlign(popupRef.current, container.current, placementMap[placement])
   }, [])
 
