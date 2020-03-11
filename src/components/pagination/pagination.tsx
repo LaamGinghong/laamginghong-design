@@ -142,7 +142,7 @@ const Pagination: FC<PaginationProps> = ({
       {list.map(item => (
         <PaginationItem
           key={item}
-          className={classNames({ selected: item === pageIndex })}>
+          className={classNames({ selected: item === pageIndex, disabled })}>
           {item}
         </PaginationItem>
       ))}
