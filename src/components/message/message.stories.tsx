@@ -2,7 +2,7 @@ import React, { ReactNode, useCallback } from 'react'
 import { Button } from '../button'
 import { message } from './index'
 
-export default { title: 'message' }
+export default { title: 'Message' }
 
 export const common = (): ReactNode => {
   const handleClick = useCallback((): void => {
