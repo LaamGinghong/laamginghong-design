@@ -9,6 +9,7 @@
   pointer-events: none;
 
   .popup {
+    left: -500px; // 默认隐藏在视图外，防止触发事件导致隐藏
     position: absolute;
     pointer-events: auto;
     background-color: #fff;
@@ -22,6 +23,7 @@
 
     .popup-title {
       min-width: 180px;
+      max-width: 480px;
       min-height: 32px;
       box-sizing: border-box;
       padding: 8px 16px;

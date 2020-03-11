@@ -24,7 +24,7 @@ export interface PopoverConfigOptions {
 class PopoverConfig {
   private _config: PopoverConfigOptions = {
     duration: 1000,
-    placement: 'top',
+    placement: 'bottomLeft',
     gap: 6,
     trigger: 'click',
   }
