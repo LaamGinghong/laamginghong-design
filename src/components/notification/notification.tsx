@@ -1,139 +1,111 @@
-import React, { Component, MouseEvent, ReactNode } from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import React, { FC, ReactNode, useCallback } from 'react'
 import { CloseOutlined } from '@ant-design/icons'
 import {
-  notificationConfig,
-  NotificationConfigOptions,
   NotificationType,
+  NotificationConfigOptions,
+  notificationConfig,
   iconMap,
 } from '../config'
-import { Flex } from '../flex'
+import { Flex, FlexItem } from '../flex'
 import './style.less'
 import { NotificationContainer } from '../container'
+import { render, unmountComponentAtNode } from 'react-dom'
 
-export interface NotificationBasicProps {
+export interface NotificationProps {
+  type: NotificationType
   title?: ReactNode
-  type?: NotificationType
   description: ReactNode
-}
-
-interface NotificationProps extends NotificationBasicProps {
+  container: HTMLDivElement
   node: HTMLDivElement
-  container: HTMLElement
-  duration: number
 }
 
-class Notification extends Component<NotificationProps> {
-  private _handleStopPropagation = (e: MouseEvent<HTMLDivElement>): void => {
-    e.stopPropagation()
-  }
-
-  private _handleClose = (): void => {
-    const { node, container } = this.props
+const Notification: FC<NotificationProps> = ({
+  type,
+  title,
+  description,
+  container,
+  node,
+}) => {
+  const handleClose = useCallback((): void => {
     unmountComponentAtNode(node)
     container.removeChild(node)
-  }
+  }, [])
 
-  render():
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
-    const { title, type, description } = this.props
-
-    return (
-      <Flex
-        alignItems='start'
-        className='notification-item'
-        onClick={this._handleStopPropagation}>
-        {iconMap[type]}
-        <div className='notification-content'>
-          <div className='notification-title'>{title}</div>
-          {description && (
-            <div className='notification-description'>{description}</div>
-          )}
-        </div>
-        <CloseOutlined
-          className='notification-close'
-          onClick={this._handleClose}
-        />
-      </Flex>
-    )
-  }
+  return (
+    <Flex alignItems='start' className='notification-item'>
+      {iconMap[type]}
+      <FlexItem flex={1} className='notification-content'>
+        {title && <div className='notification-title'>{title}</div>}
+        <div className='notification-description'>{description}</div>
+        <CloseOutlined className='notification-close' onClick={handleClose} />
+      </FlexItem>
+    </Flex>
+  )
 }
 
-const placementMap = {
-  topLeft: 'notification-left',
-  topRight: 'notification-right',
-  bottomLeft: 'notification-left',
-  bottomRight: 'notification-right',
+export interface NotificationCreateConfig extends NotificationConfigOptions {
+  title?: ReactNode
+  description: ReactNode
+  type?: NotificationType
 }
 
-const api = {
-  create(
-    config: NotificationConfigOptions &
-      NotificationBasicProps & { type: NotificationType },
-  ): void {
+const placementClassMap = {
+  topLeft: 'notification-top notification-left',
+  topRight: 'notification-top notification-right',
+  bottomLeft: 'notification-bottom notification-left',
+  bottomRight: 'notification-bottom notification-right',
+}
+
+export default {
+  create(config: NotificationCreateConfig & { type: NotificationType }): void {
+    const {
+      type,
+      title,
+      description,
+      duration = notificationConfig.config.duration,
+      maxCount = notificationConfig.config.maxCount,
+      placement = notificationConfig.config.placement,
+    } = config
     const container = NotificationContainer.create('notification-container')
+    if (container.className !== placementClassMap[placement]) {
+      container.removeAttribute('class')
+      container.setAttribute('class', placementClassMap[placement])
+      while (container.firstChild) {
+        container.removeChild(container.firstChild)
+      }
+    }
     const node = document.createElement('div')
+    node.setAttribute('class', 'notification')
     container.appendChild(node)
-    const { type, title, description } = config
-    const duration = config.duration ?? notificationConfig.config.duration
-    const maxCount = config.maxCount ?? notificationConfig.config.maxCount
-    const top = config.top ?? notificationConfig.config.maxCount
-    const bottom = config.bottom ?? notificationConfig.config.bottom
-    const placement = config.placement ?? notificationConfig.config.placement
-    node.setAttribute('class', `notification ${placementMap[placement]}`)
-    if (/top/.test(placement)) {
-      node.setAttribute('style', `top: ${top}px`)
-    }
-    if (/bottom/.test(placement)) {
-      node.setAttribute('style', `bottom: ${bottom}px`)
-    }
-    if (container.childElementCount > maxCount) {
+    if (container.childNodes.length > maxCount) {
       const [first] = Array.from(container.childNodes)
       container.removeChild(first)
     }
+    render(
+      <Notification
+        type={type}
+        description={description}
+        container={container}
+        node={node}
+        title={title}
+      />,
+      node,
+    )
     setTimeout(() => {
       unmountComponentAtNode(node)
       container.removeChild(node)
     }, duration)
-    render(
-      <Notification
-        type={type}
-        title={title}
-        container={container}
-        description={description}
-        node={node}
-        duration={duration}
-      />,
-      node,
-    )
   },
-  info(config: NotificationConfigOptions & NotificationBasicProps): void {
-    const type = config.type ?? 'info'
-    this.create({ ...config, type })
+  info(config: NotificationCreateConfig): void {
+    this.create({ ...config, type: 'info' })
   },
-  success(config: NotificationConfigOptions & NotificationBasicProps): void {
-    const type = config.type ?? 'success'
-    this.create({ ...config, type })
+  success(config: NotificationCreateConfig): void {
+    this.create({ ...config, type: 'success' })
   },
-  warning(config: NotificationConfigOptions & NotificationBasicProps): void {
-    const type = config.type ?? 'warning'
-    this.create({ ...config, type })
+  error(config: NotificationCreateConfig): void {
+    this.create({ ...config, type: 'error' })
   },
-  error(config: NotificationConfigOptions & NotificationBasicProps): void {
-    const type = config.type ?? 'error'
-    this.create({ ...config, type })
-  },
-  destroy(): void {
-    NotificationContainer.destroy()
+  warning(config: NotificationCreateConfig): void {
+    this.create({ ...config, type: 'warning' })
   },
 }
-
-export default api
