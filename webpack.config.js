@@ -1,17 +1,30 @@
 const path = require('path')
+const { BannerPlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackBar = require('webpackbar')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const WebpackBuildNotifier = require('webpack-build-notifier')
+const CaseSensitivePathsWebpackPlugin = require('case-sensitive-paths-webpack-plugin')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+
 const { loader } = MiniCssExtractPlugin
 
-module.exports = {
+const PRODUCT_ROOT = path.resolve(__dirname)
+
+const config = {
   mode: 'production',
-  entry: path.resolve(__dirname, 'src', 'index.ts'),
-  context: path.resolve(__dirname),
-  devtool: 'source-map',
+  entry: path.resolve(PRODUCT_ROOT, 'src', 'index.ts'),
+  context: path.resolve(PRODUCT_ROOT),
+  devtool: 'cheap-source-map',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'lib'),
-    publicPath: path.resolve(__dirname, 'lib'),
+    path: path.resolve(PRODUCT_ROOT, 'lib'),
+    publicPath: path.resolve(PRODUCT_ROOT, 'lib'),
     library: '',
     libraryTarget: 'umd',
   },
@@ -31,7 +44,7 @@ module.exports = {
         use: [
           { loader, options: { publicPath: '../' } },
           'css-loader',
-          'less-loader'
+          'less-loader',
         ],
       },
       {
@@ -59,10 +72,29 @@ module.exports = {
     },
   },
   plugins: [
+    new WebpackBar({ name: 'LaamGinghong-design', color: '#61dafb' }),
+    new BannerPlugin({
+      raw: true,
+      banner: `/** @preserve Powered by LaamGinghong-design (https://github.com/LaamGinghong/laamginghong-design.git) */`,
+    }),
+    new FriendlyErrorsWebpackPlugin(),
+    new WebpackBuildNotifier({ suppressSuccess: true }),
+    new CaseSensitivePathsWebpackPlugin(),
+    new CircularDependencyPlugin(),
     new CleanWebpackPlugin(),
+    new HardSourceWebpackPlugin({ info: { mode: 'none', level: 'warn' } }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserWebpackPlugin({ extractComments: false }),
+      new OptimizeCssAssetsWebpackPlugin(),
+    ],
+  },
 }
+
+module.exports = new SpeedMeasurePlugin().wrap(config)
