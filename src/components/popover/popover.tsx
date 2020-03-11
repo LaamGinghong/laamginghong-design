@@ -53,25 +53,31 @@ const Popover = forwardRef<PopoverClose, PopoverProps>(
       },
     )
 
-    const handleClose = useCallback((duration: number): void => {
-      globalDuration = duration
-      timer = window.setTimeout(() => {
-        setVisible(false)
-      }, duration)
-    }, [])
-
-    const handleToggle = useCallback((e: boolean): void => {
-      if (trigger !== 'hover') {
-        return
-      }
-      if (e) {
-        setTimeout(() => {
+    const handleClose = useCallback(
+      (duration: number): void => {
+        globalDuration = duration
+        timer = window.setTimeout(() => {
           setVisible(false)
-        }, globalDuration)
-      } else {
-        clearTimeout(timer)
-      }
-    }, [])
+        }, duration)
+      },
+      [trigger],
+    )
+
+    const handleToggle = useCallback(
+      (e: boolean): void => {
+        if (trigger !== 'hover') {
+          return
+        }
+        if (e) {
+          setTimeout(() => {
+            setVisible(false)
+          }, globalDuration)
+        } else {
+          clearTimeout(timer)
+        }
+      },
+      [trigger],
+    )
 
     return (
       <>

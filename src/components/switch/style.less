@@ -70,6 +70,11 @@
       margin-left: 6px;
       margin-right: 24px;
     }
+
+    .switch-loading {
+      left: unset;
+      right: 3px;
+    }
   }
 
   &.disabled {
@@ -83,5 +88,13 @@
     font-size: @small-font-size;
     margin-right: 6px;
     margin-left: 24px;
+  }
+
+  .switch-loading {
+    position: absolute;
+    z-index: @z-index-loading;
+    left: 3px;
+    top: 3px;
+    transition: left 0.3s, right 0.3s;
   }
 }
