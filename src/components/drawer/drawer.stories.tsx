@@ -1,10 +1,8 @@
 import React, { ReactNode, useCallback, useState } from 'react'
 import { Drawer } from './index'
 import { Button } from '../button'
-import { Radio } from '../radio'
+import { RadioGroup } from '../radio'
 import { DrawerPlacement } from '../config'
-
-const { Group } = Radio
 
 export default { title: 'Drawer' }
 
@@ -41,7 +39,7 @@ export const placement = (): ReactNode => {
 
   return (
     <>
-      <Group
+      <RadioGroup
         value={placement}
         onChange={handleChange}
         options={[
