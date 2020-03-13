@@ -1,6 +1,6 @@
-import React, { FC, ReactNode, useCallback, useMemo, useState } from 'react'
+import React, { FC, ReactNode, useCallback, useMemo } from 'react'
+import { ModalContainer } from '../container'
 import { Button } from '../button'
-import Modal from './modal'
 
 export interface ModalFooterProps {
   loading: boolean
@@ -25,7 +25,7 @@ const ModalFooter: FC<ModalFooterProps> = ({
       onChange(true)
       Promise.resolve(result)
         .then(() => {
-          Modal.destroy()
+          ModalContainer.destroy()
         })
         .catch(() => {
           onChange(false)

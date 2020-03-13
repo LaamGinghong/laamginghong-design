@@ -1,7 +1,6 @@
 import React, { ChangeEvent, Component } from 'react'
 import classNames from 'classnames'
 import './style.less'
-import Group from './group'
 import { isNumber } from 'laamginghong-utils'
 
 export interface CheckboxProps {
@@ -14,8 +13,6 @@ export interface CheckboxProps {
 }
 
 class Checkbox extends Component<CheckboxProps> {
-  static Group = Group
-
   private _handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { onChange, value } = this.props
     const { checked } = e.target

@@ -10,7 +10,7 @@ import {
   VerticalRightOutlined,
 } from '@ant-design/icons'
 import { Select } from '../select'
-import { InputNumber } from '../../index'
+import { InputNumber } from '../input-number'
 import { isNil } from 'laamginghong-utils'
 
 export interface PaginationProps {
