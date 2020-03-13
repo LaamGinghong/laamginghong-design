@@ -1,7 +1,6 @@
 import React, { ReactElement, RefObject } from 'react'
-import { ListDataOption } from './list-item'
+import ListItem, { ListDataOption } from './list-item'
 import ListNoData from './list-no-data'
-import { ListItem } from './index'
 
 export interface ListMenuProps<T> {
   data: ListDataOption<T>[]

@@ -1,7 +1,6 @@
 import React, { Component, FocusEvent } from 'react'
 import { isNumber } from 'laamginghong-utils'
 import classNames from 'classnames'
-import Group from './group'
 import './style.less'
 
 export interface RadioProps {
@@ -13,8 +12,6 @@ export interface RadioProps {
 }
 
 class Radio extends Component<RadioProps> {
-  static Group = Group
-
   private _handleSelect = (data: FocusEvent<HTMLInputElement>): void => {
     const { value, onChecked } = this.props
     let result: string | number = data.target.value

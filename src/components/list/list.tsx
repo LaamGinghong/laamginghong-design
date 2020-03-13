@@ -2,8 +2,8 @@ import React, { Component, ReactNode, RefObject } from 'react'
 import { ListDataOption } from './list-item'
 import ListHeader from './list-header'
 import ListFooter from './list-footer'
-import './style.less'
 import ListMenu from './list-menu'
+import './style.less'
 
 export interface ListProps<T> {
   data: ListDataOption<T>[]

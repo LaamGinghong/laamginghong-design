@@ -17,7 +17,18 @@ import { Pagination, PaginationProps } from './components/pagination'
 import { InputNumber, InputNumberProps } from './components/input-number'
 import { DividerProps, Divider } from './components/divider'
 import { DrawerProps, Drawer } from './components/drawer'
-import { RadioProps, Radio } from './components/radio'
+import {
+  RadioProps,
+  Radio,
+  RadioGroupProps,
+  RadioGroup,
+} from './components/radio'
+import {
+  CheckboxProps,
+  CheckboxGroup,
+  CheckboxGroupProps,
+  Checkbox,
+} from './components/checkbox'
 
 export {
   Modal,
@@ -58,4 +69,10 @@ export {
   Drawer,
   RadioProps,
   Radio,
+  RadioGroupProps,
+  RadioGroup,
+  CheckboxGroupProps,
+  CheckboxGroup,
+  CheckboxProps,
+  Checkbox,
 }
