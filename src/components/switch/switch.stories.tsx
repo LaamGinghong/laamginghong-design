@@ -1,8 +1,6 @@
 import React, { ReactNode, useCallback, useState } from 'react'
 import { Switch } from './index'
-import { Radio } from '../radio'
-
-const { Group } = Radio
+import { RadioGroup } from '../radio'
 
 export default { title: 'Switch' }
 
@@ -60,7 +58,7 @@ export const size = (): ReactNode => {
 
   return (
     <>
-      <Group
+      <RadioGroup
         value={size}
         options={[
           { value: 'small', label: 'small' },

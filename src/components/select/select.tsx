@@ -45,11 +45,16 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
 
   private _selectionRef = createRef<HTMLDivElement>()
 
-  constructor(props) {
-    super(props)
-    window.addEventListener('click', (): void => {
-      this.setState({ open: false, searchWord: '' })
-    })
+  componentDidMount(): void {
+    window.addEventListener('click', this._handleClose)
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('click', this._handleClose)
+  }
+
+  private _handleClose = (): void => {
+    this.setState({ open: false, searchWord: '' })
   }
 
   private _handleOpen = (open: boolean): void => {

@@ -1,7 +1,5 @@
 import React, { ReactNode, useCallback, useState } from 'react'
-import { Radio } from './index'
-
-const { Group } = Radio
+import { Radio, RadioGroup } from './index'
 
 export default { title: 'Radio' }
 
@@ -26,7 +24,7 @@ export const group = (): ReactNode => {
   }, [])
 
   return (
-    <Group
+    <RadioGroup
       value={checked}
       onChange={handleCheck}
       options={[
@@ -45,7 +43,7 @@ export const block = (): ReactNode => {
   }, [])
 
   return (
-    <Group
+    <RadioGroup
       value={checked}
       onChange={handleCheck}
       block
@@ -67,7 +65,7 @@ export const disabled = (): ReactNode => {
   return (
     <div>
       <div>
-        <Group
+        <RadioGroup
           value={checked}
           onChange={handleCheck}
           disabled

@@ -14,6 +14,7 @@ import {
   DownOutlined,
 } from '@ant-design/icons'
 import { Flex } from '../flex'
+import { isNil } from 'laamginghong-utils'
 
 export interface SelectionProps<T> {
   open: boolean
@@ -171,18 +172,14 @@ class Selection<T> extends Component<SelectionProps<T>> {
             multiple,
           })}
         />
-        {allowClear &&
-          selected !== undefined &&
-          selected !== null &&
-          !disabled &&
-          !multiple && (
-            <CloseCircleFilled
-              onClick={this._handleClear}
-              className={classNames('select-selection-icon clear', {
-                multiple,
-              })}
-            />
-          )}
+        {allowClear && !isNil(selected) && !disabled && !multiple && (
+          <CloseCircleFilled
+            onClick={this._handleClear}
+            className={classNames('select-selection-icon clear', {
+              multiple,
+            })}
+          />
+        )}
       </div>
     )
   }
