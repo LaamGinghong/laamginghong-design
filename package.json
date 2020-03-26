@@ -25,7 +25,7 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "engines": {
-    "node": ">=10.0.0 <13.0.0"
+    "node": ">=13.0.0"
   },
   "husky": {
     "hooks": {
