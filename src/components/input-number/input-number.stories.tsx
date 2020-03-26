@@ -1,49 +1,49 @@
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { InputNumber } from './index'
 
 export default { title: 'InputNumber' }
 
-export const common = (): ReactNode => {
-  const [count, setCount] = useState<number>()
+export const Common: FC = () => {
+    const [count, setCount] = useState<number>()
 
-  const handleChange = useCallback((value: number): void => {
-    setCount(value)
-  }, [])
+    const handleChange = useCallback((value: number): void => {
+        setCount(value)
+    }, [])
 
-  return <InputNumber value={count} onChange={handleChange} />
+    return <InputNumber value={count} onChange={handleChange} />
 }
 
-export const disabled = (): ReactNode => {
-  const [count, setCount] = useState<number>()
+export const Disabled: FC = () => {
+    const [count, setCount] = useState<number>()
 
-  const handleChange = useCallback((value: number): void => {
-    setCount(value)
-  }, [])
+    const handleChange = useCallback((value: number): void => {
+        setCount(value)
+    }, [])
 
-  return <InputNumber value={count} onChange={handleChange} disabled />
+    return <InputNumber value={count} onChange={handleChange} disabled />
 }
 
-export const tresholdValue = (): ReactNode => {
-  const [count, setCount] = useState<number>()
+export const TresholdValue: FC = () => {
+    const [count, setCount] = useState<number>()
 
-  const handleChange = useCallback((value: number): void => {
-    setCount(value)
-  }, [])
+    const handleChange = useCallback((value: number): void => {
+        setCount(value)
+    }, [])
 
-  return (
-    <>
-      <p>max:10, min:0</p>
-      <InputNumber value={count} onChange={handleChange} max={10} min={0} />
-    </>
-  )
+    return (
+        <>
+            <p>max:10, min:0</p>
+            <InputNumber value={count} onChange={handleChange} max={10} min={0} />
+        </>
+    )
 }
 
-export const precision = (): ReactNode => {
-  const [count, setCount] = useState<number>()
+export const Precision: FC = () => {
+    const [count, setCount] = useState<number>()
 
-  const handleChange = useCallback((value: number): void => {
-    setCount(value)
-  }, [])
+    const handleChange = useCallback((value: number): void => {
+        setCount(value)
+    }, [])
 
-  return <InputNumber value={count} onChange={handleChange} precision={2} />
+    return <InputNumber value={count} onChange={handleChange} precision={2} />
 }
