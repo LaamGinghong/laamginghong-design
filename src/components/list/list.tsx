@@ -6,42 +6,38 @@ import ListMenu from './list-menu'
 import './style.less'
 
 export interface ListProps<T> {
-  data: ListDataOption<T>[]
-  header?: string | ReactNode
-  footer?: string | ReactNode
-  noDataText?: string
-  onClick?: (ref: RefObject<HTMLLIElement>, value: T) => void
+    data: ListDataOption<T>[]
+    header?: string | ReactNode
+    footer?: string | ReactNode
+    noDataText?: string
+    onClick?: (ref: RefObject<HTMLLIElement>, value: T) => void
 }
 
 class List<T> extends Component<ListProps<T>> {
-  private _handleClick = (ref: RefObject<HTMLLIElement>, value: T): void => {
-    const { onClick } = this.props
-    onClick && onClick(ref, value)
-  }
+    private _handleClick = (ref: RefObject<HTMLLIElement>, value: T): void => {
+        const { onClick } = this.props
+        onClick && onClick(ref, value)
+    }
 
-  render():
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
-    const { data, header, footer, noDataText } = this.props
-    return (
-      <div className='list'>
-        {header && <ListHeader header={header} />}
-        <ListMenu
-          data={data}
-          noDataText={noDataText}
-          onClick={this._handleClick}
-        />
-        {footer && <ListFooter footer={footer} />}
-      </div>
-    )
-  }
+    render():
+        | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+        | string
+        | number
+        | {}
+        | React.ReactNodeArray
+        | React.ReactPortal
+        | boolean
+        | null
+        | undefined {
+        const { data, header, footer, noDataText } = this.props
+        return (
+            <div className='list'>
+                {header && <ListHeader header={header} />}
+                <ListMenu data={data} noDataText={noDataText} onClick={this._handleClick} />
+                {footer && <ListFooter footer={footer} />}
+            </div>
+        )
+    }
 }
 
 export default List

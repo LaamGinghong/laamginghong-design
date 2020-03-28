@@ -1,38 +1,38 @@
-import React, { ReactNode } from 'react'
+import React, { FC } from 'react'
 import { Divider } from './index'
 
 export default { title: 'Divider' }
 
-export const common = (): ReactNode => {
-  return (
-    <div>
-      Text
-      <Divider />
-      Text
-      <Divider />
-      Text
-    </div>
-  )
+export const Common: FC = () => {
+    return (
+        <div>
+            Text
+            <Divider />
+            Text
+            <Divider />
+            Text
+        </div>
+    )
 }
 
-export const dashed = (): ReactNode => {
-  return (
-    <div>
-      Text
-      <Divider dashed />
-      Text
-    </div>
-  )
+export const Dashed: FC = () => {
+    return (
+        <div>
+            Text
+            <Divider dashed />
+            Text
+        </div>
+    )
 }
 
-export const vertical = (): ReactNode => {
-  return (
-    <div>
-      Text
-      <Divider direction='vertical' />
-      Text
-      <Divider direction='vertical' />
-      Text
-    </div>
-  )
+export const Vertical: FC = () => {
+    return (
+        <div>
+            Text
+            <Divider direction='vertical' />
+            Text
+            <Divider direction='vertical' />
+            Text
+        </div>
+    )
 }

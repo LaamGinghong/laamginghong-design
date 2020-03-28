@@ -1,94 +1,81 @@
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { Switch } from './index'
 import { RadioGroup } from '../radio'
 
 export default { title: 'Switch' }
 
-export const common = (): ReactNode => {
-  const [checked, setChecked] = useState(false)
+export const Common: FC = () => {
+    const [checked, setChecked] = useState(false)
 
-  const handleCheck = useCallback((checked: boolean): void => {
-    setChecked(checked)
-  }, [])
+    const handleCheck = useCallback((checked: boolean): void => {
+        setChecked(checked)
+    }, [])
 
-  return <Switch checked={checked} onChange={handleCheck} />
+    return <Switch checked={checked} onChange={handleCheck} />
 }
 
-export const withText = (): ReactNode => {
-  const [checked, setChecked] = useState(false)
+export const WithText: FC = () => {
+    const [checked, setChecked] = useState(false)
 
-  const handleCheck = useCallback((checked: boolean): void => {
-    setChecked(checked)
-  }, [])
+    const handleCheck = useCallback((checked: boolean): void => {
+        setChecked(checked)
+    }, [])
 
-  return (
-    <Switch
-      checked={checked}
-      onChange={handleCheck}
-      checkedText='是'
-      unCheckedText='否'
-    />
-  )
+    return <Switch checked={checked} onChange={handleCheck} checkedText='是' unCheckedText='否' />
 }
 
-export const disabled = (): ReactNode => {
-  return (
-    <>
-      <div>
-        <Switch checked onChange={null} disabled />
-      </div>
-      <div>
-        <Switch checked={false} onChange={null} disabled />
-      </div>
-    </>
-  )
+export const Disabled: FC = () => {
+    return (
+        <>
+            <div>
+                <Switch checked onChange={null} disabled />
+            </div>
+            <div>
+                <Switch checked={false} onChange={null} disabled />
+            </div>
+        </>
+    )
 }
 
-export const size = (): ReactNode => {
-  const [checked, setChecked] = useState(false)
-  const [size, setSize] = useState<'small'>()
+export const Size: FC = () => {
+    const [checked, setChecked] = useState(false)
+    const [size, setSize] = useState<'small'>()
 
-  const handleCheck = useCallback((checked: boolean): void => {
-    setChecked(checked)
-  }, [])
+    const handleCheck = useCallback((checked: boolean): void => {
+        setChecked(checked)
+    }, [])
 
-  const handleChange = useCallback((value: 'small'): void => {
-    setSize(value)
-  }, [])
+    const handleChange = useCallback((value: 'small'): void => {
+        setSize(value)
+    }, [])
 
-  return (
-    <>
-      <RadioGroup
-        value={size}
-        options={[
-          { value: 'small', label: 'small' },
-          { value: null, label: 'default' },
-        ]}
-        onChange={handleChange}
-        block
-      />
-      <Switch
-        checked={checked}
-        size={size}
-        onChange={handleCheck}
-        checkedText='是'
-        unCheckedText='否'
-      />
-    </>
-  )
+    return (
+        <>
+            <RadioGroup
+                value={size}
+                options={[
+                    { value: 'small', label: 'small' },
+                    { value: null, label: 'default' },
+                ]}
+                onChange={handleChange}
+                block
+            />
+            <Switch checked={checked} size={size} onChange={handleCheck} checkedText='是' unCheckedText='否' />
+        </>
+    )
 }
 
-export const loading = (): ReactNode => {
-  const [checked, setChecked] = useState(false)
-  const [loading, setLoading] = useState(false)
+export const Loading: FC = () => {
+    const [checked, setChecked] = useState(false)
+    const [loading, setLoading] = useState(false)
 
-  const handleCheck = useCallback((checked: boolean): void => {
-    setChecked(checked)
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 2000)
-  }, [])
+    const handleCheck = useCallback((checked: boolean): void => {
+        setChecked(checked)
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    }, [])
 
-  return <Switch checked={checked} onChange={handleCheck} loading={loading} />
+    return <Switch checked={checked} onChange={handleCheck} loading={loading} />
 }

@@ -1,12 +1,12 @@
-import React, { ReactNode } from 'react'
+import React, { FC } from 'react'
 import Input from './input'
 
 export default { title: 'Input' }
 
-export const common = (): ReactNode => {
-  return <Input />
+export const Common: FC = () => {
+    return <Input />
 }
 
-export const disabled = (): ReactNode => {
-  return <Input disabled />
+export const Disabled: FC = () => {
+    return <Input disabled />
 }

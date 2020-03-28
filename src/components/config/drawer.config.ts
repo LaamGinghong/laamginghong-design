@@ -1,21 +1,21 @@
 export type DrawerPlacement = 'right' | 'top' | 'left' | 'bottom'
 
 export interface DrawerConfigOptions {
-  placement: DrawerPlacement
+    placement: DrawerPlacement
 }
 
 class DrawerConfig {
-  private _config: DrawerConfigOptions = {
-    placement: 'right',
-  }
+    private _config: DrawerConfigOptions = {
+        placement: 'right',
+    }
 
-  get config(): DrawerConfigOptions {
-    return this._config
-  }
+    get config(): DrawerConfigOptions {
+        return this._config
+    }
 
-  set config(data) {
-    Object.assign(this._config, data)
-  }
+    set config(data) {
+        Object.assign(this._config, data)
+    }
 }
 
 export const drawerConfig = new DrawerConfig()
