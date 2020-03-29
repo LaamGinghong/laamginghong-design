@@ -40,9 +40,6 @@
         "src/**/*.{tsx,ts,json,md}": [
             "eslint -c .eslintrc.js"
         ],
-        "src/**/*.{less,css}": [
-            "stylelint --config .stylelintrc"
-        ],
         "*.{tsx,ts,json,md,less,css}": [
             "prettier --write"
         ]
