@@ -78,10 +78,10 @@ const CenturyPickerMenu: FC<CenturyPickerMenuProps> = ({ year, onChange, contain
                 <table>
                     <tbody>
                         {list.map((tr) => (
-                            <tr key={tr}>
+                            <tr key={JSON.stringify(tr)}>
                                 {tr.map((td) => (
                                     <td
-                                        key={td}
+                                        key={td.year.toString()}
                                         onClick={(): void => handleSelect(td)}
                                         className={classNames('century-picker-menu-content-item', {
                                             'is-not-this-century': td.isNotThisCentury,

@@ -84,11 +84,11 @@ const YearPickerMenu: FC<YearPickerMenuProps> = ({ year, onChange, container }) 
                 <table>
                     <tbody>
                         {list.map((tr, index) => (
-                            <tr key={tr}>
+                            <tr key={JSON.stringify(tr)}>
                                 {tr.map((td, subIndex) => (
                                     <td
                                         onClick={(): void => handleSelect(index * 3 + subIndex)}
-                                        key={td}
+                                        key={td.year.toString()}
                                         className={classNames('year-picker-menu-content-item', {
                                             selected: year === td.year,
                                             'is-not-this-decade': td.isNotThisDecade,

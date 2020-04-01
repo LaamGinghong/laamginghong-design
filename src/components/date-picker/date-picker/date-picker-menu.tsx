@@ -234,11 +234,11 @@ class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState>
                         </thead>
                         <tbody>
                             {list.map((tr) => (
-                                <tr key={tr}>
+                                <tr key={JSON.stringify(tr)}>
                                     {tr.map((td) => (
                                         <td
                                             onClick={(): void => this._handleSelect(td)}
-                                            key={td.date}
+                                            key={td.date.toString()}
                                             className={classNames('date-picker-menu-content-item', {
                                                 disabled: td.disabled,
                                                 selected: dayjs(value ?? new Date()).isSame(td.date, 'date'),

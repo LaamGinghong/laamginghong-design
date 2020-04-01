@@ -81,7 +81,7 @@ const MonthPickerMenu: FC<MonthPickerMenuProps> = ({ month, year, onSelect, cont
                 <table>
                     <tbody>
                         {list.map((tr, index) => (
-                            <tr key={tr}>
+                            <tr key={JSON.stringify(tr)}>
                                 {tr.map((td, subIndex) => (
                                     <td
                                         onClick={(): void => handleSelect(index * 3 + subIndex)}
