@@ -19,7 +19,7 @@ export const Common: FC = () => {
                 { value: 3, name: '西瓜' },
             ]}
             value={selected}
-            onSelect={handleSelect}
+            onChange={handleSelect}
         />
     )
 }
@@ -42,7 +42,7 @@ export const Disabled: FC = () => {
                     { value: 3, name: '西瓜' },
                 ]}
                 value={selected}
-                onSelect={handleSelect}
+                onChange={handleSelect}
             />
             <Select
                 style={{ width: '180px' }}
@@ -52,7 +52,7 @@ export const Disabled: FC = () => {
                     { value: 3, name: '西瓜' },
                 ]}
                 value={selected}
-                onSelect={handleSelect}
+                onChange={handleSelect}
             />
         </>
     )
@@ -78,7 +78,7 @@ export const Search: FC = () => {
                 { value: 3, name: '西瓜' },
             ]}
             value={selected}
-            onSelect={handleSelect}
+            onChange={handleSelect}
         />
     )
 }
@@ -104,7 +104,7 @@ export const Multiple: FC = () => {
                 { value: 6, name: '柚子' },
             ]}
             value={selected}
-            onSelect={handleSelect}
+            onChange={handleSelect}
         />
     )
 }
