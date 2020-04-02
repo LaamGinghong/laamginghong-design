@@ -77,7 +77,7 @@ export const Placement: FC = () => {
                     { value: 'bottomRight', name: 'bottomRight' },
                 ]}
                 value={placement}
-                onSelect={handleSelect}
+                onChange={handleSelect}
             />
             <Button onClick={handleCreate} style={{ marginLeft: '10px' }}>
                 Create

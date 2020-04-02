@@ -18,7 +18,7 @@ export interface SelectProps<T> {
     placeholder?: string
     showSearch?: boolean
     searchInputPlaceholder?: string
-    onSelect(e: T | T[]): void
+    onChange(e: T | T[]): void
     onSearch?: (e: string) => void
     style?: CSSProperties
     maxCount?: number
@@ -56,14 +56,14 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
     }
 
     private _handleSelect = (e: T | T[]): void => {
-        const { onSelect, multiple } = this.props
-        onSelect(e)
+        const { onChange, multiple } = this.props
+        onChange(e)
         this.setState({ open: multiple, searchWord: '' })
     }
 
     private _handleClear = (e?: T | T[]): void => {
-        const { onSelect } = this.props
-        onSelect(e)
+        const { onChange } = this.props
+        onChange(e)
     }
 
     private _handleChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {

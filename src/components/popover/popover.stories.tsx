@@ -32,7 +32,7 @@ export const Trigger: FC = () => {
                         { value: 'focus', name: 'Focus' },
                     ]}
                     value={trigger}
-                    onSelect={handleSelect}
+                    onChange={handleSelect}
                 />
                 <Popover content={<div>Content</div>} title={<div>Title</div>} trigger={trigger}>
                     <Button style={{ marginLeft: '10px' }}>Trigger</Button>

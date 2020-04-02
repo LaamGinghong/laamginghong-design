@@ -145,7 +145,7 @@ const Pagination: FC<PaginationProps> = ({
                     value={pageSize}
                     renderSelection={(value): ReactNode => `${value.value}条/页`}
                     style={{ width: '100px' }}
-                    onSelect={handleSelect}
+                    onChange={handleSelect}
                 />
             )}
             {showQuickJumper && (
