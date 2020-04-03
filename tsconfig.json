@@ -3,6 +3,7 @@
         "declaration": true,
         "declarationDir": "./lib",
         "declarationMap": true,
+        "sourceMap": true,
         "module": "commonjs",
         "target": "es5",
         "jsx": "react",

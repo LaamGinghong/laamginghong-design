@@ -18,31 +18,37 @@
 @font-feature-settings: 'tnum';
 @en-font-color: rgba(0, 0, 0, 0.45);
 
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
 .cursor-pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .link {
-  color: @normal-font-color;
-  transition: color 0.4s;
-  text-decoration: none;
+    color: @normal-font-color;
+    transition: color 0.4s;
+    text-decoration: none;
 
-  &:hover,
-  &:focus {
-    color: @primary-color;
-  }
+    &:hover,
+    &:focus {
+        color: @primary-color;
+    }
 
-  &:active {
-    color: darken(@primary-color, 10%);
-  }
+    &:active {
+        color: darken(@primary-color, 10%);
+    }
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 .text-align-center {
-  text-align: center;
+    text-align: center;
 }
 
 @z-index-modal-mask: 1000;
@@ -60,7 +66,7 @@
 @z-index-loading: 3500;
 
 .anticon {
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 }
