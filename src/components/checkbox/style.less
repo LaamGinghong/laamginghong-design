@@ -130,6 +130,11 @@
         }
 
         .checkbox {
+            .checkbox-inner {
+                background-color: @disabled-background-color;
+                border-color: @normal-border-color;
+            }
+
             &.checked {
                 &:after {
                     border-color: @normal-border-color;
@@ -162,5 +167,11 @@
                 }
             }
         }
+    }
+}
+
+.checkbox-group {
+    .checkbox-wrapper {
+        margin-right: 8px;
     }
 }

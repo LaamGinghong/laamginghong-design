@@ -1,30 +1,7 @@
 import React, { ChangeEvent, Component } from 'react'
 import classNames from 'classnames'
 import './style.less'
-
-export interface CheckboxProps {
-    /* 当前项的值 */
-    value?: number | string | boolean
-    /* 当前项的name */
-    name?: string
-    /* 当前项label的htmlFor */
-    id?: string
-    /* 选中态 */
-    checked?: boolean
-    /* 默认选中态 */
-    defaultChecked?: boolean
-    /* 禁用态 */
-    disabled?: boolean
-    /* 半选态 */
-    indeterminate?: boolean
-    /**
-     * 变化时的回调。
-     *
-     * 由于event.target.value的类型固定为string，因此内部将value的值处理为JSON，
-     * 因此调用方在获取event.target.value的时候，需要将JSON解析回正确的类型
-     */
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-}
+import { CheckboxProps } from './types'
 
 interface CheckboxState {
     checked: boolean
@@ -88,7 +65,7 @@ export default class Checkbox extends Component<CheckboxProps, CheckboxState> {
                     <input
                         id={id ?? name ?? ''}
                         name={name}
-                        value={JSON.stringify(value)}
+                        value={value}
                         disabled={disabled}
                         checked={checked}
                         type='checkbox'
@@ -102,5 +79,3 @@ export default class Checkbox extends Component<CheckboxProps, CheckboxState> {
         )
     }
 }
-
-export interface CheckboxGroupProps {}
