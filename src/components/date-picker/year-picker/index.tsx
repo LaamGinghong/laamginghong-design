@@ -5,18 +5,27 @@ import Selection from '../selection'
 import { Portal } from '../../portal'
 import YearPickerMenu from './year-picker-menu'
 
-export interface YearPickerProps extends DatePickerCommonProps {
-    value: Date
-    onChange(date: Date): void
-}
+export interface YearPickerProps extends DatePickerCommonProps {}
 
 interface YearPickerState {
     open: boolean
+    value: Date
 }
 
 class YearPicker extends BasicDatePicker<YearPickerProps, YearPickerState> {
+    static getDerivedStateFromProps(
+        props: YearPickerProps,
+        state: YearPickerState,
+    ): YearPickerState {
+        if ('value' in props) {
+            return { ...state, value: props.value }
+        }
+        return null
+    }
+
     state: YearPickerState = {
         open: false,
+        value: this.props.value ?? this.props.defaultValue,
     }
 
     private _handleOpen = (): void => {
@@ -24,10 +33,8 @@ class YearPicker extends BasicDatePicker<YearPickerProps, YearPickerState> {
     }
 
     private _handleChange = (year: number): void => {
-        this.setState({ open: false }, (): void => {
-            const { value, onChange } = this.props
-            onChange(dayjs(value).set('year', year).toDate())
-        })
+        const { value } = this.props
+        this.__handleChange(dayjs(value).set('year', year).toDate())
     }
 
     render():
@@ -40,8 +47,10 @@ class YearPicker extends BasicDatePicker<YearPickerProps, YearPickerState> {
         | boolean
         | null
         | undefined {
-        const { open } = this.state
-        const { allowClear, placeholder, value, disabled } = this.props
+        const { open, value } = this.state
+        const { allowClear, placeholder, disabled } = this.props
+
+        const year = dayjs(value ?? new Date()).year()
         return (
             <div className='year-picker'>
                 <Selection
@@ -57,7 +66,11 @@ class YearPicker extends BasicDatePicker<YearPickerProps, YearPickerState> {
                 />
                 <Portal container={this.__container}>
                     {open && !disabled && (
-                        <YearPickerMenu year={dayjs(value).year()} onChange={this._handleChange} container={this.__selectionRef} />
+                        <YearPickerMenu
+                            year={year}
+                            onChange={this._handleChange}
+                            container={this.__selectionRef}
+                        />
                     )}
                 </Portal>
             </div>

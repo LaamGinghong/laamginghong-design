@@ -5,18 +5,27 @@ import Selection from '../selection'
 import { Portal } from '../../portal'
 import MonthPickerMenu from './month-picker-menu'
 
-export interface MonthPickerProps extends DatePickerCommonProps {
-    value: Date
-    onChange(date: Date): void
-}
+export interface MonthPickerProps extends DatePickerCommonProps {}
 
 interface MonthPickerState {
     open: boolean
+    value: Date
 }
 
 class MonthPicker extends BasicDatePicker<MonthPickerProps, MonthPickerState> {
+    static getDerivedStateFromProps(
+        props: MonthPickerProps,
+        state: MonthPickerState,
+    ): MonthPickerState {
+        if ('value' in props) {
+            return { ...state, value: props.value }
+        }
+        return null
+    }
+
     state: MonthPickerState = {
         open: false,
+        value: this.props.value ?? this.props.defaultValue,
     }
 
     render():
@@ -29,11 +38,11 @@ class MonthPicker extends BasicDatePicker<MonthPickerProps, MonthPickerState> {
         | boolean
         | null
         | undefined {
-        const { allowClear, placeholder, value, disabled } = this.props
-        const { open } = this.state
+        const { allowClear, placeholder, disabled } = this.props
+        const { open, value } = this.state
 
-        const month = dayjs(value).month()
-        const year = dayjs(value).year()
+        const month = dayjs(value ?? new Date()).month()
+        const year = dayjs(value ?? new Date()).year()
         return (
             <div className='month-picker'>
                 <Selection
@@ -49,7 +58,12 @@ class MonthPicker extends BasicDatePicker<MonthPickerProps, MonthPickerState> {
                 />
                 <Portal container={this.__container}>
                     {open && !disabled && (
-                        <MonthPickerMenu month={month} year={year} onSelect={this.__handleChange} container={this.__selectionRef} />
+                        <MonthPickerMenu
+                            month={month}
+                            year={year}
+                            onSelect={this.__handleChange}
+                            container={this.__selectionRef}
+                        />
                     )}
                 </Portal>
             </div>

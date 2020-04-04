@@ -14,6 +14,7 @@ export interface DatePickerProps extends DatePickerCommonProps {
 
 interface DatePickerState {
     open: boolean
+    value: Date
 }
 
 class DatePicker extends BasicDatePicker<DatePickerProps, DatePickerState> {
@@ -23,14 +24,28 @@ class DatePicker extends BasicDatePicker<DatePickerProps, DatePickerState> {
         showToday: true,
     }
 
+    static getDerivedStateFromProps(
+        props: DatePickerProps,
+        state: DatePickerState,
+    ): DatePickerState {
+        if ('value' in props) {
+            return { ...state, value: props.value }
+        }
+        return null
+    }
+
     state: DatePickerState = {
         open: false,
+        value: this.props.value ?? this.props.defaultValue,
     }
 
     private _handleChange = (date: Date, open?: boolean): void => {
         const { onChange } = this.props
-        this.setState({ open }, () => {
-            onChange(date)
+        if (!('value' in this.props)) {
+            this.setState({ value: date })
+        }
+        this.setState({ open }, (): void => {
+            onChange && onChange(date)
         })
     }
 
@@ -44,8 +59,17 @@ class DatePicker extends BasicDatePicker<DatePickerProps, DatePickerState> {
         | boolean
         | null
         | undefined {
-        const { value, allowClear, placeholder, format, disabled, disabledDate, showToday, showTime } = this.props
-        const { open } = this.state
+        const {
+            allowClear,
+            placeholder,
+            format,
+            disabled,
+            disabledDate,
+            showToday,
+            showTime,
+        } = this.props
+        const { open, value } = this.state
+
         return (
             <>
                 <div className='date-picker'>
