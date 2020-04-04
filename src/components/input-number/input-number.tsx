@@ -1,10 +1,17 @@
-import React, { ChangeEvent, Component, CSSProperties } from 'react'
+import React, {
+    ChangeEvent,
+    Component,
+    CSSProperties,
+    KeyboardEvent,
+} from 'react'
 import Big from 'big.js'
+import { isEqual, isNil } from 'laamginghong-utils'
 import { Input } from '../input'
 
-export interface InputNumberProps {
-    value: number
-    onChange(value: number): void
+interface InputNumberProps {
+    value?: number
+    defaultValue?: number
+    onChange?: (value: number) => void
     disabled?: boolean
     max?: number
     min?: number
@@ -15,85 +22,75 @@ export interface InputNumberProps {
     onPressEnter?: (value: number) => void
 }
 
-export interface InputNumberState {
+interface InputNumberState {
     value: string
 }
 
-const isValidProps = (value: number): boolean => value !== undefined && value !== null
-
-const isNotCompleteNumber = (num: number): boolean => {
-    return Number.isNaN(Number(num)) || !isValidProps(num)
-}
-
-const isEqual = (oldValue: number, newValue: number): boolean =>
-    newValue === oldValue ||
-    (typeof newValue === 'number' && typeof oldValue === 'number' && Number.isNaN(newValue) && Number.isNaN(oldValue))
+const isNotCompleteNumber = (num: number): boolean =>
+    Number.isNaN(num) || isNil(num)
 
 class InputNumber extends Component<InputNumberProps, InputNumberState> {
     state: InputNumberState = {
-        value: this._getValidValue(this._toNumberString(this.props.value)),
+        value: this._getValidValue(
+            this._toNumberString(this.props.value ?? this.props.defaultValue),
+        ),
     }
 
     componentDidUpdate(prevProps: Readonly<InputNumberProps>): void {
-        const { value, max, min } = this.props
-        if (!isEqual(prevProps.value, value) || !isEqual(prevProps.max, max) || !isEqual(prevProps.min, min)) {
+        const { value, max, min, precision } = this.props
+        if (
+            !isEqual(prevProps.value, value) ||
+            !isEqual(prevProps.max, max) ||
+            !isEqual(prevProps.min, min) ||
+            !isEqual(prevProps.precision, precision)
+        ) {
             const validValue = this._getValidValue(this._toNumberString(value))
             // eslint-disable-next-line react/no-did-update-set-state
-            this.setState({ value: validValue }, () => {
+            this.setState({ value: validValue }, (): void => {
                 const { onChange } = this.props
-                onChange(validValue === '' ? null : +validValue)
+                onChange &&
+                    onChange(validValue === '' ? undefined : +validValue)
             })
         }
     }
 
     private _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         const { value } = event.target
-        this.setState({ value }, () => {
+        this.setState({ value }, (): void => {
             const { onChange } = this.props
-            if (value === '-') {
-                return
-            }
-            onChange(value ? +this._getCurrentValidValue(value) : null)
+            onChange && onChange(this._getCurrentValidValue(value))
         })
-    }
-
-    private _handleFocus = (): void => {
-        window.addEventListener('keydown', this._handlePressEnter)
     }
 
     private _handleBlur = (): void => {
-        window.removeEventListener('keydown', this._handlePressEnter)
-        const { value } = this.state
-        this.setState({
-            value: value === '-' ? '' : this._getCurrentValidValue(value),
-        })
+        const value = parseFloat(this.state.value)
+        if (Number.isNaN(value)) {
+            this.setState({ value: '' })
+        } else {
+            this.setState({ value: this._getValidValue(value.toString()) })
+        }
     }
 
-    private _handlePressEnter = (event: KeyboardEvent): void => {
-        const { value } = this.state
-        const { code } = event
-        if (code === 'Enter') {
+    private _handlePressEnter = (
+        event: KeyboardEvent<HTMLInputElement>,
+    ): void => {
+        if (event.nativeEvent.code === 'Enter') {
             const { onPressEnter } = this.props
-            if (value === '-') {
-                return
-            }
-            onPressEnter && onPressEnter(value ? +this._getCurrentValidValue(value) : null)
+            const value = this._getCurrentValidValue(this.state.value)
+            onPressEnter && onPressEnter(value)
         }
     }
 
     private _toNumberString(value: number): string {
-        if (!isValidProps(value)) {
+        if (isNotCompleteNumber(value)) {
             return ''
         }
         const val = Big(value)
-        if (isNotCompleteNumber(+val)) {
-            return ''
-        }
         if ('precision' in this.props) {
             const { precision } = this.props
             return val.toFixed(precision)
         }
-        return value.toString()
+        return val.toString()
     }
 
     private _getValidValue(value: string): string {
@@ -101,30 +98,28 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
             return value
         }
         let val = value
-        if ('max' in this.props) {
-            const { max } = this.props
-            if (Big(value).gt(max)) {
+        const { max, min, precision } = this.props
+        if (!isNil(max)) {
+            if (Big(val).gt(max)) {
                 val = max.toString()
             }
         }
-        if ('min' in this.props) {
-            const { min } = this.props
-            if (Big(value).lt(min)) {
+        if (!isNil(min)) {
+            if (Big(val).lt(min)) {
                 val = min.toString()
             }
         }
-        if ('precision' in this.props) {
-            const { precision } = this.props
-            val = Big(val).toFixed(precision)
+        if (!isNil(precision)) {
+            return Big(val).toFixed(precision)
         }
-        return val
+        return Big(val).toString()
     }
 
-    private _getCurrentValidValue(value: string): string {
-        if (!value) {
-            return value
+    private _getCurrentValidValue(value: string): number {
+        if (Number.isNaN(parseFloat(value))) {
+            return undefined
         }
-        return this._getValidValue(Big(parseFloat(value)).toString())
+        return +Big(this._getValidValue(parseFloat(value).toString()))
     }
 
     render():
@@ -138,20 +133,20 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
         | null
         | undefined {
         const { value } = this.state
-        const { placeholder, disabled, style, className } = this.props
+        const { disabled, placeholder, style, className } = this.props
         return (
             <Input
+                value={value}
+                onChange={this._handleChange}
+                disabled={disabled}
+                placeholder={placeholder}
                 style={style}
                 className={className}
-                value={value}
-                placeholder={placeholder}
                 onBlur={this._handleBlur}
-                onFocus={this._handleFocus}
-                disabled={disabled}
-                onChange={this._handleChange}
+                onKeyPress={this._handlePressEnter}
             />
         )
     }
 }
 
-export default InputNumber
+export { InputNumber, InputNumberProps }
