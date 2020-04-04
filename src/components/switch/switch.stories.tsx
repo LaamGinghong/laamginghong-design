@@ -21,7 +21,14 @@ export const WithText: FC = () => {
         setChecked(checked)
     }, [])
 
-    return <Switch checked={checked} onChange={handleCheck} checkedText='是' unCheckedText='否' />
+    return (
+        <Switch
+            checked={checked}
+            onChange={handleCheck}
+            checkedText='是'
+            unCheckedText='否'
+        />
+    )
 }
 
 export const Disabled: FC = () => {
@@ -58,9 +65,14 @@ export const Size: FC = () => {
                     { value: null, label: 'default' },
                 ]}
                 onChange={handleChange}
-                block
             />
-            <Switch checked={checked} size={size} onChange={handleCheck} checkedText='是' unCheckedText='否' />
+            <Switch
+                checked={checked}
+                size={size}
+                onChange={handleCheck}
+                checkedText='是'
+                unCheckedText='否'
+            />
         </>
     )
 }

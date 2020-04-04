@@ -31,6 +31,7 @@ export const Disabled: FC = () => {
             <Checkbox
                 checked={checked}
                 id='apple'
+                value='apple'
                 disabled={disabled}
                 onChange={(event): void => setChecked(event.target.checked)}>
                 苹果

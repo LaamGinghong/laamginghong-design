@@ -20,12 +20,27 @@ import { InputNumber, InputNumberProps } from './components/input-number'
 import { DividerProps, Divider } from './components/divider'
 import { DrawerProps, Drawer } from './components/drawer'
 import {
-    RadioProps,
-    Radio,
+    CheckboxGroup,
+    Checkbox,
+    CheckboxProps,
+    CheckboxGroupProps,
+} from './components/checkbox'
+import {
+    DatePickerProps,
+    DatePicker,
+    MonthPickerProps,
+    MonthPicker,
+    TimePickerProps,
+    TimePicker,
+    YearPickerProps,
+    YearPicker,
+} from './components/date-picker'
+import {
     RadioGroupProps,
     RadioGroup,
+    RadioProps,
+    Radio,
 } from './components/radio'
-import { DatePickerProps, DatePicker } from './components/date-picker'
 
 dayjs.locale('zh-cn')
 
@@ -66,10 +81,20 @@ export {
     Divider,
     DrawerProps,
     Drawer,
-    RadioProps,
-    Radio,
-    RadioGroupProps,
-    RadioGroup,
+    CheckboxProps,
+    Checkbox,
+    CheckboxGroup,
+    CheckboxGroupProps,
     DatePicker,
     DatePickerProps,
+    MonthPicker,
+    MonthPickerProps,
+    YearPickerProps,
+    YearPicker,
+    TimePickerProps,
+    TimePicker,
+    RadioProps,
+    RadioGroup,
+    RadioGroupProps,
+    Radio,
 }

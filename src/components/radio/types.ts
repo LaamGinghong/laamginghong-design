@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 
-interface CheckboxProps {
+interface RadioProps {
     /* 当前项的值 */
     value: string
     /* 当前项的name */
@@ -13,8 +13,6 @@ interface CheckboxProps {
     defaultChecked?: boolean
     /* 禁用态 */
     disabled?: boolean
-    /* 半选态 */
-    indeterminate?: boolean
     /**
      * 变化时的回调。
      */
@@ -29,19 +27,19 @@ interface Options {
 
 type OptionsType = (string | Options)[]
 
-interface CheckboxGroupProps {
+interface RadioGroupProps {
     /* 默认值 */
-    defaultValue?: string[]
+    defaultValue?: string
     /* 当前值 */
-    value?: string[]
+    value?: string
     /* 禁用态 */
     disabled?: boolean
-    /* 当前Group下所有input[type='checkbox']的name属性 */
+    /* 当前Group下所有input[type='radio']的name属性 */
     name?: string
     /* 制定可选项 */
     options: OptionsType
     /* 变化时的回调 */
-    onChange?: (value: string[]) => void
+    onChange?: (value: string) => void
 }
 
-export { CheckboxProps, CheckboxGroupProps, Options }
+export { RadioProps, RadioGroupProps, Options }
