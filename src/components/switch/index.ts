@@ -1,3 +1,3 @@
-import Switch, { SwitchProps } from './switch'
+import { SwitchProps, Switch } from './switch'
 
 export { SwitchProps, Switch }

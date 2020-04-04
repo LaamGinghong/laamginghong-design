@@ -30,8 +30,7 @@ export default class RadioGroup extends Component<
             this.setState({ value: event.target.value })
         }
         const { onChange } = this.props
-        const { value } = this.state
-        onChange && onChange(value)
+        onChange && onChange(event.target.value)
     }
 
     render():
