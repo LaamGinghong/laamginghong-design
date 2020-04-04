@@ -4,107 +4,89 @@ import { Select } from './index'
 export default { title: 'Select' }
 
 export const Common: FC = () => {
-    const [selected, setSelected] = useState<number>()
-
-    const handleSelect = useCallback((value: number): void => {
-        setSelected(value)
-    }, [])
-
     return (
         <Select
-            style={{ width: '180px' }}
             data={[
-                { value: 1, name: '苹果' },
-                { value: 2, name: '雪梨' },
-                { value: 3, name: '西瓜' },
+                { value: 1, name: '三星' },
+                { value: 2, name: '苹果' },
+                { value: 3, name: '华为' },
+                { value: 4, name: '小米' },
             ]}
-            value={selected}
-            onChange={handleSelect}
+            onSelect={(value: number): void => console.log(value)}
+        />
+    )
+}
+
+export const Control: FC = () => {
+    const [value, setValue] = useState<number>()
+    return (
+        <Select
+            value={value}
+            data={[
+                { value: 1, name: '三星' },
+                { value: 2, name: '苹果' },
+                { value: 3, name: '华为' },
+                { value: 4, name: '小米' },
+            ]}
+            onSelect={setValue}
         />
     )
 }
 
 export const Disabled: FC = () => {
-    const [selected, setSelected] = useState<number>()
-
-    const handleSelect = useCallback((value: number): void => {
-        setSelected(value)
-    }, [])
-
     return (
         <>
             <Select
                 disabled
-                style={{ width: '180px' }}
                 data={[
-                    { value: 1, name: '苹果' },
-                    { value: 2, name: '雪梨' },
-                    { value: 3, name: '西瓜' },
+                    { value: 1, name: '三星' },
+                    { value: 2, name: '苹果' },
+                    { value: 3, name: '华为' },
+                    { value: 4, name: '小米' },
                 ]}
-                value={selected}
-                onChange={handleSelect}
+                onSelect={(value: number): void => console.log(value)}
             />
             <Select
-                style={{ width: '180px' }}
                 data={[
-                    { value: 1, name: '苹果', disabled: true },
-                    { value: 2, name: '雪梨' },
-                    { value: 3, name: '西瓜' },
+                    { value: 1, name: '三星', disabled: true },
+                    { value: 2, name: '苹果' },
+                    { value: 3, name: '华为' },
+                    { value: 4, name: '小米' },
                 ]}
-                value={selected}
-                onChange={handleSelect}
+                onSelect={(value: number): void => console.log(value)}
             />
         </>
     )
 }
 
-export const Search: FC = () => {
-    const [selected, setSelected] = useState<number>()
-
-    const handleSelect = useCallback((value: number): void => {
-        setSelected(value)
-    }, [])
-
+export const ShowSearch: FC = () => {
     return (
         <Select
             showSearch
-            allowClear
-            placeholder='请选择'
-            searchInputPlaceholder='请输入'
-            style={{ width: '180px' }}
             data={[
-                { value: 1, name: '苹果' },
-                { value: 2, name: '雪梨' },
-                { value: 3, name: '西瓜' },
+                { value: 1, name: '三星' },
+                { value: 2, name: '苹果' },
+                { value: 3, name: '华为' },
+                { value: 4, name: '小米' },
             ]}
-            value={selected}
-            onChange={handleSelect}
+            onSelect={(value: number): void => console.log(value)}
         />
     )
 }
 
 export const Multiple: FC = () => {
-    const [selected, setSelected] = useState<number[]>()
-
-    const handleSelect = useCallback((value: number[]): void => {
-        setSelected(value)
-    }, [])
-
     return (
         <Select
-            style={{ width: '180px' }}
             multiple
             maxCount={2}
+            style={{ width: '200px' }}
             data={[
-                { value: 1, name: '苹果' },
-                { value: 2, name: '雪梨' },
-                { value: 3, name: '西瓜' },
-                { value: 4, name: '橘子' },
-                { value: 5, name: '橙子' },
-                { value: 6, name: '柚子' },
+                { value: 1, name: '三星' },
+                { value: 2, name: '苹果' },
+                { value: 3, name: '华为' },
+                { value: 4, name: '小米' },
             ]}
-            value={selected}
-            onChange={handleSelect}
+            onSelect={(value: number): void => console.log(value)}
         />
     )
 }
