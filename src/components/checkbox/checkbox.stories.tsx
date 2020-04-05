@@ -1,76 +1,58 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Checkbox, CheckboxGroup } from './index'
+import { Button } from '../button'
 
 export default { title: 'Checkbox' }
 
 export const Common: FC = () => {
     return (
+        <Checkbox name='apple' value='apple'>
+            苹果
+        </Checkbox>
+    )
+}
+
+export const Disabled: FC = () => {
+    const [checked, setChecked] = useState(false)
+    const [disabled, setDisabled] = useState(false)
+
+    const handleCheck = (): void => {
+        setChecked(!checked)
+    }
+
+    const handleDisabled = (): void => {
+        setDisabled(!disabled)
+    }
+
+    return (
         <>
-            <Checkbox checked value={1} onChange={null}>
+            <Button onClick={handleCheck}>toggle checked</Button>
+            <Button onClick={handleDisabled}>toggle disabled</Button>
+            <Checkbox
+                checked={checked}
+                id='apple'
+                value='apple'
+                disabled={disabled}
+                onChange={(event): void => setChecked(event.target.checked)}>
                 苹果
-            </Checkbox>
-            <Checkbox checked={false} value={2} onChange={null}>
-                雪梨
             </Checkbox>
         </>
     )
 }
 
 export const Group: FC = () => {
-    const [checked, setChecked] = useState<number[]>([])
-
-    const handleCheck = useCallback((value: number[]): void => {
-        setChecked(value)
-    }, [])
+    const [value, setValue] = useState<string[]>([])
 
     return (
         <CheckboxGroup
+            value={value}
+            onChange={(data) => {
+                setValue(data)
+            }}
             options={[
-                { value: 1, label: '苹果' },
-                { value: 2, label: '雪梨' },
+                { label: '苹果', value: 'apple' },
+                { label: '西瓜', value: 'watermelon' },
             ]}
-            value={checked}
-            onChange={handleCheck}
-        />
-    )
-}
-
-export const Disabled: FC = () => {
-    const [checked, setChecked] = useState<number[]>([1])
-
-    const handleCheck = useCallback((value: number[]): void => {
-        setChecked(value)
-    }, [])
-
-    return (
-        <CheckboxGroup
-            disabled
-            options={[
-                { value: 1, label: '苹果' },
-                { value: 2, label: '雪梨' },
-            ]}
-            value={checked}
-            onChange={handleCheck}
-        />
-    )
-}
-
-export const Block: FC = () => {
-    const [checked, setChecked] = useState<number[]>([1])
-
-    const handleCheck = useCallback((value: number[]): void => {
-        setChecked(value)
-    }, [])
-
-    return (
-        <CheckboxGroup
-            block
-            options={[
-                { value: 1, label: '苹果' },
-                { value: 2, label: '雪梨' },
-            ]}
-            value={checked}
-            onChange={handleCheck}
         />
     )
 }

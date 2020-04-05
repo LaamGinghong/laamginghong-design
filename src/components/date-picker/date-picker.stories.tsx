@@ -1,26 +1,55 @@
 import React, { FC, useCallback, useState } from 'react'
+import dayjs from 'dayjs'
 import { DatePicker, MonthPicker, YearPicker, TimePicker } from './index'
-
-import dayjs = require('dayjs')
 
 export default { title: 'DatePicker' }
 
 export const Common: FC = () => {
-    const [date, setDate] = useState<Date>()
+    return (
+        <div>
+            <DatePicker allowClear placeholder='date picker' />
+            <br />
+            <MonthPicker placeholder='month picker' allowClear />
+            <br />
+            <YearPicker allowClear placeholder='year picker' />
+            <br />
+            <TimePicker placeholder='time picker' allowClear />
+        </div>
+    )
+}
 
-    const handleChangeDate = useCallback((date: Date): void => {
-        setDate(date)
-    }, [])
+export const Control: FC = () => {
+    const [date, setDate] = useState<Date>()
 
     return (
         <div>
-            <DatePicker value={date} onChange={handleChangeDate} allowClear placeholder='date picker' />
+            <DatePicker
+                value={date}
+                onChange={setDate}
+                allowClear
+                placeholder='date picker'
+            />
             <br />
-            <MonthPicker value={date} onChange={handleChangeDate} placeholder='month picker' allowClear />
+            <MonthPicker
+                value={date}
+                onChange={setDate}
+                placeholder='month picker'
+                allowClear
+            />
             <br />
-            <YearPicker value={date} onChange={handleChangeDate} allowClear placeholder='year picker' />
+            <YearPicker
+                value={date}
+                onChange={setDate}
+                allowClear
+                placeholder='year picker'
+            />
             <br />
-            <TimePicker value={date} onChange={handleChangeDate} placeholder='time picker' allowClear />
+            <TimePicker
+                value={date}
+                onChange={setDate}
+                placeholder='time picker'
+                allowClear
+            />
         </div>
     )
 }
@@ -32,7 +61,14 @@ export const Format: FC = () => {
         setDate(date)
     }, [])
 
-    return <DatePicker value={date} onChange={handleChangeDate} allowClear format='YYYY-MM-DD HH:mm:ss' />
+    return (
+        <DatePicker
+            value={date}
+            onChange={handleChangeDate}
+            allowClear
+            format='YYYY-MM-DD HH:mm:ss'
+        />
+    )
 }
 
 export const Disabled: FC = () => {
@@ -44,13 +80,33 @@ export const Disabled: FC = () => {
 
     return (
         <div>
-            <DatePicker value={date} onChange={handleChangeDate} disabled placeholder='date picker' />
+            <DatePicker
+                value={date}
+                onChange={handleChangeDate}
+                disabled
+                placeholder='date picker'
+            />
             <br />
-            <MonthPicker value={date} onChange={handleChangeDate} disabled placeholder='month picker' />
+            <MonthPicker
+                value={date}
+                onChange={handleChangeDate}
+                disabled
+                placeholder='month picker'
+            />
             <br />
-            <YearPicker value={date} onChange={handleChangeDate} disabled placeholder='year picker' />
+            <YearPicker
+                value={date}
+                onChange={handleChangeDate}
+                disabled
+                placeholder='year picker'
+            />
             <br />
-            <TimePicker value={date} onChange={handleChangeDate} disabled placeholder='time picker' />
+            <TimePicker
+                value={date}
+                onChange={handleChangeDate}
+                disabled
+                placeholder='time picker'
+            />
         </div>
     )
 }
@@ -62,7 +118,15 @@ export const ShowTime: FC = () => {
         setDate(date)
     }, [])
 
-    return <DatePicker value={date} onChange={handleChangeDate} allowClear format='YYYY-MM-DD HH:mm:ss' showTime />
+    return (
+        <DatePicker
+            value={date}
+            onChange={handleChangeDate}
+            allowClear
+            format='YYYY-MM-DD HH:mm:ss'
+            showTime
+        />
+    )
 }
 
 export const DisabledDate: FC = () => {
@@ -76,7 +140,9 @@ export const DisabledDate: FC = () => {
         <DatePicker
             value={date}
             onChange={handleChangeDate}
-            disabledDate={(date: Date): boolean => dayjs(date).isAfter(new Date())}
+            disabledDate={(date: Date): boolean =>
+                dayjs(date).isAfter(new Date())
+            }
             allowClear
             format='YYYY-MM-DD'
         />

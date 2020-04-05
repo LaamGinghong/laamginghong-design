@@ -1,26 +1,36 @@
 import React, { ChangeEvent, Component } from 'react'
 import classNames from 'classnames'
 import './style.less'
-import { isNumber } from 'laamginghong-utils'
+import { CheckboxProps } from './types'
 
-export interface CheckboxProps {
+interface CheckboxState {
     checked: boolean
-    value: any
-    disabled?: boolean
-    indeterminate?: boolean
-    onChange(value: any, checked: boolean): void
-    block?: boolean
 }
 
-class Checkbox extends Component<CheckboxProps> {
-    private _handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        const { onChange, value } = this.props
-        const { checked } = e.target
-        let result: string | number = e.target.value
-        if (isNumber(value)) {
-            result = +value
+export default class Checkbox extends Component<CheckboxProps, CheckboxState> {
+    static getDerivedStateFromProps(
+        props: CheckboxProps,
+        state: CheckboxState,
+    ): CheckboxState {
+        if ('checked' in props) {
+            return { ...state, checked: props.checked }
         }
-        onChange(result, checked)
+        return null
+    }
+
+    state: CheckboxState = {
+        checked: this.props.checked ?? this.props.defaultChecked,
+    }
+
+    private _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const { onChange, disabled } = this.props
+        if (disabled) {
+            return
+        }
+        if (!('checked' in this.props)) {
+            this.setState({ checked: event.target.checked })
+        }
+        onChange && onChange(event)
     }
 
     render():
@@ -33,18 +43,33 @@ class Checkbox extends Component<CheckboxProps> {
         | boolean
         | null
         | undefined {
-        const { children, value, disabled, checked, block } = this.props
+        const {
+            disabled,
+            name,
+            value,
+            id,
+            children,
+            indeterminate,
+        } = this.props
+        const { checked } = this.state
 
         return (
-            <label htmlFor={`${value}-${children}`} className={classNames('checkbox-wrapper', { disabled, block })}>
-                <span className={classNames('checkbox', { checked, disabled })}>
+            <label
+                htmlFor={id ?? name ?? ''}
+                className={classNames('checkbox-wrapper', { disabled })}>
+                <span
+                    className={classNames('checkbox', {
+                        checked,
+                        indeterminate: !checked && indeterminate,
+                    })}>
                     <input
-                        id={`${value}-${children}`}
-                        type='checkbox'
+                        id={id ?? name ?? ''}
+                        name={name}
                         value={value}
                         disabled={disabled}
-                        className='checkbox-input'
                         checked={checked}
+                        type='checkbox'
+                        className='checkbox-input'
                         onChange={this._handleChange}
                     />
                     <span className='checkbox-inner' />
@@ -54,5 +79,3 @@ class Checkbox extends Component<CheckboxProps> {
         )
     }
 }
-
-export default Checkbox

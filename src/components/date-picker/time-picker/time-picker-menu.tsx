@@ -1,4 +1,12 @@
-import React, { FC, useCallback, MouseEvent, MutableRefObject, useRef, useLayoutEffect, useState } from 'react'
+import React, {
+    FC,
+    useCallback,
+    MouseEvent,
+    MutableRefObject,
+    useRef,
+    useLayoutEffect,
+    useState,
+} from 'react'
 import dayjs, { UnitType } from 'dayjs'
 import classNames from 'classnames'
 import domAlign from 'dom-align'
@@ -13,7 +21,11 @@ export interface TimePickerMenuProps {
     container: MutableRefObject<HTMLDivElement>
 }
 
-const TimePickerMenu: FC<TimePickerMenuProps> = ({ time, onChange, container }) => {
+const TimePickerMenu: FC<TimePickerMenuProps> = ({
+    time,
+    onChange,
+    container,
+}) => {
     const [selected, setSelected] = useState(dayjs(time))
     const timePickerMenuRef = useRef<HTMLDivElement>()
     const hourRef = useRef<HTMLDivElement>()
@@ -36,9 +48,12 @@ const TimePickerMenu: FC<TimePickerMenuProps> = ({ time, onChange, container }) 
         secondsRef.current.children[second].scrollIntoView()
     }, [])
 
-    const handleClick = useCallback((event: MouseEvent<HTMLDivElement>): void => {
-        event.stopPropagation()
-    }, [])
+    const handleClick = useCallback(
+        (event: MouseEvent<HTMLDivElement>): void => {
+            event.stopPropagation()
+        },
+        [],
+    )
 
     const handleSelect = useCallback(
         (value: number, field: UnitType): void => {
@@ -52,47 +67,74 @@ const TimePickerMenu: FC<TimePickerMenuProps> = ({ time, onChange, container }) 
     }, [selected, onChange])
 
     return (
-        <div className='time-picker-menu' onClick={handleClick} ref={timePickerMenuRef}>
+        <div
+            className='time-picker-menu'
+            onClick={handleClick}
+            ref={timePickerMenuRef}>
             <Flex className='time-picker-menu-content'>
-                <FlexItem flex={1} className='time-picker-menu-content-columns' ref={hourRef}>
+                <FlexItem
+                    flex={1}
+                    className='time-picker-menu-content-columns'
+                    ref={hourRef}>
                     {DATE_HOURS.map((item) => (
                         <div
                             key={item}
                             onClick={(): void => handleSelect(+item, 'hour')}
-                            className={classNames('time-picker-menu-content-columns-item', {
-                                selected: +item === dayjs(selected).hour(),
-                            })}>
+                            className={classNames(
+                                'time-picker-menu-content-columns-item',
+                                {
+                                    selected: +item === dayjs(selected).hour(),
+                                },
+                            )}>
                             {item}
                         </div>
                     ))}
                 </FlexItem>
-                <FlexItem flex={1} className='time-picker-menu-content-columns' ref={minutesRef}>
+                <FlexItem
+                    flex={1}
+                    className='time-picker-menu-content-columns'
+                    ref={minutesRef}>
                     {DATE_MINUTES.map((item) => (
                         <div
                             key={item}
                             onClick={(): void => handleSelect(+item, 'minute')}
-                            className={classNames('time-picker-menu-content-columns-item', {
-                                selected: +item === dayjs(selected).minute(),
-                            })}>
+                            className={classNames(
+                                'time-picker-menu-content-columns-item',
+                                {
+                                    selected:
+                                        +item === dayjs(selected).minute(),
+                                },
+                            )}>
                             {item}
                         </div>
                     ))}
                 </FlexItem>
-                <FlexItem flex={1} className='time-picker-menu-content-columns' ref={secondsRef}>
+                <FlexItem
+                    flex={1}
+                    className='time-picker-menu-content-columns'
+                    ref={secondsRef}>
                     {DATE_SECONDS.map((item) => (
                         <div
                             key={item}
                             onClick={(): void => handleSelect(+item, 'second')}
-                            className={classNames('time-picker-menu-content-columns-item', {
-                                selected: +item === dayjs(selected).second(),
-                            })}>
+                            className={classNames(
+                                'time-picker-menu-content-columns-item',
+                                {
+                                    selected:
+                                        +item === dayjs(selected).second(),
+                                },
+                            )}>
                             {item}
                         </div>
                     ))}
                 </FlexItem>
             </Flex>
             <Flex justifyContent='end' className='time-picker-menu-footer'>
-                <Button size='small' type='primary' style={{ fontSize: '14px' }} onClick={handleOk}>
+                <Button
+                    size='small'
+                    type='primary'
+                    style={{ fontSize: '14px' }}
+                    onClick={handleOk}>
                     确定
                 </Button>
             </Flex>

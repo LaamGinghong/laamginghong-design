@@ -1,9 +1,19 @@
-import React, { Component, createRef, MouseEvent, MutableRefObject } from 'react'
+import React, {
+    Component,
+    createRef,
+    MouseEvent,
+    MutableRefObject,
+} from 'react'
 import classNames from 'classnames'
 import dayjs, { Dayjs } from 'dayjs'
 import domAlign from 'dom-align'
 import { chunk } from 'laamginghong-utils'
-import { LeftOutlined, RightOutlined, DoubleLeftOutlined, DoubleRightOutlined } from '../../icon'
+import {
+    LeftOutlined,
+    RightOutlined,
+    DoubleLeftOutlined,
+    DoubleRightOutlined,
+} from '../../icon'
 import { Flex, FlexItem } from '../../flex'
 import { initDateBox, initMonth, initYear } from '../utils'
 import MonthPickerMenu from '../month-picker/month-picker-menu'
@@ -31,7 +41,10 @@ interface DatePickerMenuState {
     timeVisible: boolean
 }
 
-class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState> {
+class DatePickerMenu extends Component<
+    DatePickerMenuProps,
+    DatePickerMenuState
+> {
     state: DatePickerMenuState = {
         dateBox: initDateBox(this.props.value ?? new Date()),
         year: initYear(this.props.value ?? new Date()),
@@ -93,7 +106,13 @@ class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState>
         this._initData(value)
     }
 
-    private _handleSelect = ({ date, disabled }: { date: Dayjs; disabled: boolean }): void => {
+    private _handleSelect = ({
+        date,
+        disabled,
+    }: {
+        date: Dayjs
+        disabled: boolean
+    }): void => {
         if (disabled) {
             return
         }
@@ -185,8 +204,21 @@ class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState>
         | boolean
         | null
         | undefined {
-        const { dateBox, year, month, monthVisible, yearVisible, timeVisible } = this.state
-        const { value, container, showToday, disabledDate, showTime } = this.props
+        const {
+            dateBox,
+            year,
+            month,
+            monthVisible,
+            yearVisible,
+            timeVisible,
+        } = this.state
+        const {
+            value,
+            container,
+            showToday,
+            disabledDate,
+            showTime,
+        } = this.props
         const dateList = dateBox.map((item) => {
             const disabled = disabledDate(item.toDate())
             return { date: item, disabled }
@@ -194,34 +226,75 @@ class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState>
         const list = chunk(dateList, 7)
 
         if (timeVisible) {
-            return <TimePickerMenu time={value ?? new Date()} onChange={this._handleChangeTime} container={container} />
+            return (
+                <TimePickerMenu
+                    time={value ?? new Date()}
+                    onChange={this._handleChangeTime}
+                    container={container}
+                />
+            )
         }
 
         if (monthVisible) {
-            return <MonthPickerMenu month={+month - 1} year={year} onSelect={this._handleSelectMonth} container={container} />
+            return (
+                <MonthPickerMenu
+                    month={+month - 1}
+                    year={year}
+                    onSelect={this._handleSelectMonth}
+                    container={container}
+                />
+            )
         }
 
         if (yearVisible) {
-            return <YearPickerMenu year={year} onChange={this._handleSelectYear} container={container} />
+            return (
+                <YearPickerMenu
+                    year={year}
+                    onChange={this._handleSelectYear}
+                    container={container}
+                />
+            )
         }
 
         return (
-            <div className='date-picker-menu' onClick={this._handleClick} ref={this._dateMenuRef}>
-                <Flex className='date-picker-menu-header' justifyContent='spaceBetween' alignItems='center'>
-                    <DoubleLeftOutlined className='date-picker-menu-header-icon' onClick={this._handlePrevYear} />
-                    <LeftOutlined className='date-picker-menu-header-icon' onClick={this._handelPrevMonth} />
+            <div
+                className='date-picker-menu'
+                onClick={this._handleClick}
+                ref={this._dateMenuRef}>
+                <Flex
+                    className='date-picker-menu-header'
+                    justifyContent='spaceBetween'
+                    alignItems='center'>
+                    <DoubleLeftOutlined
+                        className='date-picker-menu-header-icon'
+                        onClick={this._handlePrevYear}
+                    />
+                    <LeftOutlined
+                        className='date-picker-menu-header-icon'
+                        onClick={this._handelPrevMonth}
+                    />
                     <FlexItem flex={1}>
                         <Flex justifyContent='center'>
-                            <span className='date-picker-menu-header-button' onClick={this._handleShowYearPicker}>
+                            <span
+                                className='date-picker-menu-header-button'
+                                onClick={this._handleShowYearPicker}>
                                 {year}年
                             </span>
-                            <span className='date-picker-menu-header-button' onClick={this._handleShowMonthPicker}>
+                            <span
+                                className='date-picker-menu-header-button'
+                                onClick={this._handleShowMonthPicker}>
                                 {month}月
                             </span>
                         </Flex>
                     </FlexItem>
-                    <RightOutlined className='date-picker-menu-header-icon' onClick={this._handleNextMonth} />
-                    <DoubleRightOutlined className='date-picker-menu-header-icon' onClick={this._handleNextYear} />
+                    <RightOutlined
+                        className='date-picker-menu-header-icon'
+                        onClick={this._handleNextMonth}
+                    />
+                    <DoubleRightOutlined
+                        className='date-picker-menu-header-icon'
+                        onClick={this._handleNextYear}
+                    />
                 </Flex>
                 <div className='date-picker-menu-content'>
                     <table>
@@ -237,13 +310,25 @@ class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState>
                                 <tr key={JSON.stringify(tr)}>
                                     {tr.map((td) => (
                                         <td
-                                            onClick={(): void => this._handleSelect(td)}
+                                            onClick={(): void =>
+                                                this._handleSelect(td)
+                                            }
                                             key={td.date.toString()}
-                                            className={classNames('date-picker-menu-content-item', {
-                                                disabled: td.disabled,
-                                                selected: dayjs(value ?? new Date()).isSame(td.date, 'date'),
-                                                'not-this-month': !dayjs(new Date(year, +month - 1)).isSame(td.date, 'month'),
-                                            })}>
+                                            className={classNames(
+                                                'date-picker-menu-content-item',
+                                                {
+                                                    disabled: td.disabled,
+                                                    selected: dayjs(
+                                                        value ?? new Date(),
+                                                    ).isSame(td.date, 'date'),
+                                                    'not-this-month': !dayjs(
+                                                        new Date(
+                                                            year,
+                                                            +month - 1,
+                                                        ),
+                                                    ).isSame(td.date, 'month'),
+                                                },
+                                            )}>
                                             <div>{td.date.date()}</div>
                                         </td>
                                     ))}
@@ -253,15 +338,26 @@ class DatePickerMenu extends Component<DatePickerMenuProps, DatePickerMenuState>
                     </table>
                 </div>
                 {showTime && (
-                    <Flex className='date-picker-menu-footer' justifyContent='spaceBetween'>
-                        <Button type='link' style={{ paddingLeft: 0 }} onClick={this._handleClickToday}>
+                    <Flex
+                        className='date-picker-menu-footer'
+                        justifyContent='spaceBetween'>
+                        <Button
+                            type='link'
+                            style={{ paddingLeft: 0 }}
+                            onClick={this._handleClickToday}>
                             此刻
                         </Button>
                         <Flex justifyContent='end' alignItems='center'>
-                            <Button type='link' onClick={this._handleShowTimePicker}>
+                            <Button
+                                type='link'
+                                onClick={this._handleShowTimePicker}>
                                 选择时间
                             </Button>
-                            <Button type='primary' size='small' style={{ fontSize: '14px' }} onClick={this._handleClickOk}>
+                            <Button
+                                type='primary'
+                                size='small'
+                                style={{ fontSize: '14px' }}
+                                onClick={this._handleClickOk}>
                                 确定
                             </Button>
                         </Flex>

@@ -1,4 +1,10 @@
-import React, { ChangeEvent, Component, createRef, CSSProperties, ReactNode } from 'react'
+import React, {
+    ChangeEvent,
+    Component,
+    createRef,
+    CSSProperties,
+    ReactNode,
+} from 'react'
 import classNames from 'classnames'
 import Option, { OptionProps } from './option'
 import Selection from './selection'
@@ -13,12 +19,13 @@ export interface SelectProps<T> {
     data: OptionProps<T>[]
     allowClear?: boolean
     disabled?: boolean
-    value: T | T[]
+    value?: T | T[]
+    defaultValue?: T | T[]
     multiple?: boolean
     placeholder?: string
     showSearch?: boolean
     searchInputPlaceholder?: string
-    onChange(e: T | T[]): void
+    onSelect?(value: T | T[]): void
     onSearch?: (e: string) => void
     style?: CSSProperties
     maxCount?: number
@@ -27,13 +34,28 @@ export interface SelectProps<T> {
     renderSelection?: (e: OptionProps<T>) => ReactNode
 }
 
-interface SelectState {
+interface SelectState<T> {
     open: boolean
+    value: T | T[]
     searchWord: string
 }
 
-class Select<T> extends Component<SelectProps<T>, SelectState> {
-    state: SelectState = { open: false, searchWord: '' }
+class Select<T> extends Component<SelectProps<T>, SelectState<T>> {
+    static getDerivedStateFromProps(
+        props: SelectProps<any>,
+        state: SelectState<any>,
+    ): SelectState<any> {
+        if ('value' in props) {
+            return { ...state, value: props.value }
+        }
+        return null
+    }
+
+    state: SelectState<T> = {
+        open: false,
+        searchWord: '',
+        value: this.props.value ?? this.props.defaultValue,
+    }
 
     selectContainer = SelectContainer.create('select-container')
 
@@ -55,18 +77,27 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
         this.setState({ open })
     }
 
-    private _handleSelect = (e: T | T[]): void => {
-        const { onChange, multiple } = this.props
-        onChange(e)
-        this.setState({ open: multiple, searchWord: '' })
+    private _handleSelect = (value: T | T[]): void => {
+        const { onSelect, multiple } = this.props
+        if (!('value' in this.props)) {
+            this.setState({ value })
+        }
+        this.setState({ open: multiple, searchWord: '' }, (): void => {
+            onSelect && onSelect(value)
+        })
     }
 
-    private _handleClear = (e?: T | T[]): void => {
-        const { onChange } = this.props
-        onChange(e)
+    private _handleClear = (value?: T | T[]): void => {
+        const { onSelect } = this.props
+        if (!('value' in this.props)) {
+            this.setState({ value })
+        }
+        onSelect && onSelect(value)
     }
 
-    private _handleChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
+    private _handleChangeInput = (
+        event: ChangeEvent<HTMLInputElement>,
+    ): void => {
         this.setState({ searchWord: event.target.value })
     }
 
@@ -82,7 +113,6 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
         | undefined {
         const {
             multiple,
-            value = multiple ? [] : null,
             data,
             style,
             disabled,
@@ -95,7 +125,9 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
             maxCountText,
             renderSelection,
         } = this.props
-        const { open, searchWord } = this.state
+        const { open, searchWord, value = multiple ? [] : null } = this.state
+        const optionsWidth =
+            style?.width ?? `${this._selectionRef.current?.offsetWidth}px`
 
         return (
             <div className={classNames('select', { multiple })}>
@@ -111,27 +143,43 @@ class Select<T> extends Component<SelectProps<T>, SelectState> {
                     maxCount={maxCount}
                     maxCountText={maxCountText}
                     selected={
-                        multiple ? data.filter((item) => (value as T[]).includes(item.value)) : data.find((item) => item.value === value)
+                        multiple
+                            ? data.filter((item) =>
+                                  (value as T[]).includes(item.value),
+                              )
+                            : data.find((item) => item.value === value)
                     }
                     onClear={this._handleClear}
                     style={style}
                 />
                 <Portal container={this.selectContainer}>
                     {open && (
-                        <Options style={style} target={this._selectionRef.current}>
+                        <Options
+                            style={{ minWidth: optionsWidth }}
+                            target={this._selectionRef.current}>
                             {data.length > 0 ? (
                                 <>
                                     {showSearch && (
                                         <div className='select-search'>
                                             <Input
                                                 value={searchWord}
-                                                placeholder={searchInputPlaceholder}
-                                                onChange={this._handleChangeInput}
+                                                placeholder={
+                                                    searchInputPlaceholder
+                                                }
+                                                onChange={
+                                                    this._handleChangeInput
+                                                }
                                             />
                                         </div>
                                     )}
                                     {data
-                                        .filter((item) => (searchWord ? item.name.indexOf(searchWord) > -1 : true))
+                                        .filter((item) =>
+                                            searchWord
+                                                ? item.name.indexOf(
+                                                      searchWord,
+                                                  ) > -1
+                                                : true,
+                                        )
                                         .map((item, index) => (
                                             <Option
                                                 key={item.value + item.name}

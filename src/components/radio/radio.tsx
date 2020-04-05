@@ -1,24 +1,36 @@
-import React, { Component, FocusEvent } from 'react'
-import { isNumber } from 'laamginghong-utils'
+import React, { ChangeEvent, Component } from 'react'
 import classNames from 'classnames'
+import { RadioProps } from './types'
 import './style.less'
 
-export interface RadioProps {
+interface RadioState {
     checked: boolean
-    disabled?: boolean
-    value: any
-    onChecked(value: any): void
-    block?: boolean
 }
 
-class Radio extends Component<RadioProps> {
-    private _handleSelect = (data: FocusEvent<HTMLInputElement>): void => {
-        const { value, onChecked } = this.props
-        let result: string | number = data.target.value
-        if (isNumber(value)) {
-            result = +data.target.value
+export default class Radio extends Component<RadioProps, RadioState> {
+    static getDerivedStateFromProps(
+        props: RadioProps,
+        state: RadioState,
+    ): RadioState {
+        if ('checked' in props) {
+            return { ...state, checked: props.checked }
         }
-        onChecked(result)
+        return null
+    }
+
+    state: RadioState = {
+        checked: this.props.checked ?? this.props.defaultChecked,
+    }
+
+    private _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const { disabled, onChange } = this.props
+        if (disabled) {
+            return
+        }
+        if (!('checked' in this.props)) {
+            this.setState({ checked: event.target.checked })
+        }
+        onChange && onChange(event)
     }
 
     render():
@@ -31,17 +43,25 @@ class Radio extends Component<RadioProps> {
         | boolean
         | null
         | undefined {
-        const { checked, disabled, children, value, block } = this.props
+        const { id, name, disabled, value, children } = this.props
+        const { checked } = this.state
         return (
-            <label htmlFor={value + children} className={classNames('radio-wrapper', { disabled, block })}>
-                <span className={classNames('radio', { checked, disabled })}>
+            <label
+                htmlFor={id ?? name ?? ''}
+                className={classNames('radio-wrapper', { disabled })}>
+                <span
+                    className={classNames('radio', {
+                        checked,
+                    })}>
                     <input
-                        type='radio'
-                        id={value + children}
-                        className='radio-input'
-                        disabled={disabled}
+                        id={id ?? name ?? ''}
+                        name={name}
                         value={value}
-                        onFocus={this._handleSelect}
+                        disabled={disabled}
+                        checked={checked}
+                        type='radio'
+                        className='radio-input'
+                        onChange={this._handleChange}
                     />
                     <span className='radio-inner' />
                 </span>
@@ -50,5 +70,3 @@ class Radio extends Component<RadioProps> {
         )
     }
 }
-
-export default Radio
