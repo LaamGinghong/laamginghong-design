@@ -32,13 +32,20 @@ export const Trigger: FC = () => {
                         { value: 'focus', name: 'Focus' },
                     ]}
                     value={trigger}
-                    onChange={handleSelect}
+                    onSelect={handleSelect}
                 />
-                <Popover content={<div>Content</div>} title={<div>Title</div>} trigger={trigger}>
+                <Popover
+                    content={<div>Content</div>}
+                    title={<div>Title</div>}
+                    trigger={trigger}>
                     <Button style={{ marginLeft: '10px' }}>Trigger</Button>
                 </Popover>
             </Flex>
-            {trigger === 'hover' && <p>如果trigger是focus，请确保Popover的children的props包含onFocus</p>}
+            {trigger === 'hover' && (
+                <p>
+                    如果trigger是focus，请确保Popover的children的props包含onFocus
+                </p>
+            )}
         </>
     )
 }
@@ -51,7 +58,10 @@ export const HandleClose: FC = () => {
     }, [])
 
     return (
-        <Popover ref={popoverRef} content={<Button onClick={handleClose}>Click me to close</Button>} title={<div>Title</div>}>
+        <Popover
+            ref={popoverRef}
+            content={<Button onClick={handleClose}>Click me to close</Button>}
+            title={<div>Title</div>}>
             <Button>Click me</Button>
         </Popover>
     )
@@ -88,21 +98,33 @@ export const Placement: FC = () => {
                 </Popover>
             </div>
             <div>
-                <Popover content='content' trigger='hover' placement='leftBottom'>
+                <Popover
+                    content='content'
+                    trigger='hover'
+                    placement='leftBottom'>
                     <Button>LB</Button>
                 </Popover>
-                <Popover content='content' trigger='hover' placement='rightBottom'>
+                <Popover
+                    content='content'
+                    trigger='hover'
+                    placement='rightBottom'>
                     <Button style={{ marginLeft: '160px' }}>RB</Button>
                 </Popover>
             </div>
             <div style={{ marginLeft: '50px' }}>
-                <Popover content='content' trigger='hover' placement='bottomLeft'>
+                <Popover
+                    content='content'
+                    trigger='hover'
+                    placement='bottomLeft'>
                     <Button>BL</Button>
                 </Popover>
                 <Popover content='content' trigger='hover' placement='bottom'>
                     <Button>Bottom</Button>
                 </Popover>
-                <Popover content='content' trigger='hover' placement='bottomRight'>
+                <Popover
+                    content='content'
+                    trigger='hover'
+                    placement='bottomRight'>
                     <Button>BR</Button>
                 </Popover>
             </div>

@@ -38,10 +38,16 @@ export const SpeedCreate: FC = () => {
             <Button style={{ marginRight: '10px' }} onClick={handleSuccess}>
                 success
             </Button>
-            <Button style={{ marginRight: '10px' }} type='primary' onClick={handleInfo}>
+            <Button
+                style={{ marginRight: '10px' }}
+                type='primary'
+                onClick={handleInfo}>
                 info
             </Button>
-            <Button style={{ marginRight: '10px' }} type='danger' onClick={handleError}>
+            <Button
+                style={{ marginRight: '10px' }}
+                type='danger'
+                onClick={handleError}>
                 danger
             </Button>
             <Button type='link' onClick={handleWarning}>
@@ -52,7 +58,9 @@ export const SpeedCreate: FC = () => {
 }
 
 export const Placement: FC = () => {
-    const [placement, setPlacement] = useState<NotificationPlacement>('topRight')
+    const [placement, setPlacement] = useState<NotificationPlacement>(
+        'topRight',
+    )
 
     const handleSelect = useCallback((value: NotificationPlacement): void => {
         setPlacement(value)
@@ -62,7 +70,8 @@ export const Placement: FC = () => {
         notification.create({
             type: 'success',
             title: '标题',
-            description: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容',
+            description:
+                '内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容',
             placement,
         })
     }, [placement])
@@ -77,7 +86,7 @@ export const Placement: FC = () => {
                     { value: 'bottomRight', name: 'bottomRight' },
                 ]}
                 value={placement}
-                onChange={handleSelect}
+                onSelect={handleSelect}
             />
             <Button onClick={handleCreate} style={{ marginLeft: '10px' }}>
                 Create

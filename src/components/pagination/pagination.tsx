@@ -1,7 +1,12 @@
 import React, { FC, ReactNode, useCallback, useState } from 'react'
 import classNames from 'classnames'
 import { isNil } from 'laamginghong-utils'
-import { LeftOutlined, RightOutlined, VerticalLeftOutlined, VerticalRightOutlined } from '../icon'
+import {
+    LeftOutlined,
+    RightOutlined,
+    VerticalLeftOutlined,
+    VerticalRightOutlined,
+} from '../icon'
 import './style.less'
 import { Flex } from '../flex'
 import PaginationItem from './pagination-item'
@@ -18,7 +23,13 @@ export interface PaginationProps {
     showSizeChanger?: boolean
     total: number
     showTotal?: (total: number) => ReactNode
-    onChange({ pageIndex, pageSize }: { pageIndex: number; pageSize: number }): void
+    onChange({
+        pageIndex,
+        pageSize,
+    }: {
+        pageIndex: number
+        pageSize: number
+    }): void
 }
 
 const Pagination: FC<PaginationProps> = ({
@@ -122,36 +133,61 @@ const Pagination: FC<PaginationProps> = ({
                     {showTotal(total)}
                 </Flex>
             )}
-            <PaginationItem className={classNames({ disabled: prevDisabled })} onClick={(): void => handleFirst(prevDisabled)}>
+            <PaginationItem
+                className={classNames({ disabled: prevDisabled })}
+                onClick={(): void => handleFirst(prevDisabled)}>
                 <VerticalRightOutlined />
             </PaginationItem>
-            <PaginationItem className={classNames({ disabled: prevDisabled })} onClick={(): void => handlePrev(prevDisabled)}>
+            <PaginationItem
+                className={classNames({ disabled: prevDisabled })}
+                onClick={(): void => handlePrev(prevDisabled)}>
                 <LeftOutlined />
             </PaginationItem>
             {list.map((item) => (
-                <PaginationItem key={item} className={classNames({ selected: item === pageIndex, disabled })}>
+                <PaginationItem
+                    key={item}
+                    className={classNames({
+                        selected: item === pageIndex,
+                        disabled,
+                    })}>
                     {item}
                 </PaginationItem>
             ))}
-            <PaginationItem className={classNames({ disabled: nextDisabled })} onClick={(): void => handleNext(nextDisabled)}>
+            <PaginationItem
+                className={classNames({ disabled: nextDisabled })}
+                onClick={(): void => handleNext(nextDisabled)}>
                 <RightOutlined />
             </PaginationItem>
-            <PaginationItem className={classNames({ disabled: nextDisabled })} onClick={(): void => handleLast(nextDisabled)}>
+            <PaginationItem
+                className={classNames({ disabled: nextDisabled })}
+                onClick={(): void => handleLast(nextDisabled)}>
                 <VerticalLeftOutlined />
             </PaginationItem>
             {showSizeChanger && (
                 <Select
-                    data={pageSizeOptions.map((v) => ({ value: v, name: `${v}` }))}
+                    data={pageSizeOptions.map((v) => ({
+                        value: v,
+                        name: `${v}`,
+                    }))}
                     value={pageSize}
-                    renderSelection={(value): ReactNode => `${value.value}条/页`}
+                    renderSelection={(value): ReactNode =>
+                        `${value.value}条/页`
+                    }
                     style={{ width: '100px' }}
-                    onChange={handleSelect}
+                    onSelect={handleSelect}
                 />
             )}
             {showQuickJumper && (
                 <Flex alignItems='center' className='pagination-quick-jumper'>
                     跳至
-                    <InputNumber value={jumpIndex} min={1} max={count} onChange={handleChangeJumpIndex} onPressEnter={handleQuickJump} />页
+                    <InputNumber
+                        value={jumpIndex}
+                        min={1}
+                        max={count}
+                        onChange={handleChangeJumpIndex}
+                        onPressEnter={handleQuickJump}
+                    />
+                    页
                 </Flex>
             )}
         </Flex>
