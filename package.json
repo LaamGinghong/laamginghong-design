@@ -1,7 +1,9 @@
 {
   "name": "laamginghong-design",
   "version": "9.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/types/index.d.ts",
   "repository": "https://github.com/LaamGinghong/laamginghong-design.git",
   "author": "LaamGinghong <351390560@qq.com>",
   "homepage": "https://github.com/LaamGinghong/laamginghong-design",
