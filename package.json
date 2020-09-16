@@ -4,7 +4,16 @@
   "main": "index.js",
   "repository": "https://github.com/LaamGinghong/laamginghong-design.git",
   "author": "LaamGinghong <351390560@qq.com>",
+  "homepage": "https://github.com/LaamGinghong/laamginghong-design",
+  "bugs": {
+    "email": "laamginghong1996@gmail.com",
+    "url": "https://github.com/LaamGinghong/laamginghong-design/issues"
+  },
   "license": "MIT",
+  "keywords": [
+    "react",
+    "components"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
