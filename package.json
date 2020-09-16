@@ -14,6 +14,9 @@
     "react",
     "components"
   ],
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -29,6 +32,9 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@types/node": "^14.10.2",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "eslint": "^7.9.0",
@@ -43,6 +49,16 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.3.0",
     "prettier": "^2.1.2",
+    "rollup": "^2.27.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-sourcemaps": "^0.6.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^2.0.1",
     "typescript": "^4.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
