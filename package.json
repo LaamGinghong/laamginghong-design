@@ -69,5 +69,10 @@
   "peerDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.2.2",
+    "big.js": "^5.2.2",
+    "dayjs": "^1.8.35"
   }
 }

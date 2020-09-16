@@ -27,5 +27,7 @@ module.exports = {
   rules: {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'error',
+    'no-undef': 'off',
+    'react/prop-types': 'off',
   },
 }
