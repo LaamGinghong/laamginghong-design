@@ -11,8 +11,9 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "button": ["src/button.tsx"]
+      "i18n": ["src/i18n"]
     },
+    "resolveJsonModule": true,
     "strict": true,
     "alwaysStrict": true,
     "moduleResolution": "node",

@@ -17,7 +17,7 @@
     "components"
   ],
   "scripts": {
-    "start": "docz dev",
+    "start": "gatsby clean; docz dev",
     "build": "rollup -c rollup.config.js"
   },
   "husky": {

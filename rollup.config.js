@@ -5,6 +5,7 @@ import { terser } from 'rollup-plugin-terser'
 import { eslint } from 'rollup-plugin-eslint'
 import sizes from 'rollup-plugin-sizes'
 import del from 'rollup-plugin-delete'
+import rollupPluginTsPaths from 'rollup-plugin-ts-paths'
 
 export default {
   input: 'src/index.ts',
@@ -15,6 +16,7 @@ export default {
   external: ['react', 'react-dom'],
   plugins: [
     del({ targets: 'lib/*' }),
+    rollupPluginTsPaths(),
     typescript(),
     nodeResolve(),
     commonjs(),
