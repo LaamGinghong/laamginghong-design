@@ -1,0 +1,75 @@
+---
+menu: Components
+name: Flex
+---
+
+import { Props } from 'docz'
+import Flex from './flex'
+import FlexItem from './flex-item'
+
+# 弹性盒子 Flex
+
+## 基本用法 Basic usage
+
+<Flex justifyContent="space-around">
+  <div>Box.1</div>
+  <div>Box.2</div>
+  <div>Box.3</div>
+</Flex>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Flex from './flex'
+
+const App: FC = () => {
+  return (
+    <Flex justifyContent="space-around">
+      <div>Box.1</div>
+      <div>Box.2</div>
+      <div>Box.3</div>
+    </Flex>
+  )
+}
+
+export default App
+```
+
+---
+
+## 嵌套使用 mixin
+
+<Flex>
+  <FlexItem>Box.1</FlexItem>
+  <FlexItem order={1}>Box.2</FlexItem>
+  <FlexItem flex={1}>Box.3</FlexItem>
+</Flex>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Flex from './flex'
+import FlexItem from './flex-item'
+
+const App: FC = () => {
+  return (
+    <Flex>
+      <FlexItem>Box.1</FlexItem>
+      <FlexItem order={1}>Box.2</FlexItem>
+      <FlexItem flex={1}>Box.3</FlexItem>
+    </Flex>
+  )
+}
+
+export default App
+```
+
+---
+
+## 属性 Props
+
+### Flex
+
+<Props of={Flex} />
+
+### FlexItem
+
+<Props of={FlexItem} />

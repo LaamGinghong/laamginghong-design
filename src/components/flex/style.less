@@ -1,0 +1,47 @@
+@import '../../less/variables';
+@import './mixin';
+
+@flex: ~'flex', ~'inline-flex';
+@direction: ~'row', ~'row-reverse', ~'column', ~'column-reverse';
+@wrap: ~'nowrap', ~'wrap', ~'wrap-reverse';
+@justifyContent: ~'flex-start', ~'flex-end', ~'center', ~'space-between',
+  ~'space-around';
+@alignItems: ~'flex-start', ~'flex-end', ~'center', ~'baseline', ~'stretch';
+@alignContent: ~'flex-start', ~'flex-end', ~'center', ~'space-between',
+  ~'space-around', ~'stretch';
+
+each(@flex, {
+  .@{value} {
+    .flex(@value);
+  }
+});
+
+each(@direction,{
+  .@{value} {
+    .direction(@value);
+  }
+});
+
+each(@wrap,{
+  .@{value} {
+    .wrap(@value);
+  }
+});
+
+each(@justifyContent,{
+  .justify-content-@{value} {
+    .justifyContent(@value);
+  }
+})
+
+each(@alignItems,{
+  .align-items-@{value} {
+    .alignItems(@value);
+  }
+});
+
+each(@alignContent, {
+  .align-content-@{value} {
+    .alignContent(@value);
+  }
+})
