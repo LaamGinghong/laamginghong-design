@@ -1,0 +1,56 @@
+@import '../../less/variables';
+@import './mixin';
+
+.button {
+  outline: 0;
+  border: 1px solid @normal-border-color;
+  font-weight: @normal-font-weight;
+  font-size: @normal-font-size;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0 15px;
+  height: 32px;
+  border-radius: @border-radius;
+  color: @normal-font-color;
+  background-color: #fff;
+  cursor: pointer;
+
+  &.loading {
+    touch-action: none;
+    pointer-events: none;
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  .pseudo-class(@primary-color,false);
+
+  &.primary {
+    .mixin(@primary-color);
+    .pseudo-class(@primary-color,true);
+  }
+
+  &.danger {
+    .mixin(@danger-color);
+    .pseudo-class(@danger-color, true);
+  }
+
+  &.link {
+    .pseudo-class(@primary-color, false);
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: @primary-color;
+  }
+
+  &.small {
+    height: 24px;
+    padding: 0 7px;
+    font-size: @small-font-size;
+  }
+
+  &.large {
+    height: 40px;
+    font-size: @large-font-size;
+  }
+}

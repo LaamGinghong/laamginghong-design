@@ -1,0 +1,36 @@
+@import '../../less/variables';
+
+.mixin(@color) {
+  color: #fff;
+  background-color: @color;
+  border-color: @color;
+}
+
+.pseudo-class(@color, @mixin) {
+  &:hover {
+    color: if(@mixin, #fff, @color);
+    background-color: if(@mixin, lighten(@color, 10%), #fff);
+    border-color: if(@mixin, lighten(@color, 10%), @color);
+  }
+
+  &:focus {
+    color: if(@mixin, #fff, darken(@color, 20%));
+    border-color: darken(@color, 20%);
+    background-color: if(@mixin, lighten(@color, 10%), #fff);
+  }
+
+  &:active {
+    color: if(@mixin, #fff, darken(@color, 30%));
+    border-color: darken(@color, 30%);
+    background-color: if(@mixin, darken(@color, 30%), #fff);
+  }
+
+  &[disabled] {
+    color: @disabled-font-color;
+    background-color: @disabled-background-color;
+    border-color: @normal-border-color;
+    text-shadow: none;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}

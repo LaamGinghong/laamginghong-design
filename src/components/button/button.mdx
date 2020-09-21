@@ -1,0 +1,189 @@
+---
+menu: Components
+name: Button
+---
+
+import Button from './button'
+import { i18n } from '../../i18n'
+
+# 按钮 Button
+
+## 按钮类型 Type
+
+按钮类型包括：
+
+- 默认按钮（default）
+- 主按钮（primary）
+- 危险按钮（danger）
+- 链接按钮（link）
+
+<Button>Default</Button>
+<Button type="primary">Primary</Button>
+<Button type="danger">Danger</Button>
+<Button type="link">Link</Button>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Button from './button'
+
+const App: FC = () => {
+  return (
+    <>
+      <Button>Default</Button>
+      <Button type="primary">Primary</Button>
+      <Button type="danger">Danger</Button>
+      <Button type="link">Link</Button>
+    </>
+  )
+}
+
+export default App
+```
+
+---
+
+## 禁用 Disabled
+
+为按钮添加 `disabled` 属性可以将按钮设置为禁用状态。
+
+<Button disabled>{i18n('禁用')}</Button>
+<Button disabled type="primary">
+  {i18n('禁用')}
+</Button>
+<Button disabled type="danger">
+  {i18n('禁用')}
+</Button>
+<Button disabled type="link">
+  {i18n('禁用')}
+</Button>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Button from './button'
+import { i18n } from '../../i18n'
+
+const App: FC = () => {
+  return (
+    <>
+      <Button disabled>{i18n('禁用')}</Button>
+      <Button disabled type="primary">
+        {i18n('禁用')}
+      </Button>
+      <Button disabled type="danger">
+        {i18n('禁用')}
+      </Button>
+      <Button disabled type="link">
+        {i18n('禁用')}
+      </Button>
+    </>
+  )
+}
+
+export default App
+```
+
+---
+
+## 加载中 Loading
+
+可以通过传入一个布尔值给按钮的 `loading` 属性，来控制按钮是否显示加载中的图标。
+
+加载中的按钮是禁用状态的，同时链接按钮没有 Loading 状态。
+
+<Button loading>Loading</Button>
+<Button loading type="primary">
+  Loading
+</Button>
+<Button loading type="danger">
+  Loading
+</Button>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Button from './button'
+
+const App: FC = () => {
+  return (
+    <>
+      <Button loading>Loading</Button>
+      <Button loading type="primary">
+        Loading
+      </Button>
+      <Button loading type="danger">
+        Loading
+      </Button>
+    </>
+  )
+}
+
+export default App
+```
+
+---
+
+## 块级按钮 Block
+
+可以通过设置属性 `block` 让按钮的宽度占满包裹当前按钮的容器。
+
+<Button block>Block</Button>
+<Button block type="primary">
+  Block
+</Button>
+<Button block type="danger">
+  Block
+</Button>
+<Button block type="link">
+  Block
+</Button>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Button from './button'
+
+const App: FC = () => {
+  return (
+    <>
+      <Button block>Block</Button>
+      <Button block type="primary">
+        Block
+      </Button>
+      <Button block type="danger">
+        Block
+      </Button>
+      <Button block type="link">
+        Block
+      </Button>
+    </>
+  )
+}
+
+export default App
+```
+
+## 大小 Size
+
+按钮大小一共有三种：
+
+- 默认大小（高度为 `32px`，左右内边距为 `15px`，字体大小为 `14px`）
+- 小型按钮（高度为 `24px`，左右内边距为 `7px`，字体大小为 `12px`）
+- 巨型按钮（高度为 `40px`，左右内边距为 `15px`，字体大小为 `16px`）
+
+<Button>Default</Button>
+<Button size="large">Large</Button>
+<Button size="small">Small</Button>
+<br/>
+<Button type="primary">Default</Button>
+<Button type="primary" size="large">Large</Button>
+<Button type="primary" size="small">Small</Button>
+<br/>
+<Button type="danger">Default</Button>
+<Button type="danger" size="large">Large</Button>
+<Button type="danger" size="small">Small</Button>
+<br/>
+<Button type="link">Default</Button>
+<Button type="link" size="large">Large</Button>
+<Button type="link" size="small">Small</Button>
+<br/>
+<Button loading>Default</Button>
+<Button size="large" loading>Large</Button>
+<Button size="small" loading>Small</Button>
