@@ -1,0 +1,140 @@
+---
+menu: Components
+name: Breadcrumbs
+---
+
+import Breadcrumbs from './breadcrumbs'
+import i18n from '../../i18n/i18n'
+
+# 面包屑 Breadcrumbs
+
+## 常规用法
+
+<Breadcrumbs
+  breadcrumbs={[
+    { text: i18n('百度'), href: 'https://www.baidu.com' },
+    { text: i18n('腾讯'), href: 'https://www.tencent.com' },
+    { text: i18n('阿里'), href: 'https://www.alibaba.com' },
+  ]}
+/>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Breadcrumbs from './breadcrumbs'
+
+const App: FC = () => {
+  return (
+    <Breadcrumbs
+      breadcrumbs={[
+        { text: '百度', href: 'https://www.baidu.com' },
+        { text: '腾讯', href: 'https://www.tencent.com' },
+        { text: '阿里', href: 'https://www.alibaba.com' },
+      ]}
+    />
+  )
+}
+
+export default App
+```
+
+---
+
+## 自定义分隔符
+
+<Breadcrumbs
+  breadcrumbs={[
+    { text: i18n('百度'), href: 'https://www.baidu.com' },
+    { text: i18n('腾讯'), href: 'https://www.tencent.com' },
+    { text: i18n('阿里'), href: 'https://www.alibaba.com' },
+  ]}
+  separator="-"
+/>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Breadcrumbs from './breadcrumbs'
+
+const App: FC = () => {
+  return (
+    <Breadcrumbs
+      breadcrumbs={[
+        { text: '百度', href: 'https://www.baidu.com' },
+        { text: '腾讯', href: 'https://www.tencent.com' },
+        { text: '阿里', href: 'https://www.alibaba.com' },
+      ]}
+      separator="-"
+    />
+  )
+}
+
+export default App
+```
+
+---
+
+## 自定义渲染
+
+自定义渲染需要自己去实现默认样式。
+
+<Breadcrumbs
+  breadcrumbs={[
+    {
+      text: '百度',
+      href: 'https://www.baidu.com',
+      renderItem() {
+        return 'Hello Baidu'
+      },
+    },
+    {
+      text: '腾讯',
+      href: 'https://www.tencent.com',
+      renderItem() {
+        return 'Hello Tencent'
+      },
+    },
+    {
+      text: '阿里',
+      href: 'https://www.alibaba.com',
+      renderItem() {
+        return 'Hello Ali'
+      },
+    },
+  ]}
+/>
+
+```typescript jsx
+import React, { FC } from 'react'
+import Breadcrumbs from './breadcrumbs'
+
+const App: FC = () => {
+  return (
+    <Breadcrumbs
+      breadcrumbs={[
+        {
+          text: '百度',
+          href: 'https://www.baidu.com',
+          renderItem() {
+            return 'Hello Baidu'
+          },
+        },
+        {
+          text: '腾讯',
+          href: 'https://www.tencent.com',
+          renderItem() {
+            return 'Hello Tencent'
+          },
+        },
+        {
+          text: '阿里',
+          href: 'https://www.alibaba.com',
+          renderItem() {
+            return 'Hello Ali'
+          },
+        },
+      ]}
+    />
+  )
+}
+
+export default App
+```
