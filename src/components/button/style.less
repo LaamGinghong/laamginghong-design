@@ -9,7 +9,7 @@
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   padding: 0 15px;
-  height: 32px;
+  height: @normal-height;
   border-radius: @border-radius;
   color: @normal-font-color;
   background-color: #fff;
@@ -44,13 +44,13 @@
   }
 
   &.small {
-    height: 24px;
+    height: @small-height;
     padding: 0 7px;
     font-size: @small-font-size;
   }
 
   &.large {
-    height: 40px;
+    height: @large-height;
     font-size: @large-font-size;
   }
 }
