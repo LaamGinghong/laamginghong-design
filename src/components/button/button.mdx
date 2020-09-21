@@ -3,6 +3,7 @@ menu: Components
 name: Button
 ---
 
+import { Props } from 'docz'
 import Button from './button'
 import { i18n } from '../../i18n'
 
@@ -171,19 +172,42 @@ export default App
 <Button>Default</Button>
 <Button size="large">Large</Button>
 <Button size="small">Small</Button>
-<br/>
+<br />
 <Button type="primary">Default</Button>
-<Button type="primary" size="large">Large</Button>
-<Button type="primary" size="small">Small</Button>
-<br/>
+<Button type="primary" size="large">
+  Large
+</Button>
+<Button type="primary" size="small">
+  Small
+</Button>
+<br />
 <Button type="danger">Default</Button>
-<Button type="danger" size="large">Large</Button>
-<Button type="danger" size="small">Small</Button>
-<br/>
+<Button type="danger" size="large">
+  Large
+</Button>
+<Button type="danger" size="small">
+  Small
+</Button>
+<br />
 <Button type="link">Default</Button>
-<Button type="link" size="large">Large</Button>
-<Button type="link" size="small">Small</Button>
-<br/>
+<Button type="link" size="large">
+  Large
+</Button>
+<Button type="link" size="small">
+  Small
+</Button>
+<br />
 <Button loading>Default</Button>
-<Button size="large" loading>Large</Button>
-<Button size="small" loading>Small</Button>
+<Button size="large" loading>
+  Large
+</Button>
+<Button size="small" loading>
+  Small
+</Button>
+
+----------
+## 属性 Props
+
+### ButtonProps
+
+<Props of={Button}/>
