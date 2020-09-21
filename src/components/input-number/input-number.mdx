@@ -1,0 +1,110 @@
+---
+menu: Components
+name: InputNumber
+---
+
+import { Props } from 'docz'
+import InputNumber from './input-number'
+
+# InputNumber 数字输入框
+
+## 基本用法 Basic usage
+
+<InputNumber
+  defaultValue={10}
+  onChange={(value) => {
+    console.log(value)
+  }}
+/>
+
+```typescript jsx
+import React, { FC } from 'react'
+import InputNumber from './input-number'
+
+const App: FC = () => {
+  return (
+    <InputNumber
+      defaultValue={10}
+      onChange={(value) => {
+        console.log(value)
+      }}
+    />
+  )
+}
+
+export default App
+```
+
+---
+
+## 范围 Range
+
+<InputNumber
+  defaultValue={10}
+  max={20}
+  min={0}
+  onChange={(value) => {
+    console.log(value)
+  }}
+/>
+
+```typescript jsx
+import React, { FC } from 'react'
+import InputNumber from './input-number'
+
+const App: FC = () => {
+  return (
+    <InputNumber
+      defaultValue={10}
+      max={20}
+      min={0}
+      onChange={(value) => {
+        console.log(value)
+      }}
+    />
+  )
+}
+
+export default App
+```
+
+---
+
+## 精度
+
+<InputNumber
+  placeholder="Basic usage"
+  defaultValue={10}
+  precision={2}
+  onChange={(value) => {
+    console.log(value)
+  }}
+/>
+
+```typescript jsx
+import React, { FC } from 'react'
+import InputNumber from './input-number'
+
+const App: FC = () => {
+  return (
+    <InputNumber
+      placeholder="Basic usage"
+      defaultValue={10}
+      precision={2}
+      onChange={(value) => {
+        console.log(value)
+      }}
+    />
+  )
+}
+
+export default App
+```
+
+---
+
+## 属性 Props
+
+### InputNumber
+
+<Props of={InputNumber} />

@@ -1,11 +1,14 @@
 import React, { forwardRef, InputHTMLAttributes } from 'react'
+import classNames from 'classnames'
 import './style.less'
 
 const Input = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
->((props, ref) => {
-  return <input className="input" {...props} ref={ref} />
+>(({ className, ...rest }, ref) => {
+  return (
+    <input className={classNames('input', className)} {...rest} ref={ref} />
+  )
 })
 
 Input.displayName = 'Input'
