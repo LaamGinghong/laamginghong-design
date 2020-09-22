@@ -1,4 +1,5 @@
 import { unmountComponentAtNode } from 'react-dom'
+import './style.less'
 
 abstract class BasicContainer {
   private static container: HTMLDivElement | null

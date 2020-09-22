@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 
-import { LoadingOutlined } from '../icon'
+import { LoadingOutlined } from '../../icon'
 import './style.less'
 
 interface ButtonProps
