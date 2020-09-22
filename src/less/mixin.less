@@ -1,0 +1,21 @@
+@import './variables';
+
+.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.anticon {
+  outline: none;
+}
+
+.root(@name,@z-index) {
+  .@{name}-mask {
+    background-color: @mask-background-color;
+    .fixed;
+    z-index: @z-index;
+  }
+}

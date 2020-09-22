@@ -1,0 +1,71 @@
+@import '../../less/variables';
+@import '../../less/mixin';
+
+.model-root {
+  .root(~'model',@model-z-index);
+
+  .model {
+    .fixed;
+    z-index: @model-z-index;
+
+    .body {
+      margin: 200px auto 0;
+      box-shadow: @box-shadow;
+
+      & > * {
+        background-color: #fff;
+      }
+
+      .header {
+        position: relative;
+        border-top-left-radius: @border-radius;
+        border-top-right-radius: @border-radius;
+        padding: 16px 24px;
+        border-bottom: 1px solid @normal-border-color;
+
+        .close {
+          position: absolute;
+          width: 56px;
+          height: 56px;
+          line-height: 60px;
+          top: 0;
+          right: 0;
+          font-size: @large-font-size;
+          color: @disabled-font-color;
+          transition: color 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            color: @bold-font-color;
+          }
+        }
+      }
+
+      .content {
+        padding: 24px;
+
+        &.without-title {
+          border-top-left-radius: @border-radius;
+          border-top-right-radius: @border-radius;
+        }
+
+        &.without-footer {
+          border-bottom-left-radius: @border-radius;
+          border-bottom-right-radius: @border-radius;
+        }
+      }
+
+      .footer {
+        border-top: 1px solid @normal-border-color;
+        padding: 10px 16px;
+        text-align: right;
+
+        &.default {
+          & > .button:first-child {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+---
+menu: Components
+name: Model
+---
+
+import { useState } from 'react'
+import { Playground, Props } from 'docz'
+import Model from './model'
+import { Button } from '../button'
+
+# 模态框 Model
+
+## 基本用法 Basic usage
+
+在 JSX 中作为 `ReactElement` 直接使用，但是不推荐这种用法。
+
+<Playground>
+  {() => {
+    const [visible, setVisible] = useState(false)
+    const handleToggle = () => {
+      setVisible(!visible)
+    }
+    const handleOk = () => {
+      alert('你点击了确定')
+      handleToggle()
+    }
+    return (
+      <>
+        <Button onClick={handleToggle}>Click</Button>
+        <Model
+          title="标题"
+          visible={visible}
+          onCancel={handleToggle}
+          onOk={handleOk}
+        >
+          <p>some content...</p>
+          <p>some content...</p>
+          <p>some content...</p>
+        </Model>
+      </>
+    )
+  }}
+</Playground>
+
+---
+
+## 自定义底部 Footer
+
+传入属性 `footer`，可以自定义模态框底部
+
+如果不需要使用 footer 时，可以传入 `null`
+
+<Playground>
+  {() => {
+    const [visible, setVisible] = useState(false)
+    const handleToggle = () => {
+      setVisible(!visible)
+    }
+    const handleOk = () => {
+      alert('你点击了确定')
+      handleToggle()
+    }
+    return (
+      <>
+        <Button onClick={handleToggle}>Click</Button>
+        <Model
+          title="标题"
+          footer={
+            <>
+              <Button onClick={handleOk}>确定</Button>
+            </>
+          }
+          visible={visible}
+          onCancel={handleToggle}
+          onOk={handleOk}
+        >
+          <p>some content...</p>
+          <p>some content...</p>
+          <p>some content...</p>
+        </Model>
+      </>
+    )
+  }}
+</Playground>
+
+---
+
+## 异步关闭 Async
+
+当传入的 `onOk` 属性为一个 `Promise` 时，可触发确定按钮的 loading 事件
+
+<Playground>
+  {() => {
+    const [visible, setVisible] = useState(false)
+    const handleToggle = () => {
+      setVisible(!visible)
+    }
+    const handleOk = () => {
+      return new Promise((resolve) => {
+        setTimeout(function () {
+          handleToggle()
+          resolve()
+        }, 2000)
+      })
+    }
+    return (
+      <>
+        <Button onClick={handleToggle}>Click</Button>
+        <Model
+          title="标题"
+          visible={visible}
+          onCancel={handleToggle}
+          onOk={handleOk}
+        >
+          <p>some content...</p>
+          <p>some content...</p>
+          <p>some content...</p>
+        </Model>
+      </>
+    )
+  }}
+</Playground>
+
+---
+
+## 静态方法创建 static create
+
+使用 `Model.create` 创建模态框
+
+更推荐使用这种方式
+
+<Playground>
+  {() => {
+    const handleCreate = () => {
+      Model.create({
+        title: '标题',
+        content: (
+          <>
+            <p>some content...</p>
+            <p>some content...</p>
+            <p>some content...</p>
+          </>
+        ),
+        onOk() {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve()
+              Model.destroy()
+            }, 2000)
+          })
+        },
+      })
+    }
+    return (
+      <>
+        <Button onClick={handleCreate}>Click</Button>
+      </>
+    )
+  }}
+</Playground>
+
+---
+
+## 属性 Props
+
+### Model
+
+<Props of={Model} />
