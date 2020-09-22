@@ -3,7 +3,8 @@ menu: Components
 name: Button
 ---
 
-import { Props } from 'docz'
+import { useState } from 'react'
+import { Playground, Props } from 'docz'
 import Button from './button'
 import { i18n } from '../../i18n'
 
@@ -18,28 +19,12 @@ import { i18n } from '../../i18n'
 - 危险按钮（danger）
 - 链接按钮（link）
 
-<Button>Default</Button>
-<Button type="primary">Primary</Button>
-<Button type="danger">Danger</Button>
-<Button type="link">Link</Button>
-
-```typescript jsx
-import React, { FC } from 'react'
-import Button from './button'
-
-const App: FC = () => {
-  return (
-    <>
-      <Button>Default</Button>
-      <Button type="primary">Primary</Button>
-      <Button type="danger">Danger</Button>
-      <Button type="link">Link</Button>
-    </>
-  )
-}
-
-export default App
-```
+<Playground>
+  <Button>Default</Button>
+  <Button type="primary">Primary</Button>
+  <Button type="danger">Danger</Button>
+  <Button type="link">Link</Button>
+</Playground>
 
 ---
 
@@ -47,41 +32,18 @@ export default App
 
 为按钮添加 `disabled` 属性可以将按钮设置为禁用状态。
 
-<Button disabled>{i18n('禁用')}</Button>
-<Button disabled type="primary">
-  {i18n('禁用')}
-</Button>
-<Button disabled type="danger">
-  {i18n('禁用')}
-</Button>
-<Button disabled type="link">
-  {i18n('禁用')}
-</Button>
-
-```typescript jsx
-import React, { FC } from 'react'
-import Button from './button'
-import { i18n } from '../../i18n'
-
-const App: FC = () => {
-  return (
-    <>
-      <Button disabled>{i18n('禁用')}</Button>
-      <Button disabled type="primary">
-        {i18n('禁用')}
-      </Button>
-      <Button disabled type="danger">
-        {i18n('禁用')}
-      </Button>
-      <Button disabled type="link">
-        {i18n('禁用')}
-      </Button>
-    </>
-  )
-}
-
-export default App
-```
+<Playground>
+  <Button disabled>{i18n('禁用')}</Button>
+  <Button disabled type="primary">
+    {i18n('禁用')}
+  </Button>
+  <Button disabled type="danger">
+    {i18n('禁用')}
+  </Button>
+  <Button disabled type="link">
+    {i18n('禁用')}
+  </Button>
+</Playground>
 
 ---
 
@@ -91,34 +53,28 @@ export default App
 
 加载中的按钮是禁用状态的，同时链接按钮没有 Loading 状态。
 
-<Button loading>Loading</Button>
-<Button loading type="primary">
-  Loading
-</Button>
-<Button loading type="danger">
-  Loading
-</Button>
-
-```typescript jsx
-import React, { FC } from 'react'
-import Button from './button'
-
-const App: FC = () => {
-  return (
-    <>
-      <Button loading>Loading</Button>
-      <Button loading type="primary">
-        Loading
-      </Button>
-      <Button loading type="danger">
-        Loading
-      </Button>
-    </>
-  )
-}
-
-export default App
-```
+<Playground>
+  {() => {
+    const [loading, setLoading] = useState(false)
+    const handleClick = () => {
+      setLoading(true)
+      setTimeout(function () {
+        setLoading(false)
+      }, 2000)
+    }
+    return (
+      <>
+        <Button onClick={handleClick} loading={loading}>Default</Button>
+        <Button onClick={handleClick} loading={loading} type="primary">
+          Primary
+        </Button>
+        <Button onClick={handleClick} loading={loading} type="danger">
+          Danger
+        </Button>
+      </>
+    )
+  }}
+</Playground>
 
 ---
 
@@ -126,40 +82,18 @@ export default App
 
 可以通过设置属性 `block` 让按钮的宽度占满包裹当前按钮的容器。
 
-<Button block>Block</Button>
-<Button block type="primary">
-  Block
-</Button>
-<Button block type="danger">
-  Block
-</Button>
-<Button block type="link">
-  Block
-</Button>
-
-```typescript jsx
-import React, { FC } from 'react'
-import Button from './button'
-
-const App: FC = () => {
-  return (
-    <>
-      <Button block>Block</Button>
-      <Button block type="primary">
-        Block
-      </Button>
-      <Button block type="danger">
-        Block
-      </Button>
-      <Button block type="link">
-        Block
-      </Button>
-    </>
-  )
-}
-
-export default App
-```
+<Playground>
+  <Button block>Block</Button>
+  <Button block type="primary">
+    Block
+  </Button>
+  <Button block type="danger">
+    Block
+  </Button>
+  <Button block type="link">
+    Block
+  </Button>
+</Playground>
 
 ## 大小 Size
 
@@ -169,45 +103,48 @@ export default App
 - 小型按钮（高度为 `24px`，左右内边距为 `7px`，字体大小为 `12px`）
 - 巨型按钮（高度为 `40px`，左右内边距为 `15px`，字体大小为 `16px`）
 
-<Button>Default</Button>
-<Button size="large">Large</Button>
-<Button size="small">Small</Button>
-<br />
-<Button type="primary">Default</Button>
-<Button type="primary" size="large">
-  Large
-</Button>
-<Button type="primary" size="small">
-  Small
-</Button>
-<br />
-<Button type="danger">Default</Button>
-<Button type="danger" size="large">
-  Large
-</Button>
-<Button type="danger" size="small">
-  Small
-</Button>
-<br />
-<Button type="link">Default</Button>
-<Button type="link" size="large">
-  Large
-</Button>
-<Button type="link" size="small">
-  Small
-</Button>
-<br />
-<Button loading>Default</Button>
-<Button size="large" loading>
-  Large
-</Button>
-<Button size="small" loading>
-  Small
-</Button>
+<Playground>
+  <Button>Default</Button>
+  <Button size="large">Large</Button>
+  <Button size="small">Small</Button>
+  <br />
+  <Button type="primary">Default</Button>
+  <Button type="primary" size="large">
+    Large
+  </Button>
+  <Button type="primary" size="small">
+    Small
+  </Button>
+  <br />
+  <Button type="danger">Default</Button>
+  <Button type="danger" size="large">
+    Large
+  </Button>
+  <Button type="danger" size="small">
+    Small
+  </Button>
+  <br />
+  <Button type="link">Default</Button>
+  <Button type="link" size="large">
+    Large
+  </Button>
+  <Button type="link" size="small">
+    Small
+  </Button>
+  <br />
+  <Button loading>Default</Button>
+  <Button size="large" loading>
+    Large
+  </Button>
+  <Button size="small" loading>
+    Small
+  </Button>
+</Playground>
 
-----------
+---
+
 ## 属性 Props
 
 ### ButtonProps
 
-<Props of={Button}/>
+<Props of={Button} />

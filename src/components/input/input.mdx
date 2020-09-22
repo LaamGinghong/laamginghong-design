@@ -2,45 +2,32 @@
 menu: Components
 name: Input
 ---
-import {Props} from 'docz'
+
+import { Playground, Props } from 'docz'
 import Input from './input'
 
 # 输入框 Input
 
 ## 基本用法 Basic usage
 
-<Input placeholder='Basic usage' />
+<Playground>
+  <Input placeholder="Basic usage" />
+</Playground>
 
-```typescript jsx
-import React, { FC } from 'react'
-import Input from './input'
+---
 
-const App: FC = () => {
-  return <Input placeholder='Basic usage' />
-}
-
-export default App
-```
-----
 ## 禁用 Disabled
 
-<Input disabled placeholder='Basic usage' />
+<Playground>
+  <Input disabled placeholder="Basic usage" />
+</Playground>
 
-```typescript jsx
-import React, { FC } from 'react'
-import Input from './input'
+---
 
-const App: FC = () => {
-  return <Input disabled placeholder='Basic usage' />
-}
-
-export default App
-```
-------
 ## 属性 Props
 
 ### Input
 
 Input 组件并没有进行任何额外的封装，仅仅是进行了样式的包裹，所以 Input 的 Props 请参考 HTML 原生 input。
 
-<Props of={Input}/>
+<Props of={Input} />
