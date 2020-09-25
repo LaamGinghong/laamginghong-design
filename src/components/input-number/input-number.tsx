@@ -1,4 +1,9 @@
-import React, { ChangeEvent, Component, CSSProperties } from 'react'
+import React, {
+  ChangeEvent,
+  Component,
+  CSSProperties,
+  KeyboardEvent,
+} from 'react'
 import Big from 'big.js'
 
 import { Input } from '../input'
@@ -21,19 +26,25 @@ interface InputNumberProps {
    */
   onChange?(value: number | null): void
   /**
+   * 当输入框处于聚焦状态时，点击键盘 Enter 按键触发的回调函数
+   *
+   * 此时会返回输入框中的合法的值
+   */
+  onEnter?(value: number | null): void
+  /**
    * 禁用
    */
   disabled?: boolean
   /**
    * 输入框允许输入的最大值
    *
-   * 当输入超出时，会在失去光标的时候切换成这个值
+   * 当输入超出时，会自动切换成这个值
    */
   max?: number
   /**
    * 输入框允许输入的最小值
    *
-   * 当输入小于最小值时，会在失去光标的时候切换成这个值
+   * 当输入小于最小值时，会自动切换成这个值
    */
   min?: number
   /**
@@ -76,6 +87,22 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
         'value' in this.props ? this.props.value! : this.props.defaultValue!,
       ),
     ),
+  }
+
+  componentDidUpdate(prevProps: Readonly<InputNumberProps>) {
+    const { value, max, min, precision } = this.props
+    if (
+      prevProps.value !== value ||
+      prevProps.max !== max ||
+      prevProps.min !== min ||
+      prevProps.precision !== precision
+    ) {
+      const validValue = this.getValidValue(this.numberToString(value!))
+      this.setState({ value: validValue }, () => {
+        const { onChange } = this.props
+        onChange && onChange(this.getCurrentValueValid(validValue))
+      })
+    }
   }
 
   private numberToString(value: number | null): string {
@@ -130,6 +157,14 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
     }
   }
 
+  private handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.nativeEvent.code === 'Enter') {
+      const { onEnter } = this.props
+      const value = this.getCurrentValueValid(this.state.value)
+      onEnter && onEnter(value)
+    }
+  }
+
   render() {
     const { value } = this.state
     const { disabled, placeholder, style, className } = this.props
@@ -143,6 +178,7 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
         className={className}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
+        onKeyPress={this.handleKeyPress}
       />
     )
   }

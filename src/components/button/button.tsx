@@ -52,10 +52,20 @@ interface ButtonProps
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { onClick, children, size, type, block, htmlType, loading, ...rest },
+    {
+      onClick,
+      className,
+      children,
+      size,
+      type,
+      block,
+      htmlType,
+      loading,
+      ...rest
+    },
     ref,
   ) => {
-    const className = useMemo(
+    const memoClassName = useMemo(
       () => ({
         primary: type === 'primary',
         danger: type === 'danger',
@@ -79,7 +89,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         onClick={handleClick}
         type={htmlType}
-        className={classNames('button', className)}
+        className={classNames('button', className, memoClassName)}
       >
         {loading && <LoadingOutlined style={{ marginRight: '10px' }} />}
         {children}
