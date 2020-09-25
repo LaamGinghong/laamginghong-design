@@ -130,10 +130,11 @@ class Model extends Component<ModelProps> {
   private container = ModelContainer.create()
 
   componentDidMount() {
-    this.componentDidUpdate()
+    this.componentDidUpdate({} as ModelProps)
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Readonly<ModelProps>) {
+    if (this.props.visible === prevProps.visible) return
     const { visible } = this.props
     if (visible) {
       document.body.setAttribute('style', 'overflow: hidden;')
@@ -143,7 +144,7 @@ class Model extends Component<ModelProps> {
   }
 
   componentWillUnmount() {
-    this.componentDidUpdate()
+    this.componentDidUpdate(this.props)
   }
 
   private handleClickBody = (event: MouseEvent) => {

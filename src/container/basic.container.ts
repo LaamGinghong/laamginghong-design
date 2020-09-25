@@ -15,8 +15,9 @@ abstract class BasicContainer {
   protected static _destroy(): void {
     if (!this.container) return
     unmountComponentAtNode(this.container)
-    document.body.removeChild(this.container)
-    this.container = null
+    while (this.container.children.length) {
+      this.container.removeChild(this.container.firstChild!)
+    }
   }
 }
 

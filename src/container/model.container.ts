@@ -6,6 +6,9 @@ export default class ModelContainer extends BasicContainer {
   }
 
   static destroy(): void {
-    this._destroy()
+    document.body.removeAttribute('style')
+    setTimeout(() => {
+      this._destroy()
+    })
   }
 }
